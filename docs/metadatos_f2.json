@@ -1,0 +1,50 @@
+{
+  "filas_originales": 5837,
+  "vigentes": 5406,
+  "filas_finales": 4603,
+  "filas_excluidas": 1234,
+  "columnas_numericas": [
+    "snss_perteneciente",
+    "snss_no_perteneciente",
+    "complejidad_baja",
+    "complejidad_mediana",
+    "complejidad_alta"
+  ],
+  "escala": "Indicadores binarios 0/1; no se aplicó un escalador",
+  "imputacion": "No aplicada a las variables analíticas",
+  "prueba_asociacion": "Proyectada F3–F4",
+  "dimensiones": {
+    "principales": [
+      {
+        "dimension": "Administrativa",
+        "columna": "TipoPertenenciaEstabGlosa",
+        "variable": "pertenencia_snss",
+        "categorias": [
+          "SNSS",
+          "No SNSS"
+        ]
+      },
+      {
+        "dimension": "Asistencial",
+        "columna": "NivelComplejidadEstabGlosa",
+        "variable": "complejidad",
+        "categorias": [
+          "Baja",
+          "Mediana",
+          "Alta"
+        ]
+      }
+    ],
+    "contexto": {
+      "Geográfica": "Macrozona; se conserva como contexto y no se incluye en el cruce principal.",
+      "Servicios": "Se conserva como contexto y no se incluye en el cruce principal."
+    }
+  },
+  "denominador": 4603,
+  "denominadores_por_grupo": {
+    "SNSS": 3065,
+    "No SNSS": 1538
+  },
+  "porcentajes": "Por fila: dentro de cada grupo de pertenencia (SNSS y No SNSS). El porcentaje por columna se usa solo como apoyo.",
+  "sha256_original": "febff55e3612fb60076df9279f1090240cd02a39e9c7b79b822119dfdef84c8d"
+}
