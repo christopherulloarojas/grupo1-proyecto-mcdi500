@@ -1,0 +1,12 @@
+transformacion,pertinencia,impacto_medido,coherencia_objetivos
+Unificación de categorías,Una categoría no debe contarse dos veces,380 valores; 0 variantes restantes,OE1 a OE4: cada categoría se cuenta una sola vez
+Casting de fechas y coordenadas,Permite calcular antigüedad y distancia,0 fallas de conversión,OE1 y OE4
+Anulación de coordenadas erróneas,Un punto falso ubica mal al establecimiento y altera la distancia,4 coordenadas anuladas,OE1 y OE4: ubicación y distancia confiables
+Imputación de coordenadas por comuna,La comuna predice la ubicación de un vigente,"82 puntos; desviación -0,22 % en latitud; error mediano 2,1 km",OE1 y OE4: incluir todos los vigentes
+Imputación categórica con pureza,Solo se completa lo casi determinado por el tipo,"Acierto 99,4 % en complejidad",OE3: niveles de complejidad completos
+Distancia a urgencia por niveles,Describe el reparto territorial de la urgencia y depende de qué cuenta como urgencia,"Nivel 1: mediana 0,68 km; máximo 248,7 km",OE4
+Conteo por comuna,Resume alta cardinalidad; no reemplaza el requisito de una discreta real,Evita 344 columnas,OE1: concentración comunal
+Antigüedad sin imputar,Imputar podría crear diferencias entre sectores,"Reduciría la desviación en 32,8 %",Ningún objetivo la requiere; evita crear diferencias entre sectores
+Codificación ordinal declarada,El orden pertenece al dominio,"Alta=3, Mediana=2, Baja=1; 0 fuera de escala",OE3
+One-hot con agrupación,Las nominales no tienen orden,56 columnas; cada grupo suma 1,OE2 y OE3: entrada de F3
+Escalamiento robusto,Hay extremos reales que no se eliminan,"Mediana 0 y RIC 1 verificados; al recortar, la escala de longitud cambia 1,4 % frente a 88,4 % con MinMax",OE5: variables comparables en F3
