@@ -1,0 +1,298 @@
+<PARSED TEXT FOR PAGE: 1 / 4>
+                                                                                     Diccionario de Datos Base de Establecimientos de Salud Red Asistencial 2026
+
+
+
+
+                                                                                                            Número de                                                                                                                       Exigencia de la
+N° de Variable            Nombre de la Variable               Glosa de la Variable           Tipo de Dato                                      Valores                                               Definición                                                         Condicionalidad
+                                                                                                            caracteres                                                                                                                          Variable
+
+
+
+
+                                                                                                                                                                            Corresponde a un identificador alfanumérico único, que
+                                                                                                                                                                            permite reconocer al prestador en forma unívoca e
+                                                                                                                                                                            inequívoca. Hasta el 2013 era significativo
+                                                                                                                                                                                                                                                              Para establecimientos que tributan
+                 Código Antiguo                          EstablecimientoCodigoAntiguo           Texto           6               Alfanumérico proporcionado por DEIS         (Los 2 primeros dígitos identifican al Servicio de Salud, los         SI
+                                                                                                                                                                                                                                                              en sistema DEIS SADU y RNI
+                                                                                                                                                                            3 dígitos siguientes al guion son correlativos dentro de la
+                                                                                                                                                                            categoría a que pertenecen) Desde el 2014 no es
+                                                                                                                                                                            significativo
+
+
+
+      1
+                                                                                                                                                                            Es un identificador numérico del establecimiento que
+                                                                                                                                                                                                                                                              NO Todo establecimiento debe tener
+                 Código Vigente                          EstablecimientoCodigoVigente         Numérico          6            Número correlativo proporcionado por DEIS      permite reconocerlo en forma unívoca e inequívoca.                    SI
+                                                                                                                                                                                                                                                              este identificador siempre
+      2                                                                                                                                                                     Correlativo, único y no reutilizable
+
+                                                                                                                                                                            Corresponde al código del establecimiento que integra
+                                                                                                                                                                                                                                                              Se completa si el establecimiento
+                 Código Madre Antiguo                 EstablecimientoCodigoMadreAntiguo       Numérico          6               Alfanumérico proporcionado por DEIS         en su estructura y funcionamiento otro establecimiento                NO
+                                                                                                                                                                                                                                                              tiene un establecimiento madre
+                                                                                                                                                                            de menor complejidad y es parte de su jurisdicción.
+      3
+
+                                                                                                                                                                            Corresponde al código del establecimiento que integra
+                                                                                                                                                                                                                                                              Se completa si el establecimiento
+                 Código Madre Nuevo                    EstablecimientoCodigoMadreNuevo        Numérico          6                Numérico proporcionado por DEIS            en su estructura y funcionamiento otro establecimiento                NO
+                                                                                                                                                                                                                                                              tiene un establecimiento madre
+                                                                                                                                                                            de menor complejidad y es parte de su jurisdicción.
+      4
+                                                                                                                                                                            Corresponde al código que se le otorga a la región, a
+                 Código Región                                  RegionCodigo                    Texto           2                   Tabla Maestra de la DPA 2018                                                                                  SI          NO
+      5                                                                                                                                                                     través de la división político administrativa.
+
+                                                                                                                                                                            Es la unidad político – administrativa de mayor nivel en
+                                                                                                                                                                            que está dividido el país. La división político
+                                                                                                                                                                            administrativa que actualmente rige en el país, se
+                                                                                                                                                                            originó en 1974 y ha sido objeto de sucesivas
+                 Nombre Región                                   RegionGlosa                    Texto          100                  Tabla Maestra de la DPA 2018                                                                                  SI          NO
+                                                                                                                                                                            modificaciones, la última de las cuales fue la Ley N°
+                                                                                                                                                                            21.033, que creó la Región de Ñuble. Por ello, a partir del
+                                                                                                                                                                            4 de septiembre de 2018, el país está dividido en 16
+      6                                                                                                                                                                     regiones.
+
+                                                                                                                                                                            Es un identificador único para el Servicio de Salud y
+                 Código Dependencia Jeráquica Servicio
+                                                    SeremiSaludCodigo_ServicioDeSaludCodigo Numérico            2           Tabla Maestra de Servicios de Salud Y SEREMIs   para la SEREMI, independiente que puedan tener                        SI          NO
+                 de Salud/ SEREMIs
+      7                                                                                                                                                                     coincidencia en el valor.
+
+                                                                                                                         Tabla Maestra de Servicios de Salud (DEIS)         Corresponde a la dependencia que tiene el
+                 Nombre Dependencia Jerárquica
+                                                     SeremiSaludGlosa_ServicioDeSaludGlosa      Texto           50       Tabla Maestra de Secretarias Regionales            establecimiento sobre un nivel jerárquico superior. Esta              SI          NO
+                 (SEREMI / Servicio de Salud)
+                                                                                                                         Ministeriales (DEIS)                               compuesta por los Servicios de Salud y las SEREMI's
+      8
+
+                                                                                                                                                                            Es un atributo o características del establecimiento
+                                                                                                                                                                            relacionado con la relación de jurisdicción establecida
+                                                                                                                                                                            con el Sistema Nacional de Servicios de Salud. Los
+                                                                                                                                                                            establecimientos públicos forman parte de un Servicio
+                                                                                                                         Perteneciente al SNSS
+                                                                                                                                                                            de Salud, por lo tanto se consideran Pertenecientes al
+                 Pertenencia al SNSS                       TipoPertenenciaEstabGlosa            Texto           20       No Perteneciente al SNSS                                                                                                 SI          NO
+                                                                                                                                                                            Sistema Nacional de Servicios de Salud. Por otro lado,
+                                                                                                                         No Aplica
+                                                                                                                                                                            Los establecimientos privados, de las Fuerzas Armadas,
+                                                                                                                                                                            de Orden y Seguridad tienen una jurisdicción diferente,
+                                                                                                                                                                            por lo tanto serán considerados No pertenecientes al
+                                                                                                                                                                            Sistema Nacional de Servicios de Salud.
+      9
+
+                                                                                                                         Tipología Establecimiento Norma de Estándares de Clasifica los establecimientos de acuerdo a su cartera
+                 Tipo Establecimiento                      TipoEstablecimientoGlosa             Texto           50                                                                                                                                SI          NO
+                                                                                                                         Información 2023                                 de prestaciones establecidas en la Resolución Sanitaria
+      10
+<PARSED TEXT FOR PAGE: 2 / 4>
+                                                                                                                                  Se refiere a la condición del establecimiento respecto a
+                                                                                    Establecimiento de Salud
+                                                                                                                                  su funcionalidad administrativa y asistencial de acuerdo
+     Ámbito de Funcionamiento       AmbitoFuncionamiento              Texto   100   Unidad de Atención                                                                                         SI   NO
+                                                                                                                                  a la normativa vigente y en el marco de la seguridad
+                                                                                    Programa de Atención
+11                                                                                                                                asistencial.
+                                                                                                                                  Es la denominación nominal del establecimiento, que lo
+     Nombre Oficial                 EstablecimientoGlosa              Texto   250                        Texto Libre              reconoce de otros. Es sancionada con la respectiva           SI   NO
+12                                                                                                                                resolución de Autorización Sanitaria.
+
+
+                                                                                                                                  Procedimiento mediante el cual, una tercera parte
+                                                                                                                                  diferente e independiente de la parte evaluada emite
+                                                                                    Autogestionado en Red (EAR)
+                                                                                                                                  un documento en el que reconoce que un
+                                                                                    Invitado a ser EAR
+                                                                                                                                  establecimiento cumple con los requisitos esperados de
+                                                                                    Candidato a ser EAR
+                                                                                                                                  calidad. Para los hospitales están los EAR ( vigentes,
+                                                                                    Certificado como CESFAM
+     Certificación                      Certificacion                 Texto   20                                                  invitados o candidato) y para la APS están los centros       SI   Solo para hospitales EAR y CESFAM
+                                                                                    No Certificado como CESFAM
+                                                                                                                                  de salud familiar ( implementación del modelo de salud
+                                                                                    Pendiente
+                                                                                                                                  famiiar). No se considera en esta categoría los
+                                                                                    No Aplica
+                                                                                                                                  establecimientos acreditados, por ser un concepto
+                                                                                                                                  diferente y cuya información se encuentra disponible en
+                                                                                                                                  la Superintendencia de Salud.
+13
+
+
+
+
+                                                                                    Servicio de Salud                             Se refiere a la institución que, fundamentalmente es
+                                                                                    Municipal                                     responsable de la administración del establecimiento,
+                                                                                    Corporaciones Municipal Organizaciones no     ya sea en forma directa o bien fijando las normas a las
+                                                                                    Gubernamentales (ONG)                         cuales deben sujetarse los establecimientos para
+                                                                                    Privado                                       administrar su patrimonio. Los establecimientos de salud
+     Dependencia Administrativa   DependenciaAdministrativa           Texto   100                                                                                                              SI   NO
+                                                                                    Fuerzas Armadas de orden y seguridad (FFAA)   privados que hayan suscrito convenios regidos por las
+                                                                                    Gendarmeria                                   disposiciones del Decreto con Fuerza de Ley DFL36
+                                                                                     Otra Institución                             atienden a población del sector público, reemplazando
+                                                                                     Delegados                                    la labor que podrían hacer recintos estatales y
+                                                                                    SEREMI de Salud                               recibiendo recursos fiscales para ello.
+
+
+
+
+14
+                                                                                    Primario
+                                                                                                                                  El sistema de salud está organizado en niveles de
+                                                                                    Secundario
+     Nivel de Atención             NivelAtencionEstabglosa    Texto           20                                                  atención, según la cobertura y complejidad de las            SI
+                                                                                    Terciario                                                                                                       Se excluyen los Laboratorios, clínicas
+                                                                                                                                  atenciones que entrega.
+15                                                                                  No Aplica                                                                                                       dentales, centro de imágenes.
+                                                                                                                                  Es el código que se le asigna a una comuna,
+     Código Comuna                     ComunaCodigo                   Texto   5                 Tabla Maestra de la DPA 2018                                                                   SI   NO
+16                                                                                                                                determinado por la división político administrativa
+
+                                                                                                                                  Es la unidad político-administrativa en que están
+     Nombre Comuna                     ComunaGlosa                    Texto   100               Tabla Maestra de la DPA 2018      divididas las provincias, la que corresponde a la división   SI   NO
+                                                                                                                                  de menor nivel en la administración del Estado.
+17
+
+                                                                                    Calle
+                                                                                    Avenida
+                                                                                    Pasaje
+                                                                                    Camino
+                                                                                    Carretera                                     Es la ubicación más específica de la dirección del
+     Vía                                TipoViaGlosa                  Texto   20                                                                                                               SI   No
+                                                                                    Callejón                                      establecimiento.
+                                                                                    Paseo
+                                                                                    Otro
+
+
+18
+                                                                                                                                  Corresponde al número municipal correspondiente; si
+                                                                                                                                  no tiene número, se registra “S/N”. Si va acompañado
+     Número                               Numero                      Texto   10                         Numérico                                                                              SI   Incluir en caso de Sin número
+                                                                                                                                  de una letra, ésta se registra en el complemento de
+19                                                                                                                                dirección.
+
+                                                                                                                                  Corresponde al nombre oficial municipal vigente de la
+     Dirección                           NombreVia                    Texto   200                        Texto Libre              vía de acceso, pudiendo agregarse (si es necesario)el        SI   NO
+                                                                                                                                  nombre anterior para mejor referencia entre paréntesis
+20
+<PARSED TEXT FOR PAGE: 3 / 4>
+                                                                                                                                                           Un número de teléfono es una secuencia
+                                                                                                                                                           de dígitos utilizada para identificar una línea
+     Teléfono                                        TelefonoMovil_TelefonoFijo      Numérico      9                        Numérico                       telefónica dentro de una Red Telefónica                    SI
+                                                                                                                                                           Conmutada (RTC). El número contiene la información
+                                                                                                                                                           necesaria para identificar el punto final de la llamada.
+21
+                                                                                                                                                           Corresponde al momento cronológico que inicio de
+                                                                                   Fecha (de-mm-                                                           funcionamiento de las actividades del prestador. Es un
+     Fecha Inicio Funcionamiento                  FechaInicioFuncionamientoEstab                   10                         Fecha                                                                                   SI   NO
+                                                                                       aaaa)                                                               dato expresado en formato de fecha que está
+22                                                                                                                                                         contenido en la Autorización Sanitaria.
+                                                                                                        SI                                                 Clasifica los establecimientos de acuerdo si cuenta o no
+     Tiene Servicio de Urgencia                        TieneServicioUrgencia           Texto       8    NO                                                 con servicio de urgencia, ya se hospitalario o de          SI   NO
+23                                                                                                      No Aplica                                          Atención Primaria.
+
+                                                                                                        Ambulatoria (SAPU)
+                                                                                                        Ambulatoria (SAR)
+                                                                                                        Ambulatoria (SUR)
+                                                                                                        Ambulatoria Privada                                Es dato que especifica el tipo de servicio de urgencia          Solo a los establecimientos que
+     Tipo de Urgencia                                      TipoUrgencia                Texto       10                                                                                                                 SI
+                                                                                                        Hospitalaria Especializada                         en la Red Asistencial.                                          tienen Urgencia
+                                                                                                        Unidad de Emergencia Hospitalaria(UEH)
+                                                                                                        No Aplica
+24
+                                                                                                        Avanzando
+                                                                                                        Corto                                              Clasificación utilizada para diferenciar a los Servicios
+     Clasificación Servicio de Atención                                                                 Largo                                              de Urgencia de la Atención Primaria de acuerdo al               Se completa sólo si el
+                                                       ClasificacionTipoSapu           Texto       10                                                                                                                 NO
+     Primaria de Urgencia (SAPU)                                                                        No aplica                                          horario de atención. En el caso que el SAPU funcione en         establecimiento es SAPU
+                                                                                                        Verano                                             forma estacional se designa como "Verano"
+25                                                                                                      Pendiente
+
+                                                                                                                                                         La longitud es una medida que expresa la distancia
+                                                                                                                                                         angular entre un punto dado de la superficie terrestre y
+                                                                                                        Datos del Departamento de Inteligencia Epidémica
+     LATITUD    [Grados decimales]                            Latitud                 Decimal                                                            el meridiano que se toma como origen (denominado             SI   NO
+                                                                                                             de la División de Emergencias Sanitarias
+                                                                                                                                                         meridiano de base), medida a lo largo del paralelo en
+26                                                                                                                                                       el que se encuentra dicho punto
+
+                                                                                                                                                         La latitud es la distancia angular entre la línea del
+                                                                                                                                                         Ecuador y un punto determinado de la Tierra, medida a
+                                                                                                        Datos del Departamento de Inteligencia Epidémica
+     LONGITUD [Grados decimales]                             Longitud                 Decimal                                                            lo largo del meridiano en el que se encuentra dicho          SI   NO
+                                                                                                             de la División de Emergencias Sanitarias
+                                                                                                                                                         punto. Según el hemisferio en el que se sitúe el punto,
+27                                                                                                                                                       puede ser latitud norte o sur.
+
+
+
+
+                                                                                                        Público                                            El tipo de prestador se relaciona al Sistema de Salud en
+                                                                                                        Privado                                            Chile. Al considerarse un Sistema Mixto, establece las
+     Tipo de Prestador en el Sistema de Salud                                          Texto
+                                                      TipoSistemaSaludGlosa                        50   Fuerzas Armadas y de Orden y Seguridad             diferencias entre los establecimientos público, privado,   SI   NO
+     *
+                                                                                                        Gendarmería                                        fuerzas armas y de orden y seguridad. En esta base se
+                                                                                                                                                           agrega la subcategoría de Gendarmería.
+
+
+28
+
+
+
+
+                                                                                                        Vigente en operación habitual
+                                                                                                                                                           Se refiere a la condición del establecimiento respecto a
+                                                                                                        Vigente en operación transitoria
+                                                                                                                                                           su funcionalidad administrativa y asistencial de acuerdo
+     Estado de Funcionamiento *                                                        Texto       20   Cerrado Temporal                                                                                              SI
+                                                                                                                                                           a la normativa vigente y en el marco de la seguridad
+                                                                                                        Cerrado Definitivo
+                                                                                                                                                           asistencia.
+
+
+
+
+29                                              EstadoFuncionamiento                                                                                                                                                       NO
+<PARSED TEXT FOR PAGE: 4 / 4>
+                                                                                                                                          La complejidad depende de la actividad de una
+                                                                                               Alta Complejidad                           unidad asistencial, en térmono del número de
+                                                                                               Mediana Complejidad                        procedimiento complejos, grado de desarrollo
+                                                                                               Baja Complejidad                           alcanzado por la misma, disponibilidad de recurso
+                                                                                  Texto   30                                                                                                          SI
+                                                                                               No Aplica                                  humano y grado de especialización, equipamiento y
+                                                                                                                                          horario de atención.
+
+
+
+30   Nivel de Complejidad **                 NivelComplejidadEstabGlosa                                                                                                                                    Se excluyen los Laboratorios
+
+
+
+
+                                                                                                                                              Modalidad de atención respecto al proceso de
+                                                                                                                                          atención de las personas en el establecimiento de salud
+                                                                                                                                           de atención general y/o especializada. Se diferencian
+                                                                                                                                             entre: los que están habilitados para la atención
+                                                                                                                                          ambulatoria - abierta o sin internación de la persona, es
+                                                                                                                                                                                                      SI
+                                                                                                                                             decir se atiende y vuelve a su lugar de origen y la
+                                                                                                                                            atención hospitalaria - cerrada o con internación,
+                                                                                                                                          cuando la presona para recibir los cuidados requeridos
+                                                                                                                                           debe permanecer en el recinto hospitalario, haciendo
+                                                                                               Atención Abierta- Ambulatoria                          uso de una cama de dotación.
+                                                                                               Atención Cerrada- Hospitalaria
+                                                                                               No Aplica
+31   Tipo de Atención **                     TipoAtencionEstabGlosa       Texto           30                                                                                                               Se excluyen los Laboratorios clínicos.
+     Fecha de Incorporacion a la base de                                  Fecha (de-mm-                                                    Corresponde al momento cronológico que se incluye               Solo para los establecimientos
+                                                                                          10             Fecha en Registro BDD del DEIS                                                               SI
+32   datos ****                              FechaIncorporacion               aaaa)                                                            un nuevo establecimiento a la Base de Datos                 vigentes
+
+                                                                          Fecha (de-mm-                                                   Corresponde al momento cronológico cuando ocurre el              Solo para los establecimientos
+                                                                                          10             Fecha en Registro BDD del DEIS                                                               SI
+                                                                              aaaa)                                                       cierre de un establecimiento a la Base de Datos                  cerrados
+33   Fecha de Cierre del establecimiento **** FechaCierre
