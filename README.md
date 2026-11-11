@@ -3,7 +3,7 @@
 **Universidad:** Universidad Andrés Bello (UNAB)  
 **Programa:** Magíster en Ciencia de Datos e Inteligencia Artificial
 **Asignatura:** MCDI500 — Programación para la Ciencia  
-**Equipo:** Grupo 1  
+**Equipo:** Grupo 1  - mcdi500
 **Año:** 2026
 
 **Integrantes:** Brian Cerda, Kattia Espinoza, Karla Martínez y Christopher Ulloa.
