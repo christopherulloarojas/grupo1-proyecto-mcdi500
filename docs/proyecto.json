@@ -1,0 +1,82 @@
+{
+  "titulo": "Pertenencia al SNSS y nivel de complejidad de los establecimientos de salud en Chile",
+  "grupo": "Grupo 1",
+  "integrantes": [
+    "Brian Cerda",
+    "Kattia Espinoza",
+    "Karla Martínez",
+    "Christopher Ulloa"
+  ],
+  "introduccion": "La red asistencial chilena comprende establecimientos con distintos niveles de complejidad, cuyas capacidades asistenciales son relevantes para la derivación de pacientes. En este ámbito coexisten establecimientos pertenecientes al Sistema Nacional de Servicios de Salud (SNSS) y establecimientos que no forman parte de él. Analizar las diferencias en la distribución de sus niveles de complejidad puede aportar antecedentes relevantes para la planificación de la red asistencial, la coordinación de derivaciones y la asignación de recursos. Este estudio examina dicha relación a partir del registro de establecimientos de salud, considerando una población delimitada según criterios de vigencia y disponibilidad de datos.",
+  "problematica": "En Chile coexisten establecimientos de salud que pertenecen al SNSS y otros que no, con distintos niveles de complejidad. El registro contiene ambas variables. Para este estudio, se requiere caracterizar cómo se relacionan y determinar si la distribución de los niveles de complejidad difiere según la pertenencia al SNSS.",
+  "pregunta": "¿Existe asociación entre la pertenencia al SNSS y el nivel de complejidad en los establecimientos de salud vigentes con código único y con ambas variables informadas en la base?",
+  "objetivo_general": "Evaluar la asociación entre la pertenencia al SNSS y el nivel de complejidad de los establecimientos de salud vigentes con código único y ambas variables informadas.",
+  "objetivos_especificos": [
+    "Delimitar el problema de investigación, la pregunta, el alcance, las restricciones y los supuestos del análisis (Fase 1).",
+    "Definir la población de análisis mediante criterios explícitos y reproducibles, documentados en una tabla de filtros (Fase 2).",
+    "Estandarizar las categorías de pertenencia al SNSS y de nivel de complejidad, y validar los datos resultantes (Fase 2).",
+    "Describir la distribución de los establecimientos según su pertenencia al SNSS y su nivel de complejidad (Fase 2).",
+    "Evaluar la asociación entre ambas variables mediante una tabla de contingencia, una prueba de independencia y una medida de magnitud de la asociación (Fases 3 y 4, pendientes)."
+  ],
+  "alcance": "El estudio considera los establecimientos vigentes del conjunto de datos que cumplen los criterios de inclusión y examina la relación entre su pertenencia al SNSS y su nivel de complejidad. Quedan fuera del alcance el análisis territorial, los servicios de urgencia y las conclusiones causales o sobre la calidad de la atención.",
+  "dimensiones": {
+    "principales": [
+      {
+        "dimension": "Administrativa",
+        "columna": "TipoPertenenciaEstabGlosa",
+        "variable": "pertenencia_snss",
+        "categorias": [
+          "SNSS",
+          "No SNSS"
+        ]
+      },
+      {
+        "dimension": "Asistencial",
+        "columna": "NivelComplejidadEstabGlosa",
+        "variable": "complejidad",
+        "categorias": [
+          "Baja",
+          "Mediana",
+          "Alta"
+        ]
+      }
+    ],
+    "contexto": {
+      "Geográfica": "Macrozona; se conserva como contexto y no se incluye en el cruce principal.",
+      "Servicios": "Se conserva como contexto y no se incluye en el cruce principal."
+    }
+  },
+  "denominador": {
+    "general": "Establecimientos vigentes con código único, pertenencia aplicable y complejidad aplicable y registrada (Baja, Mediana o Alta); no el total del archivo.",
+    "porcentajes": "Por fila: dentro de cada grupo de pertenencia (SNSS y No SNSS). El porcentaje por columna se usa solo como apoyo."
+  },
+  "restricciones": [
+    "El archivo es un corte del registro, no una serie temporal. El nombre sugiere 2026-11-03, pero la fecha de descarga y la fecha exacta de corte no están acreditadas en los archivos proporcionados.",
+    "El archivo también contiene establecimientos cerrados; la población vigente se delimitó durante la Fase 2 a partir del estado de funcionamiento registrado.",
+    "Las conclusiones se limitan a establecimientos vigentes con código único, pertenencia clasificable y complejidad baja, mediana o alta. No se extrapolan a los registros excluidos.",
+    "La cantidad de establecimientos no mide camas, capacidad resolutiva efectiva, volumen de atenciones ni acceso de la población."
+  ],
+  "supuestos": [
+    "La pertenencia al SNSS y el nivel de complejidad están correctamente registrados en la fuente; se comprobará consistencia interna, no exactitud clínica o administrativa externa.",
+    "Cada código vigente identifica a un único establecimiento; su presencia y unicidad serán comprobadas.",
+    "La vigencia se define por el estado registrado. Se aceptarán los estados de operación habitual o transitoria si aparecen.",
+    "No Aplica representa una categoría explícita y se distingue de una celda vacía. Ninguna permite asignar una de las categorías analíticas requeridas."
+  ],
+  "criterios_exito": [
+    "Los cuadernos se ejecutan en orden desde un kernel reiniciado y con rutas relativas.",
+    "Cada exclusión se documenta y las filas iniciales se reconcilian con las retenidas y excluidas.",
+    "La población final cumple las reglas de inclusión y tiene códigos únicos.",
+    "Los gráficos y porcentajes usan denominadores explícitos y responden a los objetivos de F2.",
+    "La matriz final es numérica, binaria, sin nulos y conserva la correspondencia con los establecimientos."
+  ],
+  "fuente": {
+    "institucion": "Ministerio de Salud de Chile, Departamento de Estadísticas e Información de Salud (DEIS)",
+    "archivo": "establecimientos_20261103.csv",
+    "diccionario": "Diccionario de Datos Base de Establecimientos de Salud Red Asistencial 2026",
+    "portal_institucional": "https://deis.minsal.cl/sistemas/",
+    "fecha_sugerida_nombre": "2026-11-03",
+    "fecha_descarga_original": null,
+    "fecha_corte_confirmada": null,
+    "nota": "El portal institucional es una referencia general; no acredita por sí solo la versión exacta del archivo utilizado en este estudio."
+  }
+}
