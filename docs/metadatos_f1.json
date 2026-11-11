@@ -1,0 +1,28 @@
+{
+  "filas_originales": 5837,
+  "columnas_originales": 33,
+  "sha256": "febff55e3612fb60076df9279f1090240cd02a39e9c7b79b822119dfdef84c8d",
+  "fuente": {
+    "institucion": "Ministerio de Salud de Chile, Departamento de Estadísticas e Información de Salud (DEIS)",
+    "archivo": "establecimientos_20261103.csv",
+    "diccionario": "Diccionario de Datos Base de Establecimientos de Salud Red Asistencial 2026",
+    "portal_institucional": "https://deis.minsal.cl/sistemas/",
+    "fecha_sugerida_nombre": "2026-11-03",
+    "fecha_descarga_original": null,
+    "fecha_corte_confirmada": null,
+    "nota": "El portal institucional es una referencia general; no acredita por sí solo la versión exacta del archivo utilizado en este estudio."
+  },
+  "versiones": {
+    "pandas": "3.0.5",
+    "numpy": "2.5.2",
+    "matplotlib": "3.11.1",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "ipykernel": "7.4.0"
+  },
+  "git": {
+    "estado": "",
+    "historial": ""
+  },
+  "mapa_previo": ""
+}
