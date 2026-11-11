@@ -1,0 +1,10 @@
+﻿variable,categoria_original,categoria_analitica,cantidad
+TipoPertenenciaEstabGlosa,No Aplica,,41
+TipoPertenenciaEstabGlosa,No Perteneciente al Sistema Nacional de Servicios de Salud,No SNSS,2367
+TipoPertenenciaEstabGlosa,No perteneciente al Sistema Nacional de Servicios de Salud,No SNSS,141
+TipoPertenenciaEstabGlosa,Perteneciente al Sistema Nacional de Servicios de Salud,SNSS,3288
+NivelComplejidadEstabGlosa,,,288
+NivelComplejidadEstabGlosa,Alta Complejidad,Alta,131
+NivelComplejidadEstabGlosa,Baja Complejidad,Baja,3380
+NivelComplejidadEstabGlosa,Mediana Complejidad,Mediana,1270
+NivelComplejidadEstabGlosa,No Aplica,,768
