@@ -1,0 +1,6 @@
+﻿,minimo,maximo,media_proporcion,tipo
+snss_perteneciente,0,1,0.6658700847273518,int64
+snss_no_perteneciente,0,1,0.3341299152726483,int64
+complejidad_baja,0,1,0.7104062567890507,int64
+complejidad_mediana,0,1,0.2620030414946774,int64
+complejidad_alta,0,1,0.027590701716271995,int64
