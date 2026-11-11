@@ -1,0 +1,34 @@
+﻿variable,significado,rol,decision,justificacion
+EstablecimientoCodigoAntiguo,Código anterior del establecimiento,Identificador,Excluir,Código histórico; usaremos el código vigente.
+EstablecimientoCodigo,Código vigente del establecimiento,Identificador,Conservar para trazabilidad,Comprueba unicidad; no se interpreta como cantidad.
+EstablecimientoCodigoMadreAntiguo,Código anterior del establecimiento madre,Identificador,Excluir,La jerarquía institucional no forma parte de la pregunta.
+EstablecimientoCodigoMadreNuevo,Código vigente del establecimiento madre,Identificador,Excluir,La jerarquía institucional no forma parte de la pregunta.
+RegionCodigo,Código de región,Categoría nominal,Excluir,Análisis territorial fuera del alcance.
+RegionGlosa,Nombre de región,Categoría nominal,Excluir,Análisis territorial fuera del alcance.
+SeremiSaludCodigo_ServicioDeSaludCodigo,Código de dependencia jerárquica,Categoría nominal,Excluir,No se compararán servicios de salud o SEREMI.
+SeremiSaludGlosa_ServicioDeSaludGlosa,Nombre de dependencia jerárquica,Categoría nominal,Excluir,No se compararán servicios de salud o SEREMI.
+TipoPertenenciaEstabGlosa,Pertenencia al SNSS,Categoría nominal,Conservar para análisis,Dimensión administrativa; primera variable de la pregunta.
+TipoEstablecimientoGlosa,Tipo de establecimiento,Categoría nominal,Excluir,"El análisis acordado compara pertenencia y complejidad, sin estratificar por tipo."
+AmbitoFuncionamiento,Ámbito de funcionamiento,Categoría nominal,Excluir,No se compararán ámbitos; se mantendrá la unidad definida por el código del registro.
+EstablecimientoGlosa,Nombre del establecimiento,Texto identificador,Excluir,El código permite trazabilidad sin incorporar nombres a la matriz.
+Certificacion,Certificación administrativa,Categoría nominal,Excluir,No se evalúan certificación ni calidad de atención.
+DependenciaAdministrativa,Institución responsable de administrar,Categoría nominal,Excluir,No equivale a pertenencia al SNSS; queda fuera del análisis bivariado.
+NivelAtencionEstabglosa,Nivel de atención,Categoría ordinal,Excluir,Nivel de atención y nivel de complejidad son conceptos distintos.
+ComunaCodigo,Código de comuna,Categoría nominal,Excluir,Análisis territorial fuera del alcance.
+ComunaGlosa,Nombre de comuna,Categoría nominal,Excluir,Análisis territorial fuera del alcance.
+TipoViaGlosa,Tipo de vía de acceso,Categoría nominal,Excluir,Dato de dirección sin función en la pregunta.
+NombreVia,Nombre de la vía,Texto,Excluir,Dato de dirección sin función en la pregunta.
+Numero,Número de dirección,Texto identificador,Excluir,"Número de dirección, no medida cuantitativa."
+TelefonoMovil_TelefonoFijo,Teléfono de contacto,Texto identificador,Excluir,Dato de contacto sin función en la pregunta.
+FechaInicioFuncionamientoEstab,Fecha de inicio de funcionamiento,Fecha,Excluir,La antigüedad no forma parte del objetivo.
+TieneServicioUrgencia,Disponibilidad de urgencia,Categoría nominal,Excluir,Urgencias fuera del alcance.
+TipoUrgencia,Tipo de servicio de urgencia,Categoría nominal,Excluir,Urgencias fuera del alcance.
+ClasificacionTipoSapu,Clasificación del SAPU,Categoría nominal,Excluir,Urgencias fuera del alcance.
+Latitud,Coordenada de latitud,Numérica continua,Excluir,Análisis territorial fuera del alcance.
+Longitud,Coordenada de longitud,Numérica continua,Excluir,Análisis territorial fuera del alcance.
+TipoSistemaSaludGlosa,Tipo de prestador en el sistema,Categoría nominal,Excluir,Público/privado no es equivalente a pertenencia al SNSS.
+EstadoFuncionamiento,Estado administrativo y asistencial,Categoría nominal,Usar como filtro,Define vigencia; después no integra la matriz analítica.
+NivelComplejidadEstabGlosa,Nivel de complejidad del establecimiento,Categoría ordinal,Conservar para análisis,"Dimensión asistencial; segunda variable de la pregunta; orden baja, mediana, alta."
+TipoAtencionEstabGlosa,Modalidad de atención,Categoría nominal,Excluir,No se compararán modalidades de atención.
+FechaIncorporacion,Fecha de incorporación al registro,Fecha,Excluir,No identifica por sí sola la fecha de descarga ni de apertura.
+FechaCierre,Fecha de cierre del establecimiento,Fecha,Excluir,La vigencia se determinará mediante EstadoFuncionamiento; vacío no implica error.

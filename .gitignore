@@ -1,9 +1,4 @@
 .venv/
 __pycache__/
-*.pyc
 .ipynb_checkpoints/
-Thumbs.db
-desktop.ini
-.DS_Store
 .env
-Guia_*.docx
