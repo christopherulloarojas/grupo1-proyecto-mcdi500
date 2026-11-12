@@ -16,9 +16,9 @@ El procesamiento se realiza en Python, con criterios documentados de selección 
 
 ## 2. Objetivo y pregunta de análisis
 
-**Objetivo general:** Caracterizar la distribución de los niveles de complejidad asistencial de los establecimientos de salud, diferenciando entre aquellos que pertenecen al SNSS y los que no pertenecen a este sistema.
+**Objetivo general:** Evaluar la asociación entre la pertenencia al SNSS y el nivel de complejidad de los establecimientos de salud vigentes con código único y ambas variables informadas.
 
-**Pregunta de análisis:** ¿Cómo se distribuyen los niveles de complejidad asistencial entre los establecimientos pertenecientes y no pertenecientes al SNSS?
+**Pregunta de análisis:** ¿Existe asociación entre la pertenencia al SNSS y el nivel de complejidad en los establecimientos de salud vigentes con código único y con ambas variables informadas en la base?
 
 Para abordar esta pregunta se consideran dos dimensiones principales:
 
