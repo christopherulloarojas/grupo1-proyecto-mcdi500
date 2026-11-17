@@ -1,0 +1,6 @@
+﻿medicion,cuando,resultado,decision
+Códigos en conflicto: tiempo al tamaño real,"15.2 · 5406 códigos, tras comprobar equivalencia",lista 375.3 ms · diccionario 1.29 ms · vectorizada 0.48 ms,Descartar la versión con lista
+Códigos en conflicto: memoria pico,"15.2 · misma ejecución, con tracemalloc",lista 43 KB · diccionario 152 KB · vectorizada 140 KB,El tiempo decide: las tres usan kilobytes
+Crecimiento con el tamaño,15.3 · muestras de 1.000 a 100.000 filas,"lista x3.9 al duplicar filas · a 100000 filas: diccionario 22.7 ms, vectorizada 9.6 ms",La regla F04 usa la versión vectorizada
+Tiempo de cada paso del pipeline,"15.4 · durante la ejecución, con el observador",paso más costoso: F03 FiltroDuplicadosExactos (27.2 %),No reescribir un paso aislado
+"Pipeline completo, antes y después",15.5 · registro real de 5837 filas,F2 79 ms · dos pasadas 234 ms · una pasada 131 ms,Ejecutar con ajustar_transformar (una pasada)

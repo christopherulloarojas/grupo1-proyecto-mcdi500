@@ -1,0 +1,20 @@
+﻿etapa,orden,paso,parametros
+preparación,1,agregar_fila_origen(),{}
+preparación,2,normalizar_columna(EstablecimientoCodigo),{}
+preparación,3,normalizar_columna(EstadoFuncionamiento),{}
+preparación,4,normalizar_columna(TipoPertenenciaEstabGlosa),{}
+preparación,5,normalizar_columna(NivelComplejidadEstabGlosa),{}
+preparación,6,MapeadorCategorias(pertenencia_original_normalizada),"{'observadas': ['no aplica', 'no perteneciente al sistema nacional de servicios de salud', 'perteneciente al sistema nacional de servicios de salud'], 'sin_correspondencia': ['no aplica']}"
+preparación,7,MapeadorCategorias(complejidad_original_normalizada),"{'observadas': ['', 'alta complejidad', 'baja complejidad', 'mediana complejidad', 'no aplica'], 'sin_correspondencia': ['', 'no aplica']}"
+población,1,F01 FiltroValoresPermitidos,"{'evaluadas': 5837, 'excluiria': 431}"
+población,2,F02 FiltroInformado,"{'evaluadas': 5406, 'excluiria': 0}"
+población,3,F03 FiltroDuplicadosExactos,"{'evaluadas': 5406, 'excluiria': 0}"
+población,4,F04 FiltroCodigosEnConflicto,"{'evaluadas': 5406, 'excluiria': 0, 'codigos_en_conflicto': []}"
+población,5,F05 FiltroValoresPermitidos,"{'evaluadas': 5406, 'excluiria': 41}"
+población,6,F06 FiltroInformado,"{'evaluadas': 5365, 'excluiria': 59}"
+población,7,F07 FiltroValorExcluido,"{'evaluadas': 5306, 'excluiria': 703}"
+población,8,F08 FiltroValoresPermitidos,"{'evaluadas': 4603, 'excluiria': 0}"
+población,9,seleccionar_columnas(5 columnas),{}
+codificación,1,CodificadorBinario(pertenencia_snss),"{'categorias_observadas': ['No SNSS', 'SNSS'], 'columnas_generadas': ['snss_perteneciente', 'snss_no_perteneciente']}"
+codificación,2,CodificadorBinario(complejidad),"{'categorias_observadas': ['Alta', 'Baja', 'Mediana'], 'columnas_generadas': ['complejidad_baja', 'complejidad_mediana', 'complejidad_alta']}"
+codificación,3,seleccionar_columnas(5 columnas),{}
