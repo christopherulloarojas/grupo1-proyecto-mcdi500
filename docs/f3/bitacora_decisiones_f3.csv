@@ -1,0 +1,11 @@
+﻿decision,motivo,alternativa_descartada,efecto
+Usar clases solo en los componentes que recuerdan algo; el resto son funciones,Una clase se justifica cuando necesita guardar estado entre una llamada y otra,"Una clase por cada paso, incluida la normalización de texto","10 clases y 3 funciones sin estado, integradas con el adaptador PasoFuncion"
+Clase intermedia Filtro para las ocho reglas,Todas separan las filas excluidas y les asignan paso y motivo,Repetir esa lógica en cada filtro,Cada filtro concreto implementa solo su condición
+"Patrón Observer para bitácora, exclusiones y tiempos",En F2 cada filtro recibía y modificaba listas compartidas,Seguir pasando las listas como argumentos,Los filtros no conocen la bitácora; el registro de tiempos se agregó sin tocarlos
+Patrón Factory para construir el pipeline desde las reglas,En F2 cada regla era una llamada escrita a mano,Mantener las ocho llamadas en el flujo,Agregar o cambiar una regla es editar una línea de configuración
+No usar Strategy ni Singleton,No comparamos estrategias alternativas y la configuración ya es única,Aplicar los cuatro patrones,Menos complejidad: solo los dos patrones que resuelven un problema real
+Regla F04 con la detección vectorizada,La medición mostró que la versión con lista crece de forma cuadrática,Lista con count (la más simple) y diccionario,782 veces más rápida que la lista al tamaño real
+Ejecutar el preprocesamiento en una pasada,Ajustar y luego transformar recorre el pipeline dos veces,Dos llamadas sobre el mismo registro,"44 % menos de tiempo, con el mismo resultado"
+No reescribir pasos aislados,El costo está repartido: el paso más costoso es el 27.2 % del total,Optimizar el filtro de duplicados exactos,Se evita el riesgo de alterar un resultado ya verificado contra F2
+Recursividad solo en la jerarquía de clases y la configuración anidada,Son las dos estructuras de profundidad variable del proyecto,Recursión dentro del pipeline,"El pipeline sigue siendo iterativo, más simple de leer"
+Conservar el flujo de F2 como línea base y guardar las salidas de F3 aparte,Hace falta para verificar la equivalencia y medir el antes y el después,Eliminar el flujo anterior o sobrescribir los archivos de F2,La comparación con F2 se puede repetir en cualquier momento
