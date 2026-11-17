@@ -12,7 +12,7 @@
   ],
   "escala": "Indicadores binarios 0/1; no se aplicó un escalador",
   "imputacion": "No aplicada a las variables analíticas",
-  "prueba_asociacion": "Proyectada F3–F4",
+  "prueba_asociacion": "Proyectada F4",
   "dimensiones": {
     "principales": [
       {

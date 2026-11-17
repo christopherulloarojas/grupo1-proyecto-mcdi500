@@ -16,7 +16,8 @@
     "Definir la población de análisis mediante criterios explícitos y reproducibles, documentados en una tabla de filtros (Fase 2).",
     "Estandarizar las categorías de pertenencia al SNSS y de nivel de complejidad, y validar los datos resultantes (Fase 2).",
     "Describir la distribución de los establecimientos según su pertenencia al SNSS y su nivel de complejidad (Fase 2).",
-    "Evaluar la asociación entre ambas variables mediante una tabla de contingencia, una prueba de independencia y una medida de magnitud de la asociación (Fases 3 y 4, pendientes)."
+    "Reorganizar el flujo de F1 y F2 en un diseño modular orientado a objetos, verificar que reproduce los mismos resultados y medir su eficiencia (Fase 3).",
+    "Evaluar la asociación entre ambas variables mediante una tabla de contingencia, una prueba de independencia y una medida de magnitud de la asociación, considerando el tipo de establecimiento (Fase 4, pendiente)."
   ],
   "alcance": "El estudio considera los establecimientos vigentes del conjunto de datos que cumplen los criterios de inclusión y examina la relación entre su pertenencia al SNSS y su nivel de complejidad. Quedan fuera del alcance el análisis territorial, los servicios de urgencia y las conclusiones causales o sobre la calidad de la atención.",
   "dimensiones": {
@@ -54,7 +55,8 @@
     "El archivo es un corte del registro, no una serie temporal. El nombre sugiere 2026-11-03, pero la fecha de descarga y la fecha exacta de corte no están acreditadas en los archivos proporcionados.",
     "El archivo también contiene establecimientos cerrados; la población vigente se delimitó durante la Fase 2 a partir del estado de funcionamiento registrado.",
     "Las conclusiones se limitan a establecimientos vigentes con código único, pertenencia clasificable y complejidad baja, mediana o alta. No se extrapolan a los registros excluidos.",
-    "La cantidad de establecimientos no mide camas, capacidad resolutiva efectiva, volumen de atenciones ni acceso de la población."
+    "La cantidad de establecimientos no mide camas, capacidad resolutiva efectiva, volumen de atenciones ni acceso de la población.",
+    "El tipo de establecimiento puede explicar parte de la asociación observada; antes de concluir, F4 la examinará por tipo de establecimiento."
   ],
   "supuestos": [
     "La pertenencia al SNSS y el nivel de complejidad están correctamente registrados en la fuente; se comprobará consistencia interna, no exactitud clínica o administrativa externa.",
