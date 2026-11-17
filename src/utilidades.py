@@ -3,9 +3,9 @@ from pathlib import Path
 import pandas as pd
 
 def localizar_raiz(inicio=None):
-    """Localiza el proyecto desde su raíz o desde las carpetas F1 y F2."""
+    """Localiza el proyecto desde su raíz o desde las carpetas de fase."""
     carpeta = Path.cwd() if inicio is None else Path(inicio)
-    return carpeta.parent if carpeta.name in {"F1", "F2"} else carpeta
+    return carpeta.parent if carpeta.name in {"F1", "F2", "F3"} else carpeta
 
 def normalizar_texto(serie):
     """Unifica espacios y mayúsculas; conserva los faltantes como faltantes."""
