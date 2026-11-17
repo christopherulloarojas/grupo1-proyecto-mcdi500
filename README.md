@@ -120,7 +120,7 @@ grupo1-proyecto-mcdi500/
 |---|---|
 | `F1/Grupo1_F1_Definicion.ipynb` | Definición del problema, entorno y diccionario analítico |
 | `F2/Grupo1_F2_Preprocesamiento.ipynb` | Exploración, limpieza, transformación y validación del dataset |
-| `F3/S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb` | Núcleo algorítmico: clases, patrones, verificación contra F2, pruebas y mediciones |
+| `F3/Grupo1_S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb` | Núcleo algorítmico: clases, patrones, verificación contra F2, pruebas y mediciones |
 
 Cada notebook se entrega ejecutado y con su exportación `.html` en la misma carpeta.
 
@@ -231,7 +231,7 @@ El script ejecuta los tres notebooks desde un kernel limpio, guarda sus salidas 
 
 1. Reiniciar el kernel y ejecutar todas las celdas de `F1/Grupo1_F1_Definicion.ipynb`.
 2. Reiniciar el kernel y ejecutar todas las celdas de `F2/Grupo1_F2_Preprocesamiento.ipynb`.
-3. Reiniciar el kernel y ejecutar todas las celdas de `F3/S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb`.
+3. Reiniciar el kernel y ejecutar todas las celdas de `F3/Grupo1_S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb`.
 
 Las rutas se resuelven tanto desde la raíz del proyecto como desde las carpetas `F1/`, `F2/` y `F3/`.
 
@@ -239,7 +239,7 @@ El CSV de entrada utiliza separador `;` y codificación UTF-8. Los CSV de salida
 
 ### 7.3. Ejecución del notebook de la Fase 3
 
-El notebook `F3/S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb` necesita que F1 y F2 se hayan ejecutado antes, porque lee `docs/proyecto.json`, `docs/metadatos_f1.json` y las salidas de F2 con las que se compara.
+El notebook `F3/Grupo1_S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb` necesita que F1 y F2 se hayan ejecutado antes, porque lee `docs/proyecto.json`, `docs/metadatos_f1.json` y las salidas de F2 con las que se compara.
 
 1. Activar el entorno virtual e instalar las dependencias (sección 7.1).
 2. Abrir el notebook y seleccionar el kernel de `.venv`.
