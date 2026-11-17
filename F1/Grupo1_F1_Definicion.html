@@ -7804,8 +7804,26 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h1 id="Fase-1-%C2%B7-Definici%C3%B3n-del-problema-y-entorno-reproducible">Fase 1 · Definición del problema y entorno reproducible<a class="anchor-link" href="#Fase-1-%C2%B7-Definici%C3%B3n-del-problema-y-entorno-reproducible">¶</a></h1><p><strong>Pertenencia al SNSS y nivel de complejidad de los establecimientos de salud en Chile</strong></p>
 <p><strong>Grupo 1:</strong> Brian Cerda · Kattia Espinoza · Karla Martínez · Christopher Ulloa</p>
-<p>Este cuaderno define el estudio, documenta el archivo y prepara un entorno reproducible. La limpieza, los filtros y la descripción de resultados se desarrollarán en F2. La evaluación estadística de asociación se proyecta para F3–F4.</p>
+<p>Este cuaderno define el estudio, documenta el archivo y prepara un entorno reproducible. La limpieza, los filtros y la descripción de resultados se desarrollarán en F2. F3 reorganizará este flujo en un diseño modular orientado a objetos y medirá su eficiencia; la evaluación estadística de la asociación se proyecta para F4.</p>
+<blockquote>
+<p><strong>Cambio respecto de la versión anterior.</strong> Antes decía: “La evaluación estadística de asociación se proyecta para F3–F4”.</p>
+</blockquote>
 <p><strong>Recorrido:</strong> definir → verificar → organizar → documentar → validar → guardar.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=e5a7b9c1">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Registro-de-cambios-respecto-de-la-versi%C3%B3n-anterior">Registro de cambios respecto de la versión anterior<a class="anchor-link" href="#Registro-de-cambios-respecto-de-la-versi%C3%B3n-anterior">¶</a></h3><ul>
+<li><strong>Archivo de dependencias como fuente de verdad.</strong> Antes, la celda de §3 reescribía <code>requirements.txt</code> con las versiones del entorno que ejecutaba el cuaderno; así, cada ejecución en otro equipo podía modificar el archivo. Ahora el archivo se edita a mano y se versiona, y la nueva sección 3.1 lo compara con el entorno activo y detiene la ejecución ante diferencias. El código anterior quedó comentado.</li>
+<li><strong>Articulación de las fases.</strong> F3 se define como núcleo algorítmico (diseño modular, orientación a objetos y medición de eficiencia) y la prueba de independencia con V de Cramér se traslada a F4. Se agregó una restricción sobre el tipo de establecimiento, que puede explicar parte de la asociación observada. La pregunta y el objetivo general no cambian. Los textos anteriores quedaron comentados en el código o citados en cada nota.</li>
+<li>Los resultados del estudio no cambiaron: la población, la matriz y la contingencia de F2 son idénticas.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -7873,9 +7891,18 @@ a.anchor-link {
                            <span class="s1">'complejidad, y validar los datos resultantes (Fase 2).'</span><span class="p">,</span>
                            <span class="s1">'Describir la distribución de los establecimientos según su pertenencia '</span>
                            <span class="s1">'al SNSS y su nivel de complejidad (Fase 2).'</span><span class="p">,</span>
+                           <span class="c1"># --- CAMBIO (articulación de fases) -------------------------------------</span>
+                           <span class="c1"># ANTES: 'Evaluar la asociación entre ambas variables mediante una tabla de '</span>
+                           <span class="c1">#        'contingencia, una prueba de independencia y una medida de magnitud de '</span>
+                           <span class="c1">#        'la asociación (Fases 3 y 4, pendientes).'</span>
+                           <span class="c1"># AHORA: F3 es el núcleo algorítmico y la prueba de independencia pasa a F4.</span>
+                           <span class="s1">'Reorganizar el flujo de F1 y F2 en un diseño modular orientado a objetos, '</span>
+                           <span class="s1">'verificar que reproduce los mismos resultados y medir su eficiencia '</span>
+                           <span class="s1">'(Fase 3).'</span><span class="p">,</span>
                            <span class="s1">'Evaluar la asociación entre ambas variables mediante una tabla de '</span>
                            <span class="s1">'contingencia, una prueba de independencia y una medida de magnitud de '</span>
-                           <span class="s1">'la asociación (Fases 3 y 4, pendientes).'</span><span class="p">],</span>
+                           <span class="s1">'la asociación, considerando el tipo de establecimiento (Fase 4, '</span>
+                           <span class="s1">'pendiente).'</span><span class="p">],</span>
  <span class="s1">'alcance'</span><span class="p">:</span> <span class="s1">'El estudio considera los establecimientos vigentes del conjunto de datos que cumplen '</span>
             <span class="s1">'los criterios de inclusión y examina la relación entre su pertenencia al SNSS y su '</span>
             <span class="s1">'nivel de complejidad. Quedan fuera del alcance el análisis territorial, los servicios '</span>
@@ -7904,7 +7931,11 @@ a.anchor-link {
                    <span class="s1">'pertenencia clasificable y complejidad baja, mediana o alta. No se extrapolan '</span>
                    <span class="s1">'a los registros excluidos.'</span><span class="p">,</span>
                    <span class="s1">'La cantidad de establecimientos no mide camas, capacidad resolutiva efectiva, '</span>
-                   <span class="s1">'volumen de atenciones ni acceso de la población.'</span><span class="p">],</span>
+                   <span class="s1">'volumen de atenciones ni acceso de la población.'</span><span class="p">,</span>
+                   <span class="c1"># NUEVO: el tipo de establecimiento puede explicar</span>
+                   <span class="c1"># buena parte de la asociación observada.</span>
+                   <span class="s1">'El tipo de establecimiento puede explicar parte de la asociación observada; '</span>
+                   <span class="s1">'antes de concluir, F4 la examinará por tipo de establecimiento.'</span><span class="p">],</span>
  <span class="s1">'supuestos'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'La pertenencia al SNSS y el nivel de complejidad están correctamente registrados '</span>
                <span class="s1">'en la fuente; se comprobará consistencia interna, no exactitud clínica o '</span>
                <span class="s1">'administrativa externa.'</span><span class="p">,</span>
@@ -8003,7 +8034,8 @@ ALCANCE: El estudio considera los establecimientos vigentes del conjunto de dato
 2. Definir la población de análisis mediante criterios explícitos y reproducibles, documentados en una tabla de filtros (Fase 2).
 3. Estandarizar las categorías de pertenencia al SNSS y de nivel de complejidad, y validar los datos resultantes (Fase 2).
 4. Describir la distribución de los establecimientos según su pertenencia al SNSS y su nivel de complejidad (Fase 2).
-5. Evaluar la asociación entre ambas variables mediante una tabla de contingencia, una prueba de independencia y una medida de magnitud de la asociación (Fases 3 y 4, pendientes).
+5. Reorganizar el flujo de F1 y F2 en un diseño modular orientado a objetos, verificar que reproduce los mismos resultados y medir su eficiencia (Fase 3).
+6. Evaluar la asociación entre ambas variables mediante una tabla de contingencia, una prueba de independencia y una medida de magnitud de la asociación, considerando el tipo de establecimiento (Fase 4, pendiente).
 
 DIMENSIONES DEL CRUCE
 - Administrativa: TipoPertenenciaEstabGlosa → pertenencia_snss (SNSS / No SNSS)
@@ -8061,6 +8093,7 @@ PORCENTAJES: Por fila: dentro de cada grupo de pertenencia (SNSS y No SNSS). El 
 - El archivo también contiene establecimientos cerrados; la población vigente se delimitó durante la Fase 2 a partir del estado de funcionamiento registrado.
 - Las conclusiones se limitan a establecimientos vigentes con código único, pertenencia clasificable y complejidad baja, mediana o alta. No se extrapolan a los registros excluidos.
 - La cantidad de establecimientos no mide camas, capacidad resolutiva efectiva, volumen de atenciones ni acceso de la población.
+- El tipo de establecimiento puede explicar parte de la asociación observada; antes de concluir, F4 la examinará por tipo de establecimiento.
 
 SUPUESTOS
 - La pertenencia al SNSS y el nivel de complejidad están correctamente registrados en la fuente; se comprobará consistencia interna, no exactitud clínica o administrativa externa.
@@ -8122,14 +8155,23 @@ CRITERIOS_EXITO
 <td>F2</td>
 </tr>
 <tr>
+<td>Reorganizar el flujo</td>
+<td>Funciones de F1 y F2</td>
+<td>Clases y módulos con resultados idénticos y medición de eficiencia</td>
+<td>F3</td>
+</tr>
+<tr>
 <td>Evaluar asociación</td>
-<td>Tabla de contingencia 2 × 3</td>
+<td>Tabla de contingencia 2 × 3 y tipo de establecimiento</td>
 <td>Prueba de independencia y V de Cramér, previa revisión de condiciones</td>
-<td>F3–F4</td>
+<td>F4</td>
 </tr>
 </tbody>
 </table>
-<p>En F2 describiremos diferencias observadas. La significación estadística no se deducirá de los gráficos. Al trabajar con un registro completo de la población delimitada, en F3–F4 se discutirá qué población o proceso justificaría una inferencia más allá de este corte.</p>
+<p>En F2 describiremos diferencias observadas. La significación estadística no se deducirá de los gráficos. Al trabajar con un registro completo de la población delimitada, en F4 se discutirá qué población o proceso justificaría una inferencia más allá de este corte.</p>
+<blockquote>
+<p><strong>Cambio respecto de la versión anterior.</strong> Antes, la última fila asignaba la prueba de independencia y la V de Cramér a “F3–F4”. Ahora se agrega la fila de F3 (núcleo algorítmico) y la prueba se ubica en F4, considerando el tipo de establecimiento.</p>
+</blockquote>
 </div>
 </div>
 </div>
@@ -8194,7 +8236,7 @@ CRITERIOS_EXITO
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Python: 3.13.5
+<pre>Python: 3.13.18
 Entorno virtual: True
 </pre>
 </div>
@@ -8282,6 +8324,9 @@ Entorno virtual: True
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="3.-Estructura-del-proyecto-y-archivos-de-configuraci%C3%B3n">3. Estructura del proyecto y archivos de configuración<a class="anchor-link" href="#3.-Estructura-del-proyecto-y-archivos-de-configuraci%C3%B3n">¶</a></h2><p>Organizaremos los resultados con rutas relativas. <code>data/raw</code> conservará el CSV recibido; <code>data/processed</code> contendrá las salidas de F2. Las figuras y tablas de decisiones quedarán en <code>docs</code>.</p>
 <p>Los cuadernos se podrán ejecutar desde la raíz o desde su carpeta de fase. Se generarán archivos derivados del proyecto sin modificar el CSV original.</p>
+<blockquote>
+<p><strong>Cambio respecto de la versión anterior.</strong> Antes, esta sección escribía <code>requirements.txt</code> con las versiones del entorno que ejecutaba el cuaderno. Ahora el archivo se edita a mano y se versiona como fuente de verdad del entorno; este cuaderno solo lo lee y lo compara (sección 3.1).</p>
+</blockquote>
 </div>
 </div>
 </div>
@@ -8294,17 +8339,23 @@ Entorno virtual: True
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">localizar_raiz</span><span class="p">(</span><span class="n">inicio</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Devuelve la raíz desde la carpeta del proyecto o desde F1/F2."""</span>
+<span class="w">    </span><span class="sd">"""Devuelve la raíz desde la carpeta del proyecto o desde una carpeta de fase."""</span>
     <span class="n">carpeta</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="k">if</span> <span class="n">inicio</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Path</span><span class="p">(</span><span class="n">inicio</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">carpeta</span><span class="o">.</span><span class="n">parent</span> <span class="k">if</span> <span class="n">carpeta</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"F1"</span><span class="p">,</span> <span class="s2">"F2"</span><span class="p">}</span> <span class="k">else</span> <span class="n">carpeta</span>
+    <span class="k">return</span> <span class="n">carpeta</span><span class="o">.</span><span class="n">parent</span> <span class="k">if</span> <span class="n">carpeta</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"F1"</span><span class="p">,</span> <span class="s2">"F2"</span><span class="p">,</span> <span class="s2">"F3"</span><span class="p">}</span> <span class="k">else</span> <span class="n">carpeta</span>
 
 <span class="n">RAIZ</span> <span class="o">=</span> <span class="n">localizar_raiz</span><span class="p">()</span>
-<span class="n">CARPETAS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"F1"</span><span class="p">,</span> <span class="s2">"F2"</span><span class="p">,</span> <span class="s2">"src"</span><span class="p">,</span> <span class="s2">"data/raw"</span><span class="p">,</span> <span class="s2">"data/processed"</span><span class="p">,</span> <span class="s2">"docs"</span><span class="p">,</span> <span class="s2">"docs/figuras"</span><span class="p">]</span>
+<span class="n">CARPETAS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"F1"</span><span class="p">,</span> <span class="s2">"F2"</span><span class="p">,</span> <span class="s2">"F3"</span><span class="p">,</span> <span class="s2">"src"</span><span class="p">,</span> <span class="s2">"data/raw"</span><span class="p">,</span> <span class="s2">"data/processed"</span><span class="p">,</span> <span class="s2">"docs"</span><span class="p">,</span> <span class="s2">"docs/figuras"</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">carpeta</span> <span class="ow">in</span> <span class="n">CARPETAS</span><span class="p">:</span>
     <span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="n">carpeta</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">dependencias</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2">==</span><span class="si">{</span><span class="n">version</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">nombre</span><span class="p">,</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">versiones</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
-<span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"requirements.txt"</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dependencias</span><span class="p">)</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
+<span class="c1"># --- CAMBIO (reproducibilidad del entorno) -------------------------------------------------</span>
+<span class="c1"># ANTES: el cuaderno reescribía requirements.txt con las versiones del entorno que lo ejecutaba.</span>
+<span class="c1"># PROBLEMA: al ejecutarlo en otro equipo, el archivo cambiaba y dejaba de describir el entorno</span>
+<span class="c1"># del proyecto, lo que debilitaba la reproducibilidad.</span>
+<span class="c1"># AHORA: requirements.txt se edita a mano y se versiona; la sección 3.1 lo compara con el entorno.</span>
+<span class="c1"># dependencias = [f"{nombre}=={version}" for nombre, version in versiones.items()]</span>
+<span class="c1"># (RAIZ / "requirements.txt").write_text("\n".join(dependencias) + "\n", encoding="utf-8")</span>
+<span class="c1"># ---------------------------------------------------------------------------------------------</span>
 <span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">".gitignore"</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">".venv/</span><span class="se">\n</span><span class="s2">__pycache__/</span><span class="se">\n</span><span class="s2">.ipynb_checkpoints/</span><span class="se">\n</span><span class="s2">.env</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"carpeta"</span><span class="p">:</span> <span class="n">CARPETAS</span><span class="p">,</span> <span class="s2">"existe"</span><span class="p">:</span> <span class="p">[(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">CARPETAS</span><span class="p">]}))</span>
 </pre></div>
@@ -8354,26 +8405,31 @@ Entorno virtual: True
 </tr>
 <tr>
 <th>2</th>
-<td>src</td>
+<td>F3</td>
 <td>True</td>
 </tr>
 <tr>
 <th>3</th>
-<td>data/raw</td>
+<td>src</td>
 <td>True</td>
 </tr>
 <tr>
 <th>4</th>
-<td>data/processed</td>
+<td>data/raw</td>
 <td>True</td>
 </tr>
 <tr>
 <th>5</th>
-<td>docs</td>
+<td>data/processed</td>
 <td>True</td>
 </tr>
 <tr>
 <th>6</th>
+<td>docs</td>
+<td>True</td>
+</tr>
+<tr>
+<th>7</th>
 <td>docs/figuras</td>
 <td>True</td>
 </tr>
@@ -8391,7 +8447,170 @@ Entorno virtual: True
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Interpretación.</strong> Las carpetas existentes separan la fuente de las transformaciones y sus evidencias. El archivo de dependencias registra las versiones realmente utilizadas. Git ignorará el entorno local y las cachés, pero no los cuadernos ni los resultados del estudio.</p>
+<p><strong>Interpretación.</strong> Las carpetas existentes separan la fuente de las transformaciones y sus evidencias. Git ignorará el entorno local y las cachés, pero no los cuadernos ni los resultados del estudio.</p>
+<blockquote>
+<p><strong>Cambio respecto de la versión anterior.</strong> Se eliminó la frase “El archivo de dependencias registra las versiones realmente utilizadas”, porque el archivo ya no se genera desde el entorno: ahora es el entorno el que debe ajustarse al archivo.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a1d3e5f7">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="3.1-Comparaci%C3%B3n-del-entorno-con-requirements.txt">3.1 Comparación del entorno con <code>requirements.txt</code><a class="anchor-link" href="#3.1-Comparaci%C3%B3n-del-entorno-con-requirements.txt">¶</a></h3><p>El archivo de dependencias declara las versiones exactas del proyecto. La función lee cada línea, consulta la versión instalada en el entorno activo y muestra las diferencias. Si existe alguna, el cuaderno se detiene: el entorno debe ajustarse al archivo, nunca el archivo al entorno.</p>
+<blockquote>
+<p><strong>Cambio respecto de la versión anterior.</strong> Sección nueva. Reemplaza la escritura automática de <code>requirements.txt</code> por una comparación de solo lectura. La evidencia es que, al ejecutar F1 en otro entorno, el archivo no cambia y F1 informa las diferencias.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=b2c4d6e8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># --- NUEVO (reproducibilidad del entorno) ------------------------------------------------</span>
+<span class="c1"># requirements.txt es la fuente de verdad: se lee y se compara, nunca se escribe desde aquí.</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">importlib.metadata</span><span class="w"> </span><span class="kn">import</span> <span class="n">version</span><span class="p">,</span> <span class="n">PackageNotFoundError</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">comparar_dependencias</span><span class="p">(</span><span class="n">ruta</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Compara requirements.txt con el entorno activo sin modificar el archivo."""</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">ruta</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No existe el archivo de dependencias: </span><span class="si">{</span><span class="n">ruta</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">filas</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">linea</span> <span class="ow">in</span> <span class="n">ruta</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="n">linea</span> <span class="o">=</span> <span class="n">linea</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"#"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>          <span class="c1"># ignora comentarios y líneas vacías</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">linea</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="s2">"=="</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">linea</span><span class="p">:</span>                          <span class="c1"># exige versiones fijadas</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Versión no fijada en requirements.txt: </span><span class="si">{</span><span class="n">linea</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">nombre</span><span class="p">,</span> <span class="n">requerida</span> <span class="o">=</span> <span class="p">(</span><span class="n">parte</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">parte</span> <span class="ow">in</span> <span class="n">linea</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"=="</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">instalada</span> <span class="o">=</span> <span class="n">version</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">PackageNotFoundError</span><span class="p">:</span>
+            <span class="n">instalada</span> <span class="o">=</span> <span class="s2">"no instalada"</span>
+        <span class="n">filas</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">"biblioteca"</span><span class="p">:</span> <span class="n">nombre</span><span class="p">,</span> <span class="s2">"requerida"</span><span class="p">:</span> <span class="n">requerida</span><span class="p">,</span> <span class="s2">"instalada"</span><span class="p">:</span> <span class="n">instalada</span><span class="p">,</span>
+                      <span class="s2">"coincide"</span><span class="p">:</span> <span class="n">instalada</span> <span class="o">==</span> <span class="n">requerida</span><span class="p">})</span>
+    <span class="n">comparacion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filas</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">comparacion</span><span class="p">)</span>
+    <span class="n">diferencias</span> <span class="o">=</span> <span class="n">comparacion</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">comparacion</span><span class="p">[</span><span class="s2">"coincide"</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">diferencias</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>                          <span class="c1"># detiene la ejecución ante diferencias</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El entorno no coincide con requirements.txt en </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">diferencias</span><span class="p">)</span><span class="si">}</span><span class="s2"> biblioteca(s). "</span>
+                           <span class="s2">"Ejecute: python -m pip install -r requirements.txt"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">comparacion</span>
+
+<span class="c1"># Huella del archivo antes de continuar: la validación final comprueba que no cambió.</span>
+<span class="n">huella_requisitos</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">((</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"requirements.txt"</span><span class="p">)</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+<span class="n">comparacion_dependencias</span> <span class="o">=</span> <span class="n">comparar_dependencias</span><span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"requirements.txt"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"El entorno coincide con requirements.txt; el archivo no fue modificado."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>biblioteca</th>
+<th>requerida</th>
+<th>instalada</th>
+<th>coincide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>pandas</td>
+<td>3.0.5</td>
+<td>3.0.5</td>
+<td>True</td>
+</tr>
+<tr>
+<th>1</th>
+<td>numpy</td>
+<td>2.5.2</td>
+<td>2.5.2</td>
+<td>True</td>
+</tr>
+<tr>
+<th>2</th>
+<td>matplotlib</td>
+<td>3.11.1</td>
+<td>3.11.1</td>
+<td>True</td>
+</tr>
+<tr>
+<th>3</th>
+<td>nbformat</td>
+<td>5.11.1</td>
+<td>5.11.1</td>
+<td>True</td>
+</tr>
+<tr>
+<th>4</th>
+<td>nbclient</td>
+<td>0.11.0</td>
+<td>0.11.0</td>
+<td>True</td>
+</tr>
+<tr>
+<th>5</th>
+<td>ipykernel</td>
+<td>7.4.0</td>
+<td>7.4.0</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>El entorno coincide con requirements.txt; el archivo no fue modificado.
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=c3e5f7a9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Interpretación.</strong> Todas las bibliotecas declaradas están instaladas en la versión exigida. Si este cuaderno se ejecuta en un entorno distinto, la tabla mostrará las diferencias y la ejecución se detendrá sin alterar <code>requirements.txt</code>; la validación técnica comprueba además que su huella no cambió.</p>
 </div>
 </div>
 </div>
@@ -8411,7 +8630,7 @@ Entorno virtual: True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">RAIZ</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
@@ -8483,7 +8702,7 @@ Entorno virtual: True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">ARCHIVO</span> <span class="o">=</span> <span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"data/raw"</span> <span class="o">/</span> <span class="n">PROYECTO</span><span class="p">[</span><span class="s2">"fuente"</span><span class="p">][</span><span class="s2">"archivo"</span><span class="p">]</span>
@@ -8602,7 +8821,7 @@ Entorno virtual: True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">diccionario</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
@@ -9111,7 +9330,7 @@ Entorno virtual: True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">criterios</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -9199,7 +9418,7 @@ Entorno virtual: True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">revisar_git</span><span class="p">(</span><span class="n">raiz</span><span class="p">):</span>
@@ -9251,7 +9470,7 @@ Entorno virtual: True
 <tr>
 <th>0</th>
 <td>Repositorio detectado</td>
-<td>f65dadd christopherulloarojas: Merge pull request #8 from christopherulloarojas/parte5-integracion\n037afef DeusExMachinaProject: integracion\ne14e643 BacmUnab: Merge pull request #7 from christopherulloarojas/parte3-limpieza\naf65afb BacmUnab: Docs\n37ef5ae kmartinezgimenez: Merge pull request #6 from christopherulloarojas/parte2-definicion</td>
+<td>9fc330d BacmUnab: Merge pull request #12 from christopherulloarojas/Correcciones_Sum1\n6735656 BacmUnab: Actualiza F1 y F2 para definir el alcance de F3 y F4\n9a1a914 BacmUnab: Merge pull request #11 from christopherulloarojas/Correcciones_Sum1\naa21440 BacmUnab: Evita sobrescribir requirements.txt\ne7a883c Christopher Ulloa: Merge branch 'main' of https://github.com/christopherulloarojas/grupo1-proyecto-mcdi500</td>
 </tr>
 </tbody>
 </table>
@@ -9276,7 +9495,7 @@ Entorno virtual: True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">validar_fase1</span><span class="p">():</span>
@@ -9288,6 +9507,10 @@ Entorno virtual: True
     <span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">diccionario</span><span class="p">[</span><span class="s2">"variable"</span><span class="p">])</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">datos_verificacion</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
     <span class="k">assert</span> <span class="p">[</span><span class="n">d</span><span class="p">[</span><span class="s2">"dimension"</span><span class="p">]</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">PROYECTO</span><span class="p">[</span><span class="s2">"dimensiones"</span><span class="p">][</span><span class="s2">"principales"</span><span class="p">]]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">"Administrativa"</span><span class="p">,</span> <span class="s2">"Asistencial"</span><span class="p">]</span>
     <span class="k">assert</span> <span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"requirements.txt"</span><span class="p">)</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_size</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="c1"># NUEVO (reproducibilidad del entorno): el entorno coincide con requirements.txt</span>
+    <span class="c1"># y el archivo no fue modificado durante la ejecución.</span>
+    <span class="k">assert</span> <span class="n">comparacion_dependencias</span><span class="p">[</span><span class="s2">"coincide"</span><span class="p">]</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">((</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"requirements.txt"</span><span class="p">)</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span> <span class="o">==</span> <span class="n">huella_requisitos</span>
     <span class="k">assert</span> <span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"src/utilidades.py"</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span>
     <span class="k">return</span> <span class="s2">"Validación técnica F1: correcta"</span>
 
@@ -9326,7 +9549,7 @@ Entorno virtual: True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">vinculacion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
@@ -9433,7 +9656,7 @@ Entorno virtual: True
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [13]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"docs/proyecto.json"</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">PROYECTO</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
