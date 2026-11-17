@@ -15,7 +15,7 @@ from nbclient.exceptions import CellExecutionError
 RAIZ = Path(__file__).resolve().parent
 NOTEBOOKS = ["F1/Grupo1_F1_Definicion.ipynb",
              "F2/Grupo1_F2_Preprocesamiento.ipynb",
-             "F3/S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb"]
+             "F3/Grupo1_S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb"]
 
 
 def ejecutar_notebook(ruta):
