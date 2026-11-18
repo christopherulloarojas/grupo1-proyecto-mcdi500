@@ -12,7 +12,11 @@ import hashlib
 import sys
 from pathlib import Path
 
+<<<<<<< Updated upstream
 RAIZ = Path(_file_).resolve().parent
+=======
+RAIZ = Path(__file__).resolve().parent
+>>>>>>> Stashed changes
 
 
 def miles(numero):
@@ -33,7 +37,11 @@ class VerificadorFuente:
     URL = ("https://datos.gob.cl/dataset/3bf4cf7c-f638-4735-9a01-f65faae4beca/resource/"
            "2c44d782-3365-44e3-aefb-2c8b8363a1bc/download/establecimientos_20261110.csv")
 
+<<<<<<< Updated upstream
     def _init_(self, raiz=RAIZ, nombre=NOMBRE, sha256=SHA256, tamano=TAMANO, url=URL):
+=======
+    def __init__(self, raiz=RAIZ, nombre=NOMBRE, sha256=SHA256, tamano=TAMANO, url=URL):
+>>>>>>> Stashed changes
         self._ruta = Path(raiz) / "data" / "raw" / nombre
         self._sha256 = sha256.lower()
         self._tamano = tamano
@@ -86,5 +94,10 @@ def main():
     return 0
 
 
+<<<<<<< Updated upstream
 if _name_ == "_main_":
     sys.exit(main())
+=======
+if __name__ == "__main__":
+    sys.exit(main())
+>>>>>>> Stashed changes
