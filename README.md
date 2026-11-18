@@ -15,8 +15,8 @@ Este proyecto estudia la distribución de los establecimientos de salud de Chile
 
 El procesamiento se realiza en Python, con criterios documentados de selección de registros, normalización de categorías y generación de archivos para el análisis descriptivo.
 
-La fuente original de los datos trabajados en este proyecto se encuentran en: https://datos.gob.cl/dataset/establecimientos-de-salud-vigentes/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc 
-La fuente original se actualiza de forma periodica (sin versionamiento). Para este trabajo se utilizó la base actualizada hasta el 06 de noviembre del 2026.
+La fuente original de los datos se encuentra en: https://datos.gob.cl/dataset/establecimientos-de-salud-vigentes/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc
+La fuente se actualiza de forma periódica y sin versiones. Para este trabajo se utilizó la base actualizada hasta el 06 de noviembre de 2026. El archivo no se incluye en el repositorio; la sección 3.1 explica cómo obtenerlo y verificarlo.
 
 ## 2. Objetivo y pregunta de análisis
 
@@ -57,6 +57,36 @@ El archivo de entrada es `establecimientos_20261103.csv`, que contiene **5.837 r
 | Diccionario de origen | `docs/diccionario_fuente.txt` |
 
 La fecha **03-11-2026** proviene del nombre del archivo y no constituye, por sí sola, evidencia de la fecha exacta de descarga o del corte de actualización del registro.
+
+### 3.1. Obtención y verificación del archivo de origen
+
+El archivo de origen **no se versiona**: contiene la columna `TelefonoMovil_TelefonoFijo`, con números de contacto, y el repositorio es público. Está excluido en `.gitignore` y se retiró del historial del repositorio. Para ejecutar el proyecto:
+
+1. Descargar el recurso «Establecimientos de salud vigentes» desde el enlace de la sección 1.
+2. Guardarlo como `data/raw/establecimientos_20261103.csv` (crear la carpeta `data/raw/` si no existe).
+3. Antes de ejecutar F1, verificar su huella SHA-256:
+
+**Windows (PowerShell):**
+
+```powershell
+Get-FileHash data\raw\establecimientos_20261103.csv -Algorithm SHA256
+```
+
+**Linux o macOS:**
+
+```bash
+sha256sum data/raw/establecimientos_20261103.csv
+```
+
+La huella debe ser (PowerShell la muestra en mayúsculas, lo que no cambia la comparación):
+
+```text
+febff55e3612fb60076df9279f1090240cd02a39e9c7b79b822119dfdef84c8d
+```
+
+Es la misma que registra `docs/metadatos_f1.json`. Si no coincide, el archivo no es el que usó el grupo: como el portal se actualiza sin versiones, una descarga posterior puede traer otros registros y otras cifras. Para reproducir exactamente los resultados entregados se debe usar la copia empleada por el grupo (5.837 registros y 33 columnas), que puede solicitarse a los integrantes.
+
+Durante la ejecución hay dos controles más: si el archivo no está en `data/raw/`, la ejecución se detiene con `FileNotFoundError`, y el notebook de F3 compara la huella del archivo con la que registró F1 y se detiene con `ValueError` si no coinciden.
 
 ## 4. Metodología de preparación
 
@@ -109,7 +139,7 @@ grupo1-proyecto-mcdi500/
 ├── F3/                      notebook de la fase 3 (núcleo algorítmico, eficiencia y POO)
 ├── src/                     código del proyecto: los notebooks lo importan, no lo copian
 ├── tests/                   pruebas de casos normales, límite y excepciones
-├── data/raw/                archivo de origen, sin modificaciones
+├── data/raw/                archivo de origen (no se versiona: ver sección 3.1)
 ├── data/processed/          salidas de F2 y, en f3/, salidas de F3
 ├── docs/                    documentación de F1 y F2 y, en f3/, la de F3
 ├── ejecutar_proyecto.py     ejecuta F1, F2 y F3 en orden
@@ -156,7 +186,7 @@ Cada módulo tiene una sola responsabilidad. El notebook de F3 importa todo desd
 
 | Ruta | Contenido |
 |---|---|
-| `data/raw/` | Archivo de origen, sin modificaciones de sus valores |
+| `data/raw/` | Ubicación del archivo de origen. No se versiona: se descarga y verifica según la sección 3.1 |
 | `data/processed/poblacion_analisis.csv` | Población seleccionada de 4.603 establecimientos, con códigos y etiquetas (F2) |
 | `data/processed/matriz_numerica_0_1.csv` | Matriz de cinco columnas binarias, sin identificadores (F2) |
 | `data/processed/clave_filas.csv` | Correspondencia entre las filas de la matriz y los establecimientos (F2) |
@@ -186,7 +216,7 @@ Ese archivo es la fuente de verdad del entorno: el notebook F1 lo compara con el
 
 ### 7.1. Preparación del entorno
 
-Descomprimir o clonar el proyecto conservando la estructura de carpetas. Desde la raíz del proyecto, crear el entorno virtual:
+Descomprimir o clonar el proyecto conservando la estructura de carpetas y ubicar el archivo de origen en `data/raw/` (sección 3.1). Desde la raíz del proyecto, crear el entorno virtual:
 
 ```bash
 python -m venv .venv
@@ -302,7 +332,16 @@ La fecha exacta de descarga, la fecha de corte del registro y la licencia espec�
 
 ## 10. Control de versiones
 
-Las fases 1 y 2 se organizaron en ramas temáticas (`parte1-datos`, `parte2-definicion`, `parte3-limpieza`, `parte4-descriptivo`, `parte5-integracion`, `limpieza-final` y `actualiza-limpieza`) integradas en `main` mediante *pull requests*. La Fase 3 sigue el mismo flujo: una rama por componente, integrada en `main` mediante un *pull request* revisado por otro integrante. El historial y los aportes por integrante pueden consultarse con:
+Las fases 1 y 2 se organizaron en ramas temáticas (`parte1-datos`, `parte2-definicion`, `parte3-limpieza`, `parte4-descriptivo`, `parte5-integracion`, `limpieza-final` y `actualiza-limpieza`) integradas en `main` mediante *pull requests*. La Fase 3 sigue el mismo flujo: una rama por componente, integrada en `main` mediante un *pull request*.
+
+| Integrante | Ramas y *pull requests* de la Fase 3 | Aporte |
+|---|---|---|
+| Karla Martínez | `f3-base-pipeline` (#13), `f3-pruebas-medicion` (#15) | Configuración, clases y pipeline; pruebas, medición y recursividad |
+| Brian Cerda | `f3-patrones-preprocesador` (#14), `f3-notebook-documentacion` (#16) | Patrones Observer y Factory, preprocesador; notebook F3, salidas y README |
+| Christopher Ulloa | `f3-normalizacion_proyecto` (#17, #18), `f3-correccion-fases` (#21) | Archivo de origen fuera del repositorio; nombres del notebook y del script; actualización de F1 |
+| Kattia Espinoza | `f3-correcciones-referencias` (#19), `f3-modificacion-notebook` (#20) | Fuente de los datos en el README; vínculo con el foro de la Semana 1 en el notebook |
+
+El archivo de origen se retiró también del historial del repositorio (sección 3.1). El historial y los aportes por integrante pueden consultarse con:
 
 ```bash
 git log --graph --oneline --all
