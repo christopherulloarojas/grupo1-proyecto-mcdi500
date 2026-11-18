@@ -15,6 +15,9 @@ Este proyecto estudia la distribución de los establecimientos de salud de Chile
 
 El procesamiento se realiza en Python, con criterios documentados de selección de registros, normalización de categorías y generación de archivos para el análisis descriptivo.
 
+La fuente original de los datos trabajados en este proyecto se encuentran en: https://datos.gob.cl/dataset/establecimientos-de-salud-vigentes/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc 
+La fuente original se actualiza de forma periodica (sin versionamiento). Para este trabajo se utilizó la base actualizada hasta el 06 de noviembre del 2026.
+
 ## 2. Objetivo y pregunta de análisis
 
 **Objetivo general:** Evaluar la asociación entre la pertenencia al SNSS y el nivel de complejidad de los establecimientos de salud vigentes con código único y ambas variables informadas.
