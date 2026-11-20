@@ -7823,7 +7823,6 @@ a.anchor-link {
 <li><strong>Archivo de dependencias como fuente de verdad.</strong> Antes, la celda de §3 reescribía <code>requirements.txt</code> con las versiones del entorno que ejecutaba el cuaderno; así, cada ejecución en otro equipo podía modificar el archivo. Ahora el archivo se edita a mano y se versiona, y la nueva sección 3.1 lo compara con el entorno activo y detiene la ejecución ante diferencias. El código anterior quedó comentado.</li>
 <li><strong>Articulación de las fases.</strong> F3 se define como núcleo algorítmico (diseño modular, orientación a objetos y medición de eficiencia) y la prueba de independencia con V de Cramér se traslada a F4. Se agregó una restricción sobre el tipo de establecimiento, que puede explicar parte de la asociación observada. La pregunta y el objetivo general no cambian. Los textos anteriores quedaron comentados en el código o citados en cada nota.</li>
 <li>Los resultados del estudio no cambiaron: la población, la matriz y la contingencia de F2 son idénticas.</li>
-<li><strong>Fase 4: SciPy en el entorno.</strong> La sección 2 registra también la versión de SciPy (antes la lista de bibliotecas no la incluía), una biblioteca ausente ya no detiene el cuaderno con un error de importación sino en la sección 3.1, y el mensaje de la sección 3.1 nombra cada biblioteca que no coincide. La estructura de carpetas incluye <code>F4</code>. Los resultados del estudio no cambian.</li>
 </ul>
 </div>
 </div>
@@ -8213,29 +8212,12 @@ CRITERIOS_EXITO
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">SEMILLA</span><span class="p">)</span>
 <span class="c1"># El flujo principal no tiene muestreo aleatorio; la semilla queda declarada.</span>
 
-<span class="c1"># --- CAMBIO (Fase 4: SciPy como dependencia) ------------------------------------------------</span>
-<span class="c1"># ANTES: la lista de bibliotecas estaba escrita a mano y no incluía SciPy, que la Fase 4 agregó</span>
-<span class="c1">#        a requirements.txt para la prueba chi-cuadrado. La tabla de versiones y metadatos_f1.json</span>
-<span class="c1">#        no la registraban.</span>
-<span class="c1"># PROBLEMA: además, si una biblioteca de la lista no estaba instalada, importlib lanzaba</span>
-<span class="c1">#        ModuleNotFoundError aquí, antes de la comparación de la sección 3.1, que es la que</span>
-<span class="c1">#        explica cómo corregir el entorno.</span>
-<span class="c1"># AHORA: se agrega "scipy" a la lista y una biblioteca ausente se registra como "no instalada";</span>
-<span class="c1">#        la sección 3.1 detiene la ejecución con el detalle de lo que falta.</span>
-<span class="c1"># for nombre in ["pandas", "numpy", "matplotlib", "nbformat", "nbclient", "ipykernel"]:</span>
-<span class="c1">#     modulo = importlib.import_module(nombre)</span>
-<span class="c1">#     versiones[nombre] = modulo.__version__</span>
-<span class="c1"># ---------------------------------------------------------------------------------------------</span>
-<span class="n">BIBLIOTECAS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"pandas"</span><span class="p">,</span> <span class="s2">"numpy"</span><span class="p">,</span> <span class="s2">"matplotlib"</span><span class="p">,</span> <span class="s2">"scipy"</span><span class="p">,</span> <span class="s2">"nbformat"</span><span class="p">,</span> <span class="s2">"nbclient"</span><span class="p">,</span> <span class="s2">"ipykernel"</span><span class="p">]</span>
-
 <span class="k">def</span><span class="w"> </span><span class="nf">verificar_entorno</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">"""Devuelve las versiones utilizadas y el estado del entorno virtual."""</span>
     <span class="n">versiones</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">nombre</span> <span class="ow">in</span> <span class="n">BIBLIOTECAS</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">versiones</span><span class="p">[</span><span class="n">nombre</span><span class="p">]</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span><span class="o">.</span><span class="n">__version__</span>
-        <span class="k">except</span> <span class="ne">ModuleNotFoundError</span><span class="p">:</span>
-            <span class="n">versiones</span><span class="p">[</span><span class="n">nombre</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"no instalada"</span>   <span class="c1"># la sección 3.1 detiene la ejecución con el detalle</span>
+    <span class="k">for</span> <span class="n">nombre</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"pandas"</span><span class="p">,</span> <span class="s2">"numpy"</span><span class="p">,</span> <span class="s2">"matplotlib"</span><span class="p">,</span> <span class="s2">"nbformat"</span><span class="p">,</span> <span class="s2">"nbclient"</span><span class="p">,</span> <span class="s2">"ipykernel"</span><span class="p">]:</span>
+        <span class="n">modulo</span> <span class="o">=</span> <span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">nombre</span><span class="p">)</span>
+        <span class="n">versiones</span><span class="p">[</span><span class="n">nombre</span><span class="p">]</span> <span class="o">=</span> <span class="n">modulo</span><span class="o">.</span><span class="n">__version__</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Python:"</span><span class="p">,</span> <span class="n">platform</span><span class="o">.</span><span class="n">python_version</span><span class="p">())</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Entorno virtual:"</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">prefix</span> <span class="o">!=</span> <span class="n">sys</span><span class="o">.</span><span class="n">base_prefix</span><span class="p">)</span>
     <span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">versiones</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"biblioteca"</span><span class="p">,</span> <span class="s2">"version"</span><span class="p">]))</span>
@@ -8302,21 +8284,16 @@ Entorno virtual: True
 </tr>
 <tr>
 <th>3</th>
-<td>scipy</td>
-<td>1.18.1</td>
-</tr>
-<tr>
-<th>4</th>
 <td>nbformat</td>
 <td>5.11.1</td>
 </tr>
 <tr>
-<th>5</th>
+<th>4</th>
 <td>nbclient</td>
 <td>0.11.0</td>
 </tr>
 <tr>
-<th>6</th>
+<th>5</th>
 <td>ipykernel</td>
 <td>7.4.0</td>
 </tr>
@@ -8364,13 +8341,10 @@ Entorno virtual: True
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">localizar_raiz</span><span class="p">(</span><span class="n">inicio</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Devuelve la raíz desde la carpeta del proyecto o desde una carpeta de fase."""</span>
     <span class="n">carpeta</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">()</span> <span class="k">if</span> <span class="n">inicio</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">Path</span><span class="p">(</span><span class="n">inicio</span><span class="p">)</span>
-    <span class="c1"># CAMBIO (Fase 4): se reconoce también la carpeta F4. ANTES: {"F1", "F2", "F3"}</span>
-    <span class="k">return</span> <span class="n">carpeta</span><span class="o">.</span><span class="n">parent</span> <span class="k">if</span> <span class="n">carpeta</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"F1"</span><span class="p">,</span> <span class="s2">"F2"</span><span class="p">,</span> <span class="s2">"F3"</span><span class="p">,</span> <span class="s2">"F4"</span><span class="p">}</span> <span class="k">else</span> <span class="n">carpeta</span>
+    <span class="k">return</span> <span class="n">carpeta</span><span class="o">.</span><span class="n">parent</span> <span class="k">if</span> <span class="n">carpeta</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="p">{</span><span class="s2">"F1"</span><span class="p">,</span> <span class="s2">"F2"</span><span class="p">,</span> <span class="s2">"F3"</span><span class="p">}</span> <span class="k">else</span> <span class="n">carpeta</span>
 
 <span class="n">RAIZ</span> <span class="o">=</span> <span class="n">localizar_raiz</span><span class="p">()</span>
-<span class="c1"># CAMBIO (Fase 4): la estructura del proyecto incluye la carpeta F4.</span>
-<span class="c1"># ANTES: CARPETAS = ["F1", "F2", "F3", "src", "data/raw", "data/processed", "docs", "docs/figuras"]</span>
-<span class="n">CARPETAS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"F1"</span><span class="p">,</span> <span class="s2">"F2"</span><span class="p">,</span> <span class="s2">"F3"</span><span class="p">,</span> <span class="s2">"F4"</span><span class="p">,</span> <span class="s2">"src"</span><span class="p">,</span> <span class="s2">"data/raw"</span><span class="p">,</span> <span class="s2">"data/processed"</span><span class="p">,</span> <span class="s2">"docs"</span><span class="p">,</span> <span class="s2">"docs/figuras"</span><span class="p">]</span>
+<span class="n">CARPETAS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"F1"</span><span class="p">,</span> <span class="s2">"F2"</span><span class="p">,</span> <span class="s2">"F3"</span><span class="p">,</span> <span class="s2">"src"</span><span class="p">,</span> <span class="s2">"data/raw"</span><span class="p">,</span> <span class="s2">"data/processed"</span><span class="p">,</span> <span class="s2">"docs"</span><span class="p">,</span> <span class="s2">"docs/figuras"</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">carpeta</span> <span class="ow">in</span> <span class="n">CARPETAS</span><span class="p">:</span>
     <span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="n">carpeta</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -8382,14 +8356,7 @@ Entorno virtual: True
 <span class="c1"># dependencias = [f"{nombre}=={version}" for nombre, version in versiones.items()]</span>
 <span class="c1"># (RAIZ / "requirements.txt").write_text("\n".join(dependencias) + "\n", encoding="utf-8")</span>
 <span class="c1"># ---------------------------------------------------------------------------------------------</span>
-<span class="c1"># El .gitignore se mantiene a mano. Aquí solo se comprueba que siga excluyendo el entorno</span>
-<span class="c1"># y el archivo de origen, para que este no vuelva a subirse al repositorio.</span>
-<span class="n">EXCLUSIONES_GIT</span> <span class="o">=</span> <span class="p">[</span><span class="s2">".venv/"</span><span class="p">,</span> <span class="s2">"__pycache__/"</span><span class="p">,</span> <span class="s2">".ipynb_checkpoints/"</span><span class="p">,</span> <span class="s2">".env"</span><span class="p">,</span> <span class="n">PROYECTO</span><span class="p">[</span><span class="s2">"fuente"</span><span class="p">][</span><span class="s2">"archivo"</span><span class="p">]]</span>
-<span class="n">ruta_gitignore</span> <span class="o">=</span> <span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">".gitignore"</span>
-<span class="n">lineas_gitignore</span> <span class="o">=</span> <span class="n">ruta_gitignore</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span> <span class="k">if</span> <span class="n">ruta_gitignore</span><span class="o">.</span><span class="n">is_file</span><span class="p">()</span> <span class="k">else</span> <span class="p">[]</span>
-<span class="n">faltantes_gitignore</span> <span class="o">=</span> <span class="p">[</span><span class="n">regla</span> <span class="k">for</span> <span class="n">regla</span> <span class="ow">in</span> <span class="n">EXCLUSIONES_GIT</span> <span class="k">if</span> <span class="n">regla</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="n">l</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">lineas_gitignore</span><span class="p">]]</span>
-<span class="k">if</span> <span class="n">faltantes_gitignore</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Faltan reglas en .gitignore: </span><span class="si">{</span><span class="n">faltantes_gitignore</span><span class="si">}</span><span class="s2">. Agréguelas a mano antes de continuar."</span><span class="p">)</span>
+<span class="p">(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">".gitignore"</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">".venv/</span><span class="se">\n</span><span class="s2">__pycache__/</span><span class="se">\n</span><span class="s2">.ipynb_checkpoints/</span><span class="se">\n</span><span class="s2">.env</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
 <span class="n">display</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s2">"carpeta"</span><span class="p">:</span> <span class="n">CARPETAS</span><span class="p">,</span> <span class="s2">"existe"</span><span class="p">:</span> <span class="p">[(</span><span class="n">RAIZ</span> <span class="o">/</span> <span class="n">c</span><span class="p">)</span><span class="o">.</span><span class="n">is_dir</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">CARPETAS</span><span class="p">]}))</span>
 </pre></div>
 </div>
@@ -8443,31 +8410,26 @@ Entorno virtual: True
 </tr>
 <tr>
 <th>3</th>
-<td>F4</td>
-<td>True</td>
-</tr>
-<tr>
-<th>4</th>
 <td>src</td>
 <td>True</td>
 </tr>
 <tr>
-<th>5</th>
+<th>4</th>
 <td>data/raw</td>
 <td>True</td>
 </tr>
 <tr>
-<th>6</th>
+<th>5</th>
 <td>data/processed</td>
 <td>True</td>
 </tr>
 <tr>
-<th>7</th>
+<th>6</th>
 <td>docs</td>
 <td>True</td>
 </tr>
 <tr>
-<th>8</th>
+<th>7</th>
 <td>docs/figuras</td>
 <td>True</td>
 </tr>
@@ -8502,9 +8464,6 @@ Entorno virtual: True
 <h3 id="3.1-Comparaci%C3%B3n-del-entorno-con-requirements.txt">3.1 Comparación del entorno con <code>requirements.txt</code><a class="anchor-link" href="#3.1-Comparaci%C3%B3n-del-entorno-con-requirements.txt">¶</a></h3><p>El archivo de dependencias declara las versiones exactas del proyecto. La función lee cada línea, consulta la versión instalada en el entorno activo y muestra las diferencias. Si existe alguna, el cuaderno se detiene: el entorno debe ajustarse al archivo, nunca el archivo al entorno.</p>
 <blockquote>
 <p><strong>Cambio respecto de la versión anterior.</strong> Sección nueva. Reemplaza la escritura automática de <code>requirements.txt</code> por una comparación de solo lectura. La evidencia es que, al ejecutar F1 en otro entorno, el archivo no cambia y F1 informa las diferencias.</p>
-</blockquote>
-<blockquote>
-<p><strong>Cambio de la Fase 4.</strong> <code>requirements.txt</code> incluye ahora <code>scipy==1.18.1</code>, que la Fase 4 usa para la prueba chi-cuadrado. Un entorno creado antes de la Fase 4 no la tiene, y esta sección se detiene nombrando la biblioteca que falta y su versión. Se corrige con <code>python -m pip install -r requirements.txt</code>.</p>
 </blockquote>
 </div>
 </div>
@@ -8543,14 +8502,8 @@ Entorno virtual: True
     <span class="n">display</span><span class="p">(</span><span class="n">comparacion</span><span class="p">)</span>
     <span class="n">diferencias</span> <span class="o">=</span> <span class="n">comparacion</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="o">~</span><span class="n">comparacion</span><span class="p">[</span><span class="s2">"coincide"</span><span class="p">]]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">diferencias</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>                          <span class="c1"># detiene la ejecución ante diferencias</span>
-        <span class="c1"># --- CAMBIO (Fase 4: mensaje de error) -------------------------------------------------</span>
-        <span class="c1"># ANTES: el mensaje solo decía cuántas bibliotecas no coincidían, sin nombrarlas.</span>
-        <span class="c1"># AHORA: nombra cada biblioteca con la versión requerida y la instalada, para que se vea</span>
-        <span class="c1">#        de inmediato, por ejemplo, que falta SciPy al usar un entorno creado antes de F4.</span>
-        <span class="n">detalle</span> <span class="o">=</span> <span class="s2">"; "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">fila</span><span class="o">.</span><span class="n">biblioteca</span><span class="si">}</span><span class="s2"> (requerida </span><span class="si">{</span><span class="n">fila</span><span class="o">.</span><span class="n">requerida</span><span class="si">}</span><span class="s2">, instalada: </span><span class="si">{</span><span class="n">fila</span><span class="o">.</span><span class="n">instalada</span><span class="si">}</span><span class="s2">)"</span>
-                            <span class="k">for</span> <span class="n">fila</span> <span class="ow">in</span> <span class="n">diferencias</span><span class="o">.</span><span class="n">itertuples</span><span class="p">())</span>
-        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El entorno no coincide con requirements.txt en </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">diferencias</span><span class="p">)</span><span class="si">}</span><span class="s2"> biblioteca(s): "</span>
-                           <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">detalle</span><span class="si">}</span><span class="s2">. Ejecute: python -m pip install -r requirements.txt"</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El entorno no coincide con requirements.txt en </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">diferencias</span><span class="p">)</span><span class="si">}</span><span class="s2"> biblioteca(s). "</span>
+                           <span class="s2">"Ejecute: python -m pip install -r requirements.txt"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">comparacion</span>
 
 <span class="c1"># Huella del archivo antes de continuar: la validación final comprueba que no cambió.</span>
@@ -8634,13 +8587,6 @@ Entorno virtual: True
 <td>ipykernel</td>
 <td>7.4.0</td>
 <td>7.4.0</td>
-<td>True</td>
-</tr>
-<tr>
-<th>6</th>
-<td>scipy</td>
-<td>1.18.1</td>
-<td>1.18.1</td>
 <td>True</td>
 </tr>
 </tbody>
@@ -8759,28 +8705,9 @@ Entorno virtual: True
 <div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># El archivo de origen no está en el repositorio. Antes de usarlo se comprueba que exista y que</span>
-<span class="c1"># su huella coincida con la de la versión con que se obtuvieron los resultados del proyecto.</span>
-<span class="n">URL_FUENTE</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"https://datos.gob.cl/dataset/3bf4cf7c-f638-4735-9a01-f65faae4beca/resource/"</span>
-              <span class="s2">"2c44d782-3365-44e3-aefb-2c8b8363a1bc/download/establecimientos_20261110.csv"</span><span class="p">)</span>
-<span class="n">SHA256_REGISTRADO</span> <span class="o">=</span> <span class="s2">"febff55e3612fb60076df9279f1090240cd02a39e9c7b79b822119dfdef84c8d"</span>
-<span class="n">ARCHIVO</span> <span class="o">=</span> <span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"data/raw"</span> <span class="o">/</span> <span class="n">PROYECTO</span><span class="p">[</span><span class="s2">"fuente"</span><span class="p">][</span><span class="s2">"archivo"</span><span class="p">]</span>
-
-<span class="k">if</span> <span class="ow">not</span> <span class="n">ARCHIVO</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
-    <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
-        <span class="sa">f</span><span class="s2">"No se encontró el archivo de origen: </span><span class="si">{</span><span class="n">ARCHIVO</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="sa">f</span><span class="s2">"El archivo no se versiona en el repositorio. Para obtenerlo:</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="sa">f</span><span class="s2">"  1. Descargarlo desde </span><span class="si">{</span><span class="n">URL_FUENTE</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="sa">f</span><span class="s2">"  2. Guardarlo como data/raw/</span><span class="si">{</span><span class="n">ARCHIVO</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> (el portal lo entrega con otro nombre).</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="sa">f</span><span class="s2">"  3. Ejecutar nuevamente el cuaderno desde el inicio."</span><span class="p">)</span>
-<span class="n">huella_original</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">ARCHIVO</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
-<span class="k">if</span> <span class="n">huella_original</span> <span class="o">!=</span> <span class="n">SHA256_REGISTRADO</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-        <span class="s2">"El archivo no corresponde a la versión utilizada por el proyecto.</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="sa">f</span><span class="s2">"  SHA-256 registrado: </span><span class="si">{</span><span class="n">SHA256_REGISTRADO</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="sa">f</span><span class="s2">"  SHA-256 obtenido:   </span><span class="si">{</span><span class="n">huella_original</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
-        <span class="s2">"Si el portal publicó una actualización, los resultados no son reproducibles con ese archivo."</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">ARCHIVO</span> <span class="o">=</span> <span class="n">RAIZ</span> <span class="o">/</span> <span class="s2">"data/raw"</span> <span class="o">/</span> <span class="n">PROYECTO</span><span class="p">[</span><span class="s2">"fuente"</span><span class="p">][</span><span class="s2">"archivo"</span><span class="p">]</span>
 <span class="n">datos_verificacion</span> <span class="o">=</span> <span class="n">cargar_datos</span><span class="p">(</span><span class="n">ARCHIVO</span><span class="p">)</span>
+<span class="n">huella_original</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">ARCHIVO</span><span class="o">.</span><span class="n">read_bytes</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 <span class="n">ficha</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
     <span class="s2">"caracteristica"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"Filas"</span><span class="p">,</span> <span class="s2">"Columnas"</span><span class="p">,</span> <span class="s2">"Unidad"</span><span class="p">,</span> <span class="s2">"Separador"</span><span class="p">,</span> <span class="s2">"Codificación"</span><span class="p">,</span> <span class="s2">"Fecha de descarga"</span><span class="p">],</span>
     <span class="s2">"valor"</span><span class="p">:</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">datos_verificacion</span><span class="p">),</span> <span class="n">datos_verificacion</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s2">"Establecimiento con código vigente"</span><span class="p">,</span> <span class="s2">";"</span><span class="p">,</span> <span class="s2">"UTF-8"</span><span class="p">,</span> <span class="s2">"No documentada"</span><span class="p">]</span>
@@ -9542,8 +9469,8 @@ Entorno virtual: True
 <tbody>
 <tr>
 <th>0</th>
-<td>No hay repositorio propio en esta carpeta</td>
-<td>Pendiente de trabajo del grupo</td>
+<td>Repositorio detectado</td>
+<td>9fc330d BacmUnab: Merge pull request #12 from christopherulloarojas/Correcciones_Sum1\n6735656 BacmUnab: Actualiza F1 y F2 para definir el alcance de F3 y F4\n9a1a914 BacmUnab: Merge pull request #11 from christopherulloarojas/Correcciones_Sum1\naa21440 BacmUnab: Evita sobrescribir requirements.txt\ne7a883c Christopher Ulloa: Merge branch 'main' of https://github.com/christopherulloarojas/grupo1-proyecto-mcdi500</td>
 </tr>
 </tbody>
 </table>
