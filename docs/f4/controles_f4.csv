@@ -1,0 +1,15 @@
+﻿escenario,control,estado,detalle
+normal,La copia conserva las filas de la población,OK,4.603 filas
+normal,Cada grupo suma 100 % en la Figura 4,OK,
+normal,Incluidos de la Figura 2 = población,OK,
+normal,Los estratos por tipo suman la población,OK,
+normal,Chi-cuadrado igual a la fórmula manual,OK,"1.988,45"
+límite,Wilson sin casos no es negativo,OK,alta en centros ambulatorios No SNSS: 0 de 1.210
+límite,Wilson con todos los casos no supera 1,OK,
+límite,Estrato sin No SNSS queda sin comparación,OK,
+límite,Categoría sin casos se conserva al reconstruir,OK,
+excepción,Faltan salidas de la Fase 3,OK,FileNotFoundError
+excepción,Fila sin categoría activa,OK,ValueError
+excepción,Tipo de establecimiento sin grupo,OK,KeyError
+excepción,Tabla con una columna sin casos,OK,ValueError
+excepción,Proporción sin observaciones,OK,ValueError
