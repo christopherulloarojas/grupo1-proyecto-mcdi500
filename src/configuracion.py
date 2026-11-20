@@ -56,3 +56,28 @@ def crear_configuracion(columnas_originales, normalizaciones=NORMALIZACIONES, co
     return {"normalizaciones": list(normalizaciones), "mapeos": MAPEOS, "reglas": REGLAS_POBLACION,
             "columnas_originales": list(columnas_originales), "columnas_poblacion": list(columnas_poblacion),
             "codificaciones": CODIFICACIONES, "columnas_numericas": COLUMNAS_NUMERICAS}
+
+# --- Fase 4 -----------------------------------------------------------------------------------
+# Agrupación del tipo de establecimiento (TipoEstablecimientoGlosa), para estratificar la
+# asociación. Es una decisión del equipo: reúne los 28 tipos del registro en cuatro grupos
+# según la función asistencial. Un tipo que no figure aquí detiene el análisis.
+AGRUPACION_TIPOS = {
+    "Atención primaria y urgencia": [
+        "Posta de Salud Rural (PSR)", "Centro de Salud Familiar (CESFAM)",
+        "Centro Comunitario de Salud Familiar (CECOSF)", "Consultorio General Rural (CGR)",
+        "Consultorio General Urbano (CGU)", "Centro de Especialidades de Atención Primaria (CEAP)",
+        "Servicio de Atención Primaria de Urgencia (SAPU)",
+        "Servicio de Atención Primaria de Urgencia de Alta Resolutividad (SAR)",
+        "Servicio de Urgencia Rural (SUR)", "Centro de Regulación Médica de las Urgencias (SAMU)",
+        "Unidad de Procedimientos Móvil"],
+    "Hospitales y clínicas": ["Hospital", "Hospital de Día", "Clínica"],
+    "Centros ambulatorios y de especialidad": [
+        "Centro de Salud Privado", "Centro de Especialidades", "Clínica Dental",
+        "Centro Comunitario de Salud Mental (COSAM)", "Centro de Diálisis", "Centro de Rehabilitación",
+        "Centro Terapeútico", "Centro de Salud Comunitario para Personas con Demencia",
+        "Centro Corporación para la Nutrición Infantil (CONIN)",
+        "Centros de Diagnóstico y Tratamiento Privados"],
+    "Apoyo diagnóstico y otros": [
+        "Vacunatorio", "Sala Externa de Toma de Muestras (SETM)", "Laboratorio Clínico", "Otro"],
+}
+ORDEN_TIPOS = list(AGRUPACION_TIPOS)
