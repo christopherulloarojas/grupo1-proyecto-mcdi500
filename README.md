@@ -11,7 +11,7 @@
 
 ## 1. Descripción del proyecto
 
-Este proyecto estudia la distribución de los establecimientos de salud de Chile según dos características: su pertenencia al Sistema Nacional de Servicios de Salud (SNSS) y su nivel de complejidad asistencial. El trabajo utiliza un registro de establecimientos de salud y desarrolla tres fases: la definición del problema y del entorno (F1), la exploración y preparación de los datos (F2) y la reorganización del pipeline en un núcleo algorítmico orientado a objetos, con su costo medido (F3).
+Este proyecto estudia la distribución de los establecimientos de salud de Chile según dos características: su pertenencia al Sistema Nacional de Servicios de Salud (SNSS) y su nivel de complejidad asistencial. El trabajo utiliza un registro de establecimientos de salud y desarrolla cuatro fases: la definición del problema y del entorno (F1), la exploración y preparación de los datos (F2), la reorganización del pipeline en un núcleo algorítmico orientado a objetos, con su costo medido (F3), y la evaluación de la asociación y la comunicación de los resultados con visualizaciones (F4).
 
 El procesamiento se realiza en Python, con criterios documentados de selección de registros, normalización de categorías y generación de archivos para el análisis descriptivo.
 
@@ -40,8 +40,9 @@ La unidad de análisis es el establecimiento identificado por su código vigente
 | F1 | Definición del problema, objetivos, entorno reproducible y diccionario analítico | Desarrollada |
 | F2 | Obtención, exploración, limpieza, transformación y validación del dataset | Desarrollada |
 | F3 | Núcleo algorítmico: el pipeline de F2 encapsulado en clases, verificado contra F2 y con mediciones de tiempo y memoria | Desarrollada |
+| F4 | Prueba de independencia y V de Cramér, revisión según el tipo de establecimiento, visualizaciones y hallazgos | Desarrollada |
 
-La evaluación estadística de la asociación no forma parte de esta entrega.
+La evaluación estadística de la asociación se desarrolla en F4 (sección 9).
 
 ## 3. Datos utilizados
 
@@ -128,7 +129,7 @@ Los porcentajes se calculan **por fila**, utilizando como denominador el total d
 
 En el grupo SNSS predomina la baja complejidad (91,7 %), mientras que en el grupo no SNSS predomina la mediana complejidad (66,5 %). La fase F2 también presenta porcentajes por columna como información complementaria.
 
-Estas cifras describen los registros seleccionados y no establecen relaciones causales ni diferencias estadísticamente significativas. La evaluación estadística de la asociación no forma parte de esta entrega.
+Estas cifras describen los registros seleccionados y no establecen relaciones causales. La prueba de independencia y la magnitud de la asociación se presentan en la Fase 4 (sección 9).
 
 ## 6. Organización del proyecto
 
@@ -137,12 +138,13 @@ grupo1-proyecto-mcdi500/
 ├── F1/                      notebook de la fase 1 (definición y entorno)
 ├── F2/                      notebook de la fase 2 (preprocesamiento)
 ├── F3/                      notebook de la fase 3 (núcleo algorítmico, eficiencia y POO)
+├── F4/                      notebook de la fase 4 (visualización y comunicación) y sus figuras
 ├── src/                     código del proyecto: los notebooks lo importan, no lo copian
 ├── tests/                   pruebas de casos normales, límite y excepciones
 ├── data/raw/                archivo de origen (no se versiona: ver sección 3.1)
-├── data/processed/          salidas de F2 y, en f3/, salidas de F3
-├── docs/                    documentación de F1 y F2 y, en f3/, la de F3
-├── ejecutar_proyecto.py     ejecuta F1, F2 y F3 en orden
+├── data/processed/          salidas de F2 y, en f3/, salidas de F3 (F4 las lee, no escribe aquí)
+├── docs/                    documentación de F1 y F2; en f3/ y f4/, la de F3 y F4
+├── ejecutar_proyecto.py     ejecuta F1, F2, F3 y F4 en orden
 ├── requirements.txt         dependencias con versión fija
 └── README.md
 ```
@@ -154,17 +156,18 @@ grupo1-proyecto-mcdi500/
 | `F1/Grupo1_F1_Definicion.ipynb` | Definición del problema, entorno y diccionario analítico |
 | `F2/Grupo1_F2_Preprocesamiento.ipynb` | Exploración, limpieza, transformación y validación del dataset |
 | `F3/Grupo1_S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb` | Núcleo algorítmico: clases, patrones, verificación contra F2, pruebas y mediciones |
+| `F4/Grupo1_S3_F4_Visualizacion_Comunicacion.ipynb` | Copia legible verificada, figuras por objetivo, prueba de independencia, estratificación por tipo, eficiencia, validación y relato |
 
 Cada notebook se entrega ejecutado y con su exportación `.html` en la misma carpeta.
 
 ### 6.2. Código (`src/`)
 
-Cada módulo tiene una sola responsabilidad. El notebook de F3 importa todo desde aquí.
+Cada módulo tiene una sola responsabilidad. Los notebooks de F3 y F4 importan todo desde aquí.
 
 | Módulo | Responsabilidad |
 |---|---|
 | `src/utilidades.py` | Funciones compartidas por las tres fases: normalizar texto y leer el CSV |
-| `src/configuracion.py` | Reglas F01–F08, mapeos y columnas, declarados como datos |
+| `src/configuracion.py` | Reglas F01–F08, mapeos y columnas, declarados como datos; agrupación de los tipos de establecimiento (F4) |
 | `src/carga.py` | Lectura del archivo y verificación de su huella y su esquema |
 | `src/funciones.py` | Operaciones sin estado del pipeline (fila de origen, normalización, selección) |
 | `src/transformadores.py` | Clase base `Transformador`, adaptador `PasoFuncion`, clase intermedia `Filtro` y las clases que aprenden algo de los datos |
@@ -177,10 +180,11 @@ Cada módulo tiene una sola responsabilidad. El notebook de F3 importa todo desd
 | `src/estructura.py` | Funciones recursivas para la jerarquía de clases y la configuración anidada |
 | `src/medicion.py` | Medición de tiempo (`timeit`) y memoria (`tracemalloc`) |
 | `src/referencia_f2.py` | El flujo de F2 conservado como línea base para verificar y medir |
+| `src/comunicacion.py` | Fase 4: carga de las salidas de F3, copia legible, proporciones con intervalo de Wilson, prueba de independencia con V de Cramér y guardado de figuras |
 
 ### 6.3. Pruebas (`tests/`)
 
-`tests/test_nucleo.py` contiene 28 pruebas con tablas pequeñas construidas a mano: 11 casos normales, 7 casos límite y 10 excepciones.
+`tests/test_nucleo.py` contiene 28 pruebas con tablas pequeñas construidas a mano: 11 casos normales, 7 casos límite y 10 excepciones. `tests/test_comunicacion.py` agrega 20 pruebas del módulo de la Fase 4. En total son 48.
 
 ### 6.4. Datos y documentación
 
@@ -198,6 +202,9 @@ Cada módulo tiene una sola responsabilidad. El notebook de F3 importa todo desd
 | `docs/figuras/` | Seis gráficos del análisis de F2 |
 | `docs/f3/` | Bitácora de filtros, exclusiones, parámetros aprendidos, bitácora de decisiones de diseño, arquitectura y mediciones de F3 |
 | `docs/f3/figuras/` | Dos gráficos de la medición de eficiencia |
+| `F4/figuras/` | Diez figuras de la Fase 4, a 200 ppp |
+| `docs/hallazgos_f4.csv` | Hallazgo de cada figura con la cifra que lo respalda, y si va al informe o a los anexos |
+| `docs/f4/` | Tablas de las figuras, prueba de independencia, residuos, estratos por tipo, agrupación de tipos, eficiencia, controles y metadatos de F4 |
 
 El diccionario analítico documenta las **33 columnas** del conjunto de datos y las decisiones adoptadas para su tratamiento.
 
@@ -211,8 +218,9 @@ El proyecto está preparado para utilizar **Python 3.13**. Las dependencias se e
 | NumPy | 2.5.2 | Operaciones numéricas |
 | Matplotlib | 3.11.1 | Gráficos |
 | nbformat, nbclient, ipykernel | 5.11.1, 0.11.0, 7.4.0 | Ejecución de los notebooks |
+| SciPy | 1.18.1 | Prueba chi-cuadrado de independencia (F4) |
 
-Ese archivo es la fuente de verdad del entorno: el notebook F1 lo compara con el entorno activo y se detiene si encuentra diferencias, sin modificarlo. La fase F3 no agrega dependencias: además de las anteriores usa solo la biblioteca estándar (`timeit`, `tracemalloc`, `unittest`, `inspect`).
+Ese archivo es la fuente de verdad del entorno: el notebook F1 lo compara con el entorno activo y se detiene si encuentra diferencias, sin modificarlo. La fase F3 no agrega dependencias: además de las anteriores usa solo la biblioteca estándar (`timeit`, `tracemalloc`, `unittest`, `inspect`). La fase F4 agrega SciPy, que se usa en un solo lugar: la prueba chi-cuadrado. Quien ya tenía el entorno de F3 debe volver a ejecutar `python -m pip install -r requirements.txt`.
 
 ### 7.1. Preparación del entorno
 
@@ -250,7 +258,7 @@ python -m pip install jupyterlab
 
 ### 7.2. Ejecución del proyecto completo
 
-Los notebooks se ejecutan siempre en este orden, porque cada fase lee lo que guardó la anterior: **F1 → F2 → F3**.
+Los notebooks se ejecutan siempre en este orden, porque cada fase lee lo que guardó la anterior: **F1 → F2 → F3 → F4**.
 
 **Opción A: todo el proyecto con un comando.** Con el entorno virtual activo, desde la raíz:
 
@@ -258,15 +266,16 @@ Los notebooks se ejecutan siempre en este orden, porque cada fase lee lo que gua
 python ejecutar_proyecto.py
 ```
 
-El script ejecuta los tres notebooks desde un kernel limpio, guarda sus salidas y se detiene con un mensaje si alguno falla.
+El script ejecuta los cuatro notebooks desde un kernel limpio, guarda sus salidas y se detiene con un mensaje si alguno falla.
 
 **Opción B: notebook por notebook** (Visual Studio Code o Jupyter, con el kernel de `.venv`):
 
 1. Reiniciar el kernel y ejecutar todas las celdas de `F1/Grupo1_F1_Definicion.ipynb`.
 2. Reiniciar el kernel y ejecutar todas las celdas de `F2/Grupo1_F2_Preprocesamiento.ipynb`.
 3. Reiniciar el kernel y ejecutar todas las celdas de `F3/Grupo1_S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb`.
+4. Reiniciar el kernel y ejecutar todas las celdas de `F4/Grupo1_S3_F4_Visualizacion_Comunicacion.ipynb`.
 
-Las rutas se resuelven tanto desde la raíz del proyecto como desde las carpetas `F1/`, `F2/` y `F3/`.
+Las rutas se resuelven tanto desde la raíz del proyecto como desde las carpetas `F1/`, `F2/`, `F3/` y `F4/`.
 
 El CSV de entrada utiliza separador `;` y codificación UTF-8. Los CSV de salida se generan con separador coma y codificación UTF-8 con BOM.
 
@@ -280,7 +289,16 @@ El notebook `F3/Grupo1_S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb` necesita qu
 
 El notebook tarda menos de un minuto. Al terminar deja sus resultados en `data/processed/f3/` y `docs/f3/`, sin modificar los archivos de F2, y se detiene con un error si alguna salida difiere de las de F2. Los tiempos que muestra la sección 15 dependen del equipo; las razones entre versiones se mantienen.
 
-### 7.4. Ejecución de las pruebas
+### 7.4. Ejecución del notebook de la Fase 4
+
+El notebook `F4/Grupo1_S3_F4_Visualizacion_Comunicacion.ipynb` no vuelve a limpiar ni a transformar: lee las salidas de F3 (`data/processed/f3/` y `docs/f3/`), el archivo de origen (para verificar la copia legible y obtener el tipo de establecimiento) y la tabla de contingencia de F2. Si falta alguna salida de F3, se detiene con `FileNotFoundError` e indica qué ejecutar.
+
+1. Ejecutar antes F1, F2 y F3.
+2. Abrir el notebook, seleccionar el kernel de `.venv` y ejecutar **Kernel → Restart Kernel and Run All Cells**.
+
+Tarda menos de un minuto. Deja las figuras en `F4/figuras/`, los hallazgos en `docs/hallazgos_f4.csv` y sus tablas en `docs/f4/`. Los tiempos de la sección 8 dependen del equipo; las razones entre implementaciones se mantienen.
+
+### 7.5. Ejecución de las pruebas
 
 Desde la raíz del proyecto, con el entorno virtual activo:
 
@@ -288,7 +306,7 @@ Desde la raíz del proyecto, con el entorno virtual activo:
 python -m unittest -v
 ```
 
-El comando descubre y ejecuta las 28 pruebas de `tests/`. Las mismas pruebas se ejecutan dentro del notebook de F3 (sección 13).
+El comando descubre y ejecuta las 48 pruebas de `tests/`. Las pruebas del núcleo se ejecutan también dentro del notebook de F3 (sección 13), y todas dentro del notebook de F4 (sección 9).
 
 ## 8. Fase 3: núcleo algorítmico
 
@@ -320,9 +338,36 @@ poblacion, matriz = resultado["poblacion"], resultado["matriz"]
 
 Las mediciones y sus decisiones quedan visibles en el notebook y se guardan en `docs/f3/mediciones_resumen_f3.csv`. Los tiempos absolutos dependen del equipo; las decisiones se apoyan en las razones entre versiones.
 
-## 9. Alcance y limitaciones
+## 9. Fase 4: visualización y comunicación de resultados
 
-El estudio se limita al análisis descriptivo de la pertenencia al SNSS y el nivel de complejidad. En estas fases no se desarrollan análisis territoriales, de servicios de urgencia, de calidad asistencial ni de causalidad, y la inferencia estadística no forma parte de esta entrega.
+La fase F4 no cambia los datos: lee las salidas de F3, construye una copia legible (las categorías como texto en lugar de columnas 0/1) y responde con figuras los objetivos de F1.
+
+| Aspecto | Cómo se resuelve |
+|---|---|
+| Copia legible | `src/comunicacion.py` deshace la codificación One-Hot uniendo cada columna con su categoría por nombre; la copia se verifica fila por fila contra el archivo original y su contingencia contra F2 y F3 |
+| Figuras por objetivo | Diez figuras, al menos una por cada objetivo específico de F1, con el hallazgo en el título, tamaño de grupo, intervalo de Wilson y fuente; cada una con su lectura (qué muestra, qué se infiere, qué límite tiene y cómo aporta al relato) |
+| Prueba de independencia | Chi-cuadrado sobre la tabla 2 × 3, previa revisión de las frecuencias esperadas, verificada sin SciPy con la fórmula; magnitud con la V de Cramér y residuos ajustados |
+| Variables de confusión | Los 28 tipos de establecimiento se agrupan en cuatro (`AGRUPACION_TIPOS`) y la asociación se repite dentro de cada grupo; también se repite dentro de cada una de las 16 regiones, con gráfico de caja y dispersión |
+| Eficiencia | Tres implementaciones de la reconstrucción de categorías comparadas con `timeit` y `tracemalloc` en tres tamaños; el módulo usa la más rápida |
+| Validación | 14 controles de casos normales, límite y excepciones, y 48 pruebas automatizadas |
+| Relato y video | Relato en tres actos y guion del video por integrante, con su duración comprobada (entre 5 y 8 minutos) |
+
+Principales resultados (`docs/hallazgos_f4.csv`):
+
+| Hallazgo | Evidencia |
+|---|---|
+| SNSS concentra la baja complejidad y No SNSS la mediana | 91,7 % de baja en SNSS; 66,5 % de mediana en No SNSS |
+| La asociación es fuerte | Chi-cuadrado = 1.988,45 (2 gl), V de Cramér = 0,657; todas las esperadas son mayores que 42 |
+| Los grupos tienen distintos tipos de establecimiento | El 85,5 % de los SNSS es de atención primaria y urgencia; ningún No SNSS |
+| Al comparar el mismo tipo, la asociación se debilita | V = 0,44 en hospitales y clínicas y 0,25 en centros ambulatorios |
+| La región no explica la asociación | En las 16 regiones los SNSS tienen más baja complejidad; V de Cramér por región entre 0,47 y 0,79 |
+| La mayor proporción de alta complejidad No SNSS se invierte dentro de cada tipo | 3,6 % frente a 2,3 % en el total; 31,7 % SNSS frente a 30,9 % No SNSS en hospitales y clínicas |
+| La menor retención No SNSS se debe al filtro F07 | 686 registros No SNSS excluidos por complejidad «No Aplica», frente a 17 SNSS |
+| La estandarización de las categorías evitó perder establecimientos | 92 establecimientos estaban escritos con otra forma (mayúsculas); 78 de ellos son No SNSS |
+
+## 10. Alcance y limitaciones
+
+El estudio se limita a la asociación entre la pertenencia al SNSS y el nivel de complejidad. No se desarrollan análisis territoriales, de servicios de urgencia, de calidad asistencial ni de causalidad. La prueba de independencia de F4 no generaliza a otra población: el registro contiene a toda la población delimitada, y la magnitud de la asociación se lee en la V de Cramér. Parte de la asociación se explica por el tipo de establecimiento; la región no la explica (se usa solo como estrato de control, no como análisis territorial), y puede haber otras variables de confusión no medidas.
 
 Aunque el archivo de origen comprende 5.837 registros, contiene establecimientos cerrados y categorías que no cumplen los criterios de selección. Por ese motivo, el denominador empleado en los resultados principales es de 4.603 establecimientos.
 
@@ -330,7 +375,7 @@ La disponibilidad de la complejidad no es homogénea: se retuvo el 99,00 % de lo
 
 La fecha exacta de descarga, la fecha de corte del registro y la licencia específica de uso de los datos no están acreditadas en los archivos disponibles.
 
-## 10. Control de versiones
+## 11. Control de versiones
 
 Las fases 1 y 2 se organizaron en ramas temáticas (`parte1-datos`, `parte2-definicion`, `parte3-limpieza`, `parte4-descriptivo`, `parte5-integracion`, `limpieza-final` y `actualiza-limpieza`) integradas en `main` mediante *pull requests*. La Fase 3 sigue el mismo flujo: una rama por componente, integrada en `main` mediante un *pull request*.
 
@@ -348,9 +393,9 @@ git log --graph --oneline --all
 git shortlog -sne
 ```
 
-## 11. Documentación de respaldo
+## 12. Documentación de respaldo
 
-La carpeta `docs/` reúne los diccionarios, criterios de transformación, tablas de filtros, registros de exclusión y productos descriptivos utilizados en el proyecto. Estos archivos permiten consultar las decisiones metodológicas y reconstruir la preparación de los datos. La subcarpeta `docs/f3/` reúne la documentación de la Fase 3: arquitectura, bitácora de decisiones y mediciones.
+La carpeta `docs/` reúne los diccionarios, criterios de transformación, tablas de filtros, registros de exclusión y productos descriptivos utilizados en el proyecto. Estos archivos permiten consultar las decisiones metodológicas y reconstruir la preparación de los datos. La subcarpeta `docs/f3/` reúne la documentación de la Fase 3: arquitectura, bitácora de decisiones y mediciones. La subcarpeta `docs/f4/` reúne las tablas de la Fase 4, y `docs/hallazgos_f4.csv`, sus hallazgos.
 
 ---
 

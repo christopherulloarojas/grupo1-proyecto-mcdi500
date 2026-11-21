@@ -1,0 +1,38 @@
+{
+  "fase": 4,
+  "fecha_ejecucion": "2026-11-19",
+  "semilla": 42,
+  "python": "3.13.18",
+  "dependencias": {
+    "pandas": "3.0.5",
+    "numpy": "2.5.2",
+    "matplotlib": "3.11.1",
+    "nbformat": "5.11.1",
+    "nbclient": "0.11.0",
+    "ipykernel": "7.4.0",
+    "scipy": "1.18.1"
+  },
+  "sha256_original": "febff55e3612fb60076df9279f1090240cd02a39e9c7b79b822119dfdef84c8d",
+  "filas_poblacion": 4603,
+  "prueba_independencia": {
+    "chi2": 1988.4532,
+    "gl": 2,
+    "log10_p": -431.79,
+    "v_cramer": 0.6573,
+    "esperada_minima": 42.43
+  },
+  "figuras": {
+    "fig1_alcance_poblacion": "F4/figuras/fig1_alcance_poblacion.png",
+    "fig2_exclusiones_por_grupo": "F4/figuras/fig2_exclusiones_por_grupo.png",
+    "fig3_estandarizacion": "F4/figuras/fig3_estandarizacion.png",
+    "fig4_complejidad_por_grupo": "F4/figuras/fig4_complejidad_por_grupo.png",
+    "fig5_asociacion_residuos": "F4/figuras/fig5_asociacion_residuos.png",
+    "fig6_tipos_por_grupo": "F4/figuras/fig6_tipos_por_grupo.png",
+    "fig7_alta_por_tipo": "F4/figuras/fig7_alta_por_tipo.png",
+    "fig8_region_cajas": "F4/figuras/fig8_region_cajas.png",
+    "fig9_region_dispersion": "F4/figuras/fig9_region_dispersion.png",
+    "fig10_eficiencia": "F4/figuras/fig10_eficiencia.png"
+  },
+  "controles": 14,
+  "pruebas_automatizadas": 48
+}
