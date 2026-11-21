@@ -1,4 +1,4 @@
-"""Ejecuta los notebooks del proyecto en orden (F1, F2 y F3) y guarda sus salidas.
+"""Ejecuta los notebooks del proyecto en orden (F1, F2, F3 y F4) y guarda sus salidas.
 
 Uso, con el entorno virtual activo y desde la raíz del proyecto:
 
@@ -15,7 +15,8 @@ from nbclient.exceptions import CellExecutionError
 RAIZ = Path(__file__).resolve().parent
 NOTEBOOKS = ["F1/Grupo1_F1_Definicion.ipynb",
              "F2/Grupo1_F2_Preprocesamiento.ipynb",
-             "F3/Grupo1_S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb"]
+             "F3/Grupo1_S2_F3_NucleoAlgoritmico_Eficiencia_POO.ipynb",
+             "F4/Grupo1_S3_F4_Visualizacion_Comunicacion.ipynb"]
 
 
 def ejecutar_notebook(ruta):
@@ -43,7 +44,7 @@ def main():
             print("  " + str(error).strip().splitlines()[-1])
             return 1
         print(f"  correcto ({segundos:.0f} s)")
-    print("Proyecto ejecutado completo: F1, F2 y F3 sin errores.")
+    print("Proyecto ejecutado completo: F1, F2, F3 y F4 sin errores.")
     return 0
 
 
