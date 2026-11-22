@@ -1,0 +1,9 @@
+﻿paso,regla,antes,excluidos,restantes
+F01,Conservar estado vigente,5837,431,5406
+F02,Código informado,5406,0,5406
+F03,Una copia de filas exactamente repetidas,5406,0,5406
+F04,Excluir códigos con registros distintos en conflicto,5406,0,5406
+F05,"Pertenencia clasificable: excluir No Aplica, vacíos o no reconocidos",5406,41,5365
+F06,Complejidad informada: excluir vacíos,5365,59,5306
+F07,Complejidad aplicable: excluir No Aplica,5306,703,4603
+F08,"Complejidad reconocida: Baja, Mediana o Alta",4603,0,4603
