@@ -1,0 +1,27 @@
+﻿componente,rol,responsabilidad,archivo
+Transformador,clase base,Clase base: contrato común y control de estado de cada paso del pipeline.,src/transformadores.py
+PasoFuncion,clase hija,Adapta una función sin estado al contrato del pipeline.,src/transformadores.py
+MapeadorCategorias,clase hija,Traduce etiquetas normalizadas a categorías analíticas con un mapeo explícito.,src/transformadores.py
+Filtro,clase intermedia,Clase intermedia: conserva las filas que cumplen una condición.,src/transformadores.py
+FiltroValoresPermitidos,clase hija (segundo nivel),Conserva las filas cuyo valor pertenece a un conjunto declarado.,src/transformadores.py
+FiltroInformado,clase hija (segundo nivel),Conserva las filas con valor presente y no vacío.,src/transformadores.py
+FiltroValorExcluido,clase hija (segundo nivel),"Excluye las filas que tienen un valor explícito, como «no aplica».",src/transformadores.py
+FiltroDuplicadosExactos,clase hija (segundo nivel),Conserva una copia de las filas repetidas en todas las columnas indicadas.,src/transformadores.py
+FiltroCodigosEnConflicto,clase hija (segundo nivel),Excluye todos los registros de un código que aparece más de una vez.,src/transformadores.py
+CodificadorBinario,clase hija,Crea un indicador 0/1 por categoría declarada (codificación One-Hot).,src/transformadores.py
+normalizar_columna,función sin estado,Unifica espacios y mayúsculas de una columna y guarda el resultado en otra.,src/funciones.py
+agregar_fila_origen,función sin estado,Agrega el número de fila del CSV (la fila 1 es el encabezado) para rastrear cada registro.,src/funciones.py
+seleccionar_columnas,función sin estado,"Conserva las columnas indicadas, en ese orden, y reinicia el índice.",src/funciones.py
+Pipeline,orquestador,Encadena transformadores y los ejecuta en orden.,src/pipeline.py
+PipelineObservable,orquestador (Observer),Pipeline que avisa a sus observadores cada vez que termina un paso (Observer).,src/pipeline.py
+BitacoraFiltros,observador,"Construye la tabla secuencial de filtros (paso, regla, antes, excluidos, restantes).",src/observadores.py
+RegistroExclusiones,observador,"Acumula las filas excluidas por cada filtro, con su paso y motivo.",src/observadores.py
+RegistroTiempos,observador,"Anota cuánto tardó cada paso, para saber dónde se concentra el costo.",src/observadores.py
+crear_filtro,fábrica (Factory),Devuelve el filtro que corresponde al tipo declarado en la regla.,src/fabrica.py
+PreprocesadorRegistro,fachada,"Prepara el registro, construye la población y genera la matriz 0/1.",src/preprocesador.py
+conflictos_vectorizado,operación medida,Versión C: operación vectorizada de pandas sobre la columna completa. Costo O(n).,src/conflictos.py
+construir_contingencia,función descriptiva,Tabla de contingencia y porcentajes por fila con un orden declarado.,src/descripcion.py
+recorrer_jerarquia,función recursiva,"Devuelve la clase y todas sus descendientes, con su nivel en la jerarquía.",src/estructura.py
+aplanar,función recursiva,Convierte diccionarios y listas anidados en pares de ruta y valor.,src/estructura.py
+medir,utilidad de medición,"Ejecuta la función una vez y devuelve resultado, segundos y memoria pico en MB.",src/medicion.py
+cargar_registro,carga,"Lee el CSV como texto, verifica su huella y comprueba el esquema.",src/carga.py
