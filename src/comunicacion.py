@@ -270,6 +270,48 @@ def prueba_independencia(tabla):
     }
 
 
+# --- AGREGADO (Fase 4: comparación dentro de los tipos presentes en ambos grupos) ---
+# Para controlar el tipo de establecimiento como variable de confusión, la comparación se repite solo en los tipos
+# que tienen establecimientos de los dos grupos: en un tipo con un solo grupo no hay nada que comparar.
+def estratos_compartidos(df, estrato, grupo):
+    """Devuelve, ordenados de mayor a menor tamaño, los valores de `estrato` en que aparecen todos los grupos."""
+    conteo = pd.crosstab(df[estrato], df[grupo])
+    compartidos = conteo[(conteo > 0).all(axis=1)]
+    return compartidos.sum(axis=1).sort_values(ascending=False, kind="stable").index.tolist()
+
+
+def resumir_estrato(sub, nombre, grupo, variable, orden_grupos, orden_niveles):
+    """Compara la distribución de `variable` entre los grupos dentro de un estrato.
+
+    Devuelve un diccionario con el tamaño del estrato y de cada grupo, la proporción de cada nivel
+    dentro de cada grupo (porcentaje por fila), la V de Cramér, la esperada mínima y una lectura:
+    - «sin comparación posible» si falta alguno de los grupos (V sin valor);
+    - «sin diferencia: un solo nivel» si todos los establecimientos tienen el mismo nivel (V = 0);
+    - «comparable» o «esperadas < 5: leer con cautela», según la condición de la prueba chi-cuadrado.
+    """
+    tabla = (pd.crosstab(sub[grupo], sub[variable])
+             .reindex(index=orden_grupos, columns=orden_niveles, fill_value=0))
+    fila = {"estrato": nombre, "n": int(tabla.to_numpy().sum())}
+    for g in orden_grupos:
+        fila[f"n_{g}"] = int(tabla.loc[g].sum())
+    for g in orden_grupos:
+        total = tabla.loc[g].sum()
+        for nivel in orden_niveles:
+            fila[f"{nivel}_{g}"] = tabla.loc[g, nivel] / total if total else np.nan
+    if (tabla.sum(axis=1) == 0).any():
+        fila.update({"v_cramer": np.nan, "esperada_minima": np.nan, "lectura": "sin comparación posible"})
+        return fila
+    util = tabla.loc[:, tabla.sum(axis=0) > 0]
+    if util.shape[1] < 2:
+        fila.update({"v_cramer": 0.0, "esperada_minima": np.nan, "lectura": "sin diferencia: un solo nivel"})
+        return fila
+    resultado = prueba_independencia(util)
+    fila.update({"v_cramer": resultado["v_cramer"], "esperada_minima": resultado["esperada_minima"],
+                 "lectura": "comparable" if resultado["celdas_esperada_menor_5"] == 0
+                            else "esperadas < 5: leer con cautela"})
+    return fila
+
+
 def guardar_figura(figura, carpeta, nombre, dpi=200):
     """Guarda la figura en PNG con resolución de impresión y devuelve la ruta."""
     carpeta = Path(carpeta)

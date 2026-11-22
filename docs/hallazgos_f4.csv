@@ -5,7 +5,7 @@ fig3_estandarizacion,anexo,Sin estandarizar la escritura de las categorías se h
 fig4_complejidad_por_grupo,informe,SNSS concentra la baja complejidad y No SNSS la mediana,"Baja: 91,7 % en SNSS; mediana: 66,5 % en No SNSS"
 fig5_asociacion_residuos,informe,La asociación entre pertenencia y complejidad es fuerte,"Chi-cuadrado = 1.988,45 (2 gl), V de Cramér = 0,657"
 fig6_tipos_por_grupo,anexo,Los grupos tienen tipos de establecimiento distintos,"85,5 % de los SNSS son de atención primaria y urgencia; ningún No SNSS"
-fig7_alta_por_tipo,informe,La mayor alta complejidad No SNSS se invierte dentro de cada tipo (paradoja de Simpson),"Total: 3,6 % No SNSS frente a 2,3 % SNSS; hospitales y clínicas: 31,7 % SNSS frente a 30,9 % No SNSS"
+fig7_alta_por_tipo,informe,"Dentro de los tipos presentes en ambos grupos la asociación se reduce, y la alta complejidad cambia de dirección según el tipo","V de Cramér: 0,66 en el total; 0,19 en hospitales, 0,14 en clínicas dentales y 0,54 en centros de especialidades. Alta: 61,5 % No SNSS frente a 32,7 % SNSS en hospitales; 33,3 % SNSS frente a 0,0 % No SNSS en centros de especialidades"
 fig8_region_cajas,anexo,La diferencia en baja complejidad es mayor que la variación entre regiones,SNSS: 83 % a 97 %; No SNSS: 11 % a 51 %
 fig9_region_dispersion,anexo,La asociación se repite dentro de cada región,"16 de 16 regiones con más baja complejidad SNSS; diferencia mínima de 42,2 %"
-fig10_eficiencia,anexo,La reconstrucción con argmax es la más rápida al crecer el volumen,"Con 230.150 filas, 19 veces más rápida que el bucle de Python"
+fig10_eficiencia,anexo,La reconstrucción con argmax es la más rápida al crecer el volumen,"Con 230.150 filas, 12 veces más rápida que el bucle de Python"

@@ -139,5 +139,36 @@ class TestAgrupacionTipos(unittest.TestCase):
             com.agrupar_tipos(pd.Series(["Tipo inventado"]), AGRUPACION_TIPOS)
 
 
+# --- AGREGADO (Fase 4): pruebas de la comparación dentro de los tipos presentes en ambos grupos ---
+class TestEstratos(unittest.TestCase):
+    GRUPOS, NIVELES = ["SNSS", "No SNSS"], ["Baja", "Mediana", "Alta"]
+
+    def datos(self):
+        """Tipo A con los dos grupos y niveles distintos; tipo B solo SNSS; tipo C con los dos grupos y un solo nivel."""
+        return pd.DataFrame({
+            "tipo": ["A"] * 6 + ["B"] * 3 + ["C"] * 4,
+            "grupo": ["SNSS", "SNSS", "SNSS", "No SNSS", "No SNSS", "No SNSS"] + ["SNSS"] * 3
+                     + ["SNSS", "SNSS", "No SNSS", "No SNSS"],
+            "nivel": ["Baja", "Baja", "Baja", "Mediana", "Mediana", "Mediana"] + ["Baja"] * 3 + ["Baja"] * 4})
+
+    def test_estratos_compartidos_excluye_tipos_de_un_solo_grupo(self):
+        self.assertEqual(com.estratos_compartidos(self.datos(), "tipo", "grupo"), ["A", "C"])
+
+    def test_resumen_con_asociacion_perfecta(self):
+        sub = self.datos().query("tipo == 'A'")
+        fila = com.resumir_estrato(sub, "A", "grupo", "nivel", self.GRUPOS, self.NIVELES)
+        self.assertEqual((fila["n"], fila["n_SNSS"], fila["n_No SNSS"]), (6, 3, 3))
+        self.assertAlmostEqual(fila["Baja_SNSS"], 1.0)
+        self.assertAlmostEqual(fila["v_cramer"], 1.0)
+
+    def test_limite_un_solo_nivel_y_un_solo_grupo(self):
+        datos = self.datos()
+        un_nivel = com.resumir_estrato(datos.query("tipo == 'C'"), "C", "grupo", "nivel", self.GRUPOS, self.NIVELES)
+        un_grupo = com.resumir_estrato(datos.query("tipo == 'B'"), "B", "grupo", "nivel", self.GRUPOS, self.NIVELES)
+        self.assertEqual((un_nivel["v_cramer"], un_nivel["lectura"]), (0.0, "sin diferencia: un solo nivel"))
+        self.assertTrue(math.isnan(un_grupo["v_cramer"]))
+        self.assertEqual(un_grupo["lectura"], "sin comparación posible")
+
+
 if __name__ == "__main__":
     unittest.main()
