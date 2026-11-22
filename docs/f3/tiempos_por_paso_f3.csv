@@ -1,20 +1,20 @@
 ﻿paso,filas_entrada,milisegundos,etapa,porcentaje
-agregar_fila_origen(),5837,1.739,preparación,1.1
-normalizar_columna(EstablecimientoCodigo),5837,4.24,preparación,2.8
-normalizar_columna(EstadoFuncionamiento),5837,8.605,preparación,5.6
-normalizar_columna(TipoPertenenciaEstabGlosa),5837,20.878,preparación,13.7
-normalizar_columna(NivelComplejidadEstabGlosa),5837,9.334,preparación,6.1
-MapeadorCategorias(pertenencia_original_normalizada),5837,3.975,preparación,2.6
-MapeadorCategorias(complejidad_original_normalizada),5837,3.542,preparación,2.3
-F01 FiltroValoresPermitidos,5837,14.013,población,9.2
-F02 FiltroInformado,5406,5.536,población,3.6
-F03 FiltroDuplicadosExactos,5406,41.583,población,27.2
-F04 FiltroCodigosEnConflicto,5406,5.47,población,3.6
-F05 FiltroValoresPermitidos,5406,6.274,población,4.1
-F06 FiltroInformado,5365,7.385,población,4.8
-F07 FiltroValorExcluido,5306,6.922,población,4.5
-F08 FiltroValoresPermitidos,4603,3.584,población,2.3
-seleccionar_columnas(5 columnas),4603,1.698,población,1.1
-CodificadorBinario(pertenencia_snss),4603,3.326,codificación,2.2
-CodificadorBinario(complejidad),4603,3.742,codificación,2.5
-seleccionar_columnas(5 columnas),4603,0.803,codificación,0.5
+agregar_fila_origen(),5837,1.807,preparación,1.5
+normalizar_columna(EstablecimientoCodigo),5837,4.948,preparación,4.2
+normalizar_columna(EstadoFuncionamiento),5837,10.419,preparación,8.8
+normalizar_columna(TipoPertenenciaEstabGlosa),5837,25.128,preparación,21.3
+normalizar_columna(NivelComplejidadEstabGlosa),5837,5.572,preparación,4.7
+MapeadorCategorias(pertenencia_original_normalizada),5837,2.408,preparación,2.0
+MapeadorCategorias(complejidad_original_normalizada),5837,2.09,preparación,1.8
+F01 FiltroValoresPermitidos,5837,8.411,población,7.1
+F02 FiltroInformado,5406,3.862,población,3.3
+F03 FiltroDuplicadosExactos,5406,24.307,población,20.6
+F04 FiltroCodigosEnConflicto,5406,4.4,población,3.7
+F05 FiltroValoresPermitidos,5406,5.091,población,4.3
+F06 FiltroInformado,5365,5.596,población,4.7
+F07 FiltroValorExcluido,5306,5.452,población,4.6
+F08 FiltroValoresPermitidos,4603,2.803,población,2.4
+seleccionar_columnas(5 columnas),4603,1.301,población,1.1
+CodificadorBinario(pertenencia_snss),4603,1.74,codificación,1.5
+CodificadorBinario(complejidad),4603,1.988,codificación,1.7
+seleccionar_columnas(5 columnas),4603,0.587,codificación,0.5

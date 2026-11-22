@@ -1,5 +1,5 @@
 ﻿componente,rol,responsabilidad,archivo
-Transformador,clase base,Clase base: contrato común y control de estado de cada paso del pipeline.,src/transformadores.py
+Transformador,clase base,Clase base abstracta: contrato común y control de estado de cada paso del pipeline.,src/transformadores.py
 PasoFuncion,clase hija,Adapta una función sin estado al contrato del pipeline.,src/transformadores.py
 MapeadorCategorias,clase hija,Traduce etiquetas normalizadas a categorías analíticas con un mapeo explícito.,src/transformadores.py
 Filtro,clase intermedia,Clase intermedia: conserva las filas que cumplen una condición.,src/transformadores.py
