@@ -27,6 +27,7 @@ Cada entrada indica la fecha, la descripción del cambio, los commits que lo con
 | 22-11 | `Transformador` como clase abstracta; referencia en datos.gob.cl | `c15066f`, `5c518ca`, `6548434` (#33) | Retroalimentación S2: contrato explícito y fuente verificable |
 | 22-11 | Comparación dentro de los 5 tipos compartidos (562 establecimientos) y nueva Figura 7 | `a1c3ff0`, `8b37937`, `b9bbafc` (#34) | Retroalimentación S1 y S2: controlar el tipo de establecimiento |
 | 22-11 | README con las correcciones de la Fase 4 | `e0e4c56` (#35) | Coherencia entre repositorio e informe |
-| 22-11 | `changelog.md` y `.mailmap` | este commit | Retroalimentación S2: trazabilidad de mejoras e identidades unificadas |
+| 22-11 | `changelog.md` y archivo de identidades | `c91cf11` (#36) | Retroalimentación S2: trazabilidad de mejoras e identidades unificadas |
+| 22-11 | `mailmap.txt` renombrado a `.mailmap` | este commit | Git solo lee el archivo de identidades con ese nombre exacto |
 
 S1 y S2: retroalimentación de las Sumativas 1 y 2.
