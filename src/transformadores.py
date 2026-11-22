@@ -6,11 +6,18 @@ hijas solo implementan qué aprenden del conjunto (aprender) y cómo lo aplican
 y otra; las operaciones sin estado son funciones (src/funciones.py) y entran al
 pipeline mediante el adaptador PasoFuncion.
 """
+from abc import ABC, abstractmethod
+
 from src.conflictos import conflictos_vectorizado
 
 
-class Transformador:
-    """Clase base: contrato común y control de estado de cada paso del pipeline."""
+# --- CAMBIO (Fase 4: clase base abstracta) ---
+# ANTES:    class Transformador:   (clase común; aprender y aplicar lanzaban NotImplementedError al llamarlos)
+# PROBLEMA: Python permitía crear un Transformador o una hija incompleta, y el error recién aparecía al ajustar.
+# AHORA:    Transformador hereda de ABC y declara aprender y aplicar con @abstractmethod. Python impide crear la
+#           clase base o una hija que no implemente ambos métodos, y lo informa con TypeError al instanciar.
+class Transformador(ABC):
+    """Clase base abstracta: contrato común y control de estado de cada paso del pipeline."""
 
     def __init__(self, columnas=()):
         # Atributo público: las columnas sobre las que trabaja el paso
@@ -58,10 +65,14 @@ class Transformador:
         """Atajo para aprender y aplicar sobre el mismo conjunto."""
         return self.ajustar(df).transformar(df)
 
+    @abstractmethod
     def aprender(self, df):
+        """Devuelve, como diccionario, lo que el paso aprende del conjunto. Cada clase hija lo implementa."""
         raise NotImplementedError("Cada clase hija debe implementar aprender().")
 
+    @abstractmethod
     def aplicar(self, df):
+        """Aplica lo aprendido y devuelve el conjunto transformado. Cada clase hija lo implementa."""
         raise NotImplementedError("Cada clase hija debe implementar aplicar().")
 
 
@@ -149,7 +160,10 @@ class Filtro(Transformador):
         self._excluidos = excluidos
         return df.loc[condicion].copy()
 
+    # --- CAMBIO (Fase 4): condicion también es abstracta, así Filtro no se puede instanciar sin una condición ---
+    @abstractmethod
     def condicion(self, df):
+        """Devuelve una serie booleana: True para las filas que se conservan. Cada filtro la implementa."""
         raise NotImplementedError("Cada filtro debe implementar condicion().")
 
 
