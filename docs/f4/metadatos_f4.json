@@ -1,6 +1,6 @@
 {
   "fase": 4,
-  "fecha_ejecucion": "2026-11-19",
+  "fecha_ejecucion": "2026-11-20",
   "semilla": 42,
   "python": "3.13.18",
   "dependencias": {
@@ -34,5 +34,5 @@
     "fig10_eficiencia": "F4/figuras/fig10_eficiencia.png"
   },
   "controles": 14,
-  "pruebas_automatizadas": 48
+  "pruebas_automatizadas": 53
 }
