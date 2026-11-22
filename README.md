@@ -15,7 +15,9 @@ Este proyecto estudia la distribución de los establecimientos de salud de Chile
 
 El procesamiento se realiza en Python, con criterios documentados de selección de registros, normalización de categorías y generación de archivos para el análisis descriptivo.
 
-La fuente original de los datos se encuentra en: https://datos.gob.cl/dataset/establecimientos-de-salud-vigentes/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc
+La fuente original de los datos es el conjunto «Establecimientos de salud vigentes» del DEIS (Ministerio de Salud), publicado en el portal de datos abiertos del Estado: https://datos.gob.cl/dataset/3bf4cf7c-f638-4735-9a01-f65faae4beca/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc
+
+Es la misma dirección que citan las referencias de F1 y F4 y desde la que descarga `verificar_fuente.py`.
 La fuente se actualiza de forma periódica y sin versiones. Para este trabajo se utilizó la base actualizada hasta el 06 de noviembre de 2026. El archivo no se incluye en el repositorio; la sección 3.1 explica cómo obtenerlo y verificarlo.
 
 ## 2. Objetivo y pregunta de análisis
@@ -146,6 +148,7 @@ grupo1-proyecto-mcdi500/
 ├── docs/                    documentación de F1 y F2; en f3/ y f4/, la de F3 y F4
 ├── ejecutar_proyecto.py     ejecuta F1, F2, F3 y F4 en orden
 ├── requirements.txt         dependencias con versión fija
+├── changelog.md             registro de cambios por fase
 └── README.md
 ```
 
@@ -170,7 +173,7 @@ Cada módulo tiene una sola responsabilidad. Los notebooks de F3 y F4 importan t
 | `src/configuracion.py` | Reglas F01–F08, mapeos y columnas, declarados como datos; agrupación de los tipos de establecimiento (F4) |
 | `src/carga.py` | Lectura del archivo y verificación de su huella y su esquema |
 | `src/funciones.py` | Operaciones sin estado del pipeline (fila de origen, normalización, selección) |
-| `src/transformadores.py` | Clase base `Transformador`, adaptador `PasoFuncion`, clase intermedia `Filtro` y las clases que aprenden algo de los datos |
+| `src/transformadores.py` | Clase base abstracta `Transformador` (módulo `abc`), adaptador `PasoFuncion`, clase intermedia `Filtro` y las clases que aprenden algo de los datos |
 | `src/conflictos.py` | Tres implementaciones de la detección de códigos repetidos, comparadas en la medición |
 | `src/pipeline.py` | `Pipeline` y `PipelineObservable`, que encadenan los pasos y notifican a los observadores |
 | `src/observadores.py` | Bitácora de filtros, registro de exclusiones y tiempos por paso |
@@ -180,11 +183,11 @@ Cada módulo tiene una sola responsabilidad. Los notebooks de F3 y F4 importan t
 | `src/estructura.py` | Funciones recursivas para la jerarquía de clases y la configuración anidada |
 | `src/medicion.py` | Medición de tiempo (`timeit`) y memoria (`tracemalloc`) |
 | `src/referencia_f2.py` | El flujo de F2 conservado como línea base para verificar y medir |
-| `src/comunicacion.py` | Fase 4: carga de las salidas de F3, copia legible, proporciones con intervalo de Wilson, prueba de independencia con V de Cramér y guardado de figuras |
+| `src/comunicacion.py` | Fase 4: carga de las salidas de F3, copia legible, proporciones con intervalo de Wilson, prueba de independencia con V de Cramér, comparación dentro de los tipos presentes en ambos grupos y guardado de figuras |
 
 ### 6.3. Pruebas (`tests/`)
 
-`tests/test_nucleo.py` contiene 28 pruebas con tablas pequeñas construidas a mano: 11 casos normales, 7 casos límite y 10 excepciones. `tests/test_comunicacion.py` agrega 20 pruebas del módulo de la Fase 4. En total son 48.
+`tests/test_nucleo.py` contiene 30 pruebas con tablas pequeñas construidas a mano: 11 casos normales, 7 casos límite y 12 excepciones (dos de ellas comprueban que `Transformador` y `Filtro` son clases abstractas). `tests/test_comunicacion.py` agrega 23 pruebas del módulo de la Fase 4. En total son 53.
 
 ### 6.4. Datos y documentación
 
@@ -306,7 +309,7 @@ Desde la raíz del proyecto, con el entorno virtual activo:
 python -m unittest -v
 ```
 
-El comando descubre y ejecuta las 48 pruebas de `tests/`. Las pruebas del núcleo se ejecutan también dentro del notebook de F3 (sección 13), y todas dentro del notebook de F4 (sección 9).
+El comando descubre y ejecuta las 53 pruebas de `tests/`. Las pruebas del núcleo se ejecutan también dentro del notebook de F3 (sección 13), y todas dentro del notebook de F4 (sección 9).
 
 ## 8. Fase 3: núcleo algorítmico
 
@@ -315,11 +318,11 @@ La fase F3 no cambia los datos ni las reglas: reorganiza el pipeline de F2 en m�
 | Aspecto | Cómo se resuelve |
 |---|---|
 | Código en una sola versión | La lógica vive en `src/`; el notebook la importa y la muestra sin copiarla |
-| Programación orientada a objetos | Se usan clases solo en los componentes que recuerdan algo entre llamadas: clase base `Transformador`, clase intermedia `Filtro` y ocho clases hijas. Encapsulamiento con atributos internos y propiedades de solo lectura; el `Pipeline` recorre los pasos sin preguntar su tipo |
+| Programación orientada a objetos | Se usan clases solo en los componentes que recuerdan algo entre llamadas: clase base abstracta `Transformador` (hereda de `ABC` y declara `aprender` y `aplicar` con `@abstractmethod`), clase intermedia abstracta `Filtro` y ocho clases hijas. Encapsulamiento con atributos internos y propiedades de solo lectura; el `Pipeline` recorre los pasos sin preguntar su tipo |
 | Patrones de diseño | *Observer* para la bitácora, las exclusiones y los tiempos; *Factory* para construir el pipeline desde las reglas F01–F08 declaradas en la configuración |
 | Pipeline en una llamada | `PreprocesadorRegistro(configuracion).ajustar_transformar(datos)` |
 | Verificación | Las nueve salidas de F2 se reproducen de forma idéntica (secciones 11 y 18 del notebook) |
-| Validación | Caso normal sobre el registro real y 28 pruebas de casos normales, límite y excepciones (sección 13 y carpeta `tests/`) |
+| Validación | Caso normal sobre el registro real y 30 pruebas de casos normales, límite y excepciones (sección 13 y carpeta `tests/`) |
 | Recursividad | Recorrido de la jerarquía de clases y aplanado de la configuración anidada (sección 14) |
 | Eficiencia | Tres implementaciones de una operación del pipeline comparadas con `timeit` y `tracemalloc`, curva de crecimiento, tiempo por paso y costo del pipeline antes y después, con dos gráficos (sección 15) |
 | Decisiones | Bitácora con cada decisión, su motivo, la alternativa descartada y su efecto (sección 16 y `docs/f3/bitacora_decisiones_f3.csv`) |
@@ -346,10 +349,10 @@ La fase F4 no cambia los datos: lee las salidas de F3, construye una copia legib
 |---|---|
 | Copia legible | `src/comunicacion.py` deshace la codificación One-Hot uniendo cada columna con su categoría por nombre; la copia se verifica fila por fila contra el archivo original y su contingencia contra F2 y F3 |
 | Figuras por objetivo | Diez figuras, al menos una por cada objetivo específico de F1, con el hallazgo en el título, tamaño de grupo, intervalo de Wilson y fuente; cada una con su lectura (qué muestra, qué se infiere, qué límite tiene y cómo aporta al relato) |
-| Prueba de independencia | Chi-cuadrado sobre la tabla 2 × 3, previa revisión de las frecuencias esperadas, verificada sin SciPy con la fórmula; magnitud con la V de Cramér y residuos ajustados |
-| Variables de confusión | Los 28 tipos de establecimiento se agrupan en cuatro (`AGRUPACION_TIPOS`) y la asociación se repite dentro de cada grupo; también se repite dentro de cada una de las 16 regiones, con gráfico de caja y dispersión |
+| Prueba de independencia | Chi-cuadrado sobre la tabla 2 × 3, previa revisión de las frecuencias esperadas (también de la columna de complejidad alta por separado), verificada sin SciPy con la fórmula; magnitud con la V de Cramér y residuos ajustados |
+| Variables de confusión | La asociación se repite dentro de los 5 tipos de establecimiento que tienen SNSS y No SNSS a la vez (562 establecimientos) y se clasifica si se mantiene, se reduce o desaparece; la agrupación de los 28 tipos en cuatro (`AGRUPACION_TIPOS`) describe la composición de cada grupo. También se repite dentro de cada una de las 16 regiones, con gráfico de caja y dispersión |
 | Eficiencia | Tres implementaciones de la reconstrucción de categorías comparadas con `timeit` y `tracemalloc` en tres tamaños; el módulo usa la más rápida |
-| Validación | 14 controles de casos normales, límite y excepciones, y 48 pruebas automatizadas |
+| Validación | 14 controles de casos normales, límite y excepciones, y 53 pruebas automatizadas |
 | Relato y video | Relato en tres actos y guion del video por integrante, con su duración comprobada (entre 5 y 8 minutos) |
 
 Principales resultados (`docs/hallazgos_f4.csv`):
@@ -359,15 +362,15 @@ Principales resultados (`docs/hallazgos_f4.csv`):
 | SNSS concentra la baja complejidad y No SNSS la mediana | 91,7 % de baja en SNSS; 66,5 % de mediana en No SNSS |
 | La asociación es fuerte | Chi-cuadrado = 1.988,45 (2 gl), V de Cramér = 0,657; todas las esperadas son mayores que 42 |
 | Los grupos tienen distintos tipos de establecimiento | El 85,5 % de los SNSS es de atención primaria y urgencia; ningún No SNSS |
-| Al comparar el mismo tipo, la asociación se debilita | V = 0,44 en hospitales y clínicas y 0,25 en centros ambulatorios |
+| Dentro de los 5 tipos presentes en ambos grupos, la asociación se reduce | V = 0,19 en hospitales y 0,14 en clínicas dentales; 0 en «Otro»; solo se mantiene grande en centros de especialidades (0,54) |
 | La región no explica la asociación | En las 16 regiones los SNSS tienen más baja complejidad; V de Cramér por región entre 0,47 y 0,79 |
-| La mayor proporción de alta complejidad No SNSS se invierte dentro de cada tipo | 3,6 % frente a 2,3 % en el total; 31,7 % SNSS frente a 30,9 % No SNSS en hospitales y clínicas |
+| En alta complejidad, la dirección de la diferencia depende del tipo | Total: 3,6 % No SNSS frente a 2,3 % SNSS; hospitales: 61,5 % No SNSS frente a 32,7 % SNSS; centros de especialidades: 33,3 % SNSS frente a 0 % No SNSS |
 | La menor retención No SNSS se debe al filtro F07 | 686 registros No SNSS excluidos por complejidad «No Aplica», frente a 17 SNSS |
 | La estandarización de las categorías evitó perder establecimientos | 92 establecimientos estaban escritos con otra forma (mayúsculas); 78 de ellos son No SNSS |
 
 ## 10. Alcance y limitaciones
 
-El estudio se limita a la asociación entre la pertenencia al SNSS y el nivel de complejidad. No se desarrollan análisis territoriales, de servicios de urgencia, de calidad asistencial ni de causalidad. La prueba de independencia de F4 no generaliza a otra población: el registro contiene a toda la población delimitada, y la magnitud de la asociación se lee en la V de Cramér. Parte de la asociación se explica por el tipo de establecimiento; la región no la explica (se usa solo como estrato de control, no como análisis territorial), y puede haber otras variables de confusión no medidas.
+El estudio se limita a la asociación entre la pertenencia al SNSS y el nivel de complejidad. No se desarrollan análisis territoriales, de servicios de urgencia, de calidad asistencial ni de causalidad. La prueba de independencia de F4 no generaliza a otra población: el registro contiene a toda la población delimitada, y la magnitud de la asociación se lee en la V de Cramér. Buena parte de la asociación se explica por el tipo de establecimiento, aunque ese control solo es posible en los 562 establecimientos de los cinco tipos que tienen ambos grupos (en los demás, como la atención primaria, existe un solo grupo); la región no la explica (se usa solo como estrato de control, no como análisis territorial), y puede haber otras variables de confusión no medidas.
 
 Aunque el archivo de origen comprende 5.837 registros, contiene establecimientos cerrados y categorías que no cumplen los criterios de selección. Por ese motivo, el denominador empleado en los resultados principales es de 4.603 establecimientos.
 
@@ -386,7 +389,16 @@ Las fases 1 y 2 se organizaron en ramas temáticas (`parte1-datos`, `parte2-defi
 | Christopher Ulloa | `f3-normalizacion_proyecto` (#17, #18), `f3-correccion-fases` (#21) | Archivo de origen fuera del repositorio; nombres del notebook y del script; actualización de F1 |
 | Kattia Espinoza | `f3-correcciones-referencias` (#19), `f3-modificacion-notebook` (#20) | Fuente de los datos en el README; vínculo con el foro de la Semana 1 en el notebook |
 
-El archivo de origen se retiró también del historial del repositorio (sección 3.1). El historial y los aportes por integrante pueden consultarse con:
+La Fase 4 se trabajó en ramas, una o más por integrante, integradas en `main` mediante *pull requests*. La segunda ronda corrige lo que quedó pendiente y restaura los archivos que se borraron por error en el PR #29.
+
+| Integrante | Ramas y *pull requests* de la Fase 4 | Aporte |
+|---|---|---|
+| Christopher Ulloa | `f4-entorno-tipos` (#28); `f3-clase-abstracta-y-fuente` | SciPy, F1 y agrupación de tipos; `Transformador` abstracto con `abc` y referencia del conjunto de datos en datos.gob.cl |
+| Karla Martínez | `f4-modulo-pruebas` (#29); `f4-restaura-archivos` | Módulo `comunicacion.py` y sus pruebas; restauración del código, las pruebas y la documentación borrados en el PR #29 |
+| Kattia Espinoza | `f4-resultados-asociacion` (#30); `f4-control-por-tipo` | Prueba de independencia, residuos y sus figuras; comparación dentro de los 5 tipos presentes en ambos grupos (Figura 7) |
+| Brian Cerda | `f4-notebook-integracion` (#31); `f4-documentacion-final` | Notebook F4, figuras, hallazgos y ejecución completa; README y `changelog.md` |
+
+El detalle de cada cambio está en `changelog.md`. El archivo de origen se retiró también del historial del repositorio (sección 3.1). El historial y los aportes por integrante pueden consultarse con:
 
 ```bash
 git log --graph --oneline --all
@@ -395,7 +407,7 @@ git shortlog -sne
 
 ## 12. Documentación de respaldo
 
-La carpeta `docs/` reúne los diccionarios, criterios de transformación, tablas de filtros, registros de exclusión y productos descriptivos utilizados en el proyecto. Estos archivos permiten consultar las decisiones metodológicas y reconstruir la preparación de los datos. La subcarpeta `docs/f3/` reúne la documentación de la Fase 3: arquitectura, bitácora de decisiones y mediciones. La subcarpeta `docs/f4/` reúne las tablas de la Fase 4, y `docs/hallazgos_f4.csv`, sus hallazgos.
+La carpeta `docs/` reúne los diccionarios, criterios de transformación, tablas de filtros, registros de exclusión y productos descriptivos utilizados en el proyecto. Estos archivos permiten consultar las decisiones metodológicas y reconstruir la preparación de los datos. La subcarpeta `docs/f3/` reúne la documentación de la Fase 3: arquitectura, bitácora de decisiones y mediciones. La subcarpeta `docs/f4/` reúne las tablas de la Fase 4, y `docs/hallazgos_f4.csv`, sus hallazgos. El archivo `changelog.md`, en la raíz, resume los cambios de cada fase y las ramas en que se integraron.
 
 ---
 
