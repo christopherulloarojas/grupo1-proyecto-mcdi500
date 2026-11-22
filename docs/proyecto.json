@@ -76,6 +76,7 @@
     "archivo": "establecimientos_20261103.csv",
     "diccionario": "Diccionario de Datos Base de Establecimientos de Salud Red Asistencial 2026",
     "portal_institucional": "https://deis.minsal.cl/sistemas/",
+    "conjunto_datos": "https://datos.gob.cl/dataset/3bf4cf7c-f638-4735-9a01-f65faae4beca/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc",
     "fecha_sugerida_nombre": "2026-11-03",
     "fecha_descarga_original": null,
     "fecha_corte_confirmada": null,
