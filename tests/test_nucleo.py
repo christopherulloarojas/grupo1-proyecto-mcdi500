@@ -4,6 +4,7 @@ Se ejecutan desde la raíz del proyecto con un solo comando:
 
     python -m unittest -v
 """
+import gc
 import tempfile
 import unittest
 from pathlib import Path
@@ -21,7 +22,7 @@ from src.observadores import BitacoraFiltros
 from src.pipeline import Pipeline, PipelineObservable
 from src.preprocesador import PreprocesadorRegistro
 from src.referencia_f2 import flujo_f2
-from src.transformadores import (CodificadorBinario, FiltroCodigosEnConflicto, FiltroInformado,
+from src.transformadores import (CodificadorBinario, Filtro, FiltroCodigosEnConflicto, FiltroInformado,
                                  FiltroValoresPermitidos, MapeadorCategorias, PasoFuncion, Transformador)
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -199,6 +200,26 @@ class TestExcepciones(unittest.TestCase):
 
     def setUp(self):
         self.datos = registro_pequeno()
+
+    # --- CAMBIO (Fase 4): dos pruebas nuevas para la clase base abstracta (módulo abc) ---
+    def test_clase_base_abstracta(self):
+        """Transformador y Filtro son abstractos: crearlos directamente produce TypeError."""
+        with self.assertRaises(TypeError):
+            Transformador("EstadoFuncionamiento")
+        with self.assertRaises(TypeError):
+            Filtro("EstadoFuncionamiento", "E0", "Prueba")
+
+    def test_hija_incompleta_no_se_instancia(self):
+        """Una clase hija que no implementa aplicar no se puede crear: TypeError."""
+        class SoloAprende(Transformador):
+            def aprender(self, df):
+                return {}
+        with self.assertRaisesRegex(TypeError, "aplicar"):
+            SoloAprende("EstadoFuncionamiento")
+        # La clase de prueba se elimina para que no quede registrada como subclase de Transformador:
+        # si quedara, recorrer_jerarquia la contaría en el cuaderno F3 después de ejecutar las pruebas.
+        del SoloAprende
+        gc.collect()
 
     def test_transformar_sin_ajustar(self):
         """Transformar antes de ajustar produce RuntimeError."""

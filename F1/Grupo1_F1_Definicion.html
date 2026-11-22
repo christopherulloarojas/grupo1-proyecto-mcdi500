@@ -7824,6 +7824,7 @@ a.anchor-link {
 <li><strong>Articulación de las fases.</strong> F3 se define como núcleo algorítmico (diseño modular, orientación a objetos y medición de eficiencia) y la prueba de independencia con V de Cramér se traslada a F4. Se agregó una restricción sobre el tipo de establecimiento, que puede explicar parte de la asociación observada. La pregunta y el objetivo general no cambian. Los textos anteriores quedaron comentados en el código o citados en cada nota.</li>
 <li>Los resultados del estudio no cambiaron: la población, la matriz y la contingencia de F2 son idénticas.</li>
 <li><strong>Fase 4: SciPy en el entorno.</strong> La sección 2 registra también la versión de SciPy (antes la lista de bibliotecas no la incluía), una biblioteca ausente ya no detiene el cuaderno con un error de importación sino en la sección 3.1, y el mensaje de la sección 3.1 nombra cada biblioteca que no coincide. La estructura de carpetas incluye <code>F4</code>. Los resultados del estudio no cambian.</li>
+<li><strong>Fase 4: referencia del conjunto de datos.</strong> La sección 5 y <code>docs/proyecto.json</code> registran la página del conjunto en datos.gob.cl (antes solo se citaba el portal general del DEIS, sin dirección del conjunto).</li>
 </ul>
 </div>
 </div>
@@ -7961,6 +7962,11 @@ a.anchor-link {
             <span class="s1">'diccionario'</span><span class="p">:</span> <span class="s1">'Diccionario de Datos Base de Establecimientos de Salud Red Asistencial '</span>
                            <span class="s1">'2026'</span><span class="p">,</span>
             <span class="s1">'portal_institucional'</span><span class="p">:</span> <span class="s1">'https://deis.minsal.cl/sistemas/'</span><span class="p">,</span>
+            <span class="c1"># --- CAMBIO (Fase 4: referencia del conjunto de datos) ---</span>
+            <span class="c1"># ANTES: la única dirección registrada era el portal general del DEIS, que no identifica este conjunto.</span>
+            <span class="c1"># AHORA: se registra también la página del conjunto en datos.gob.cl, desde donde se descarga el archivo</span>
+            <span class="c1">#        (la misma dirección que usan la sección 5 y verificar_fuente.py).</span>
+            <span class="s1">'conjunto_datos'</span><span class="p">:</span> <span class="s1">'https://datos.gob.cl/dataset/3bf4cf7c-f638-4735-9a01-f65faae4beca/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc'</span><span class="p">,</span>
             <span class="s1">'fecha_sugerida_nombre'</span><span class="p">:</span> <span class="s1">'2026-11-03'</span><span class="p">,</span>
             <span class="s1">'fecha_descarga_original'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
             <span class="s1">'fecha_corte_confirmada'</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
@@ -8741,13 +8747,16 @@ Entorno virtual: True
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="5.-Selecci%C3%B3n-y-ficha-del-conjunto-de-datos">5. Selección y ficha del conjunto de datos<a class="anchor-link" href="#5.-Selecci%C3%B3n-y-ficha-del-conjunto-de-datos">¶</a></h2><p>Verificaremos las dimensiones y las columnas sin limpiar ni filtrar filas. El archivo recibido es <code>establecimientos_20261103.csv</code>; su diccionario corresponde al registro de establecimientos de salud de 2026.</p>
-<p><strong>Procedencia:</strong> Ministerio de Salud de Chile, DEIS. Portal institucional: <a href="https://deis.minsal.cl/sistemas/">https://deis.minsal.cl/sistemas/</a> . La referencia acredita el contexto del registro, pero no una descarga exacta de esta versión. La fecha <code>2026-11-03</code> se deduce únicamente del nombre; la fecha original de descarga y el corte administrativo exacto siguen sin estar documentados.</p>
+<p><strong>Procedencia:</strong> Ministerio de Salud de Chile, DEIS, publicado en el portal de datos abiertos del Estado: <a href="https://datos.gob.cl/dataset/3bf4cf7c-f638-4735-9a01-f65faae4beca/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc">https://datos.gob.cl/dataset/3bf4cf7c-f638-4735-9a01-f65faae4beca/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc</a> . Portal institucional del DEIS: <a href="https://deis.minsal.cl/sistemas/">https://deis.minsal.cl/sistemas/</a> . La página del conjunto acredita su origen, pero no una descarga exacta de esta versión; por eso el archivo se verifica con su huella (sección 5). La fecha <code>2026-11-03</code> se deduce únicamente del nombre; la fecha original de descarga y el corte administrativo exacto siguen sin estar documentados.</p>
 <p><strong>Referencias de los materiales proporcionados:</strong></p>
 <ul>
-<li>Departamento de Estadísticas e Información de Salud. (s. f.). <em>Establecimientos de salud</em> [Archivo CSV proporcionado: establecimientos_20261103.csv]. Ministerio de Salud de Chile.</li>
+<li>Departamento de Estadísticas e Información de Salud. (2026). <em>Establecimientos de salud vigentes</em> [Conjunto de datos; archivo utilizado: establecimientos_20261103.csv]. Ministerio de Salud de Chile; Datos Abiertos del Gobierno de Chile. <a href="https://datos.gob.cl/dataset/3bf4cf7c-f638-4735-9a01-f65faae4beca/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc">https://datos.gob.cl/dataset/3bf4cf7c-f638-4735-9a01-f65faae4beca/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc</a></li>
 <li>Departamento de Estadísticas e Información de Salud. (2026). <em>Diccionario de Datos Base de Establecimientos de Salud Red Asistencial 2026</em> [Diccionario de datos proporcionado].</li>
 </ul>
 <p>La licencia específica no está acreditada en los archivos entregados; no se atribuirá una licencia sin verificarla.</p>
+<blockquote>
+<p><strong>Cambio de la Fase 4.</strong> La referencia del conjunto de datos cita ahora su página en datos.gob.cl, la misma desde donde se descarga el archivo. Antes citaba solo el portal general del DEIS y no tenía dirección.</p>
+</blockquote>
 </div>
 </div>
 </div>
@@ -9542,8 +9551,8 @@ Entorno virtual: True
 <tbody>
 <tr>
 <th>0</th>
-<td>No hay repositorio propio en esta carpeta</td>
-<td>Pendiente de trabajo del grupo</td>
+<td>Repositorio detectado</td>
+<td>2dcd44a tmp: checkpoint restauracion\n761c2b6 BacmUnab: Merge pull request #31 from christopherulloarojas/f4-notebook-integracion\nc8fd698 BacmUnab: Actualiza README con documentación completa del proyecto\nbcb9f7f BacmUnab: Agrega script para ejecutar todas las fases del proyecto\nfdab63c BacmUnab: Agrega hallazgos y metadatos de la Fase 4</td>
 </tr>
 </tbody>
 </table>

@@ -16,10 +16,10 @@
     "Observer",
     "Factory"
   ],
-  "pruebas": 28,
+  "pruebas": 30,
   "medicion": {
-    "momento": "2026-11-16T19:20",
-    "equipo": "Linux 6.18.44-fc-v509 · x86_64 · Python 3.13.18"
+    "momento": "2026-11-20T22:56",
+    "equipo": "Linux 6.18.44-fc-v726 · x86_64 · Python 3.13.18"
   },
   "configuracion_f1": {
     "titulo": "Pertenencia al SNSS y nivel de complejidad de los establecimientos de salud en Chile",
@@ -86,6 +86,7 @@
     "fuente.archivo": "establecimientos_20261103.csv",
     "fuente.diccionario": "Diccionario de Datos Base de Establecimientos de Salud Red Asistencial 2026",
     "fuente.portal_institucional": "https://deis.minsal.cl/sistemas/",
+    "fuente.conjunto_datos": "https://datos.gob.cl/dataset/3bf4cf7c-f638-4735-9a01-f65faae4beca/resource/2c44d782-3365-44e3-aefb-2c8b8363a1bc",
     "fuente.fecha_sugerida_nombre": "2026-11-03",
     "fuente.fecha_descarga_original": null,
     "fuente.fecha_corte_confirmada": null,
