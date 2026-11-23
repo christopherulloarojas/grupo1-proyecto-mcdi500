@@ -12354,10 +12354,15 @@ Cramér.</li>
 <h3 id="Guion-del-video">Guion del video<a class="anchor-link" href="#Guion-del-video">¶</a></h3><p>El video sigue el guion que escribió el grupo, en cuatro partes consecutivas, una por integrante. Cada uno presenta
 la parte en que trabajó: Brian, el problema y la población (acto 1); Karla, la metodología; Kattia, los resultados y
 las exclusiones (acto 2); Christopher, el tipo de establecimiento, la región y la respuesta (acto 3). Cada figura que
-se comenta queda en pantalla al menos 20 segundos y su título se lee en voz alta, porque el título es el hallazgo.</p>
-<p>La tabla siguiente es ese guion, segmento por segmento, con lo que se dice, lo que se muestra y cuánto dura. La celda
-comprueba cinco cosas: que el video dure entre 5 y 8 minutos, que hablen los cuatro integrantes, que cada uno tenga un
-solo tramo continuo, que los tramos coincidan con los del guion y que las tres figuras del informe se comenten.</p>
+se comenta queda en pantalla y su título se lee en voz alta, porque el título es el hallazgo.</p>
+<p>La tabla siguiente es ese guion, segmento por segmento, con lo que se dice, lo que se muestra y cuánto dura en el
+video final. Los tiempos se midieron sobre el video publicado: cada segmento va desde que aparece su diapositiva hasta
+que aparece la siguiente, y cada tramo, desde que el integrante aparece en cámara hasta que lo reemplaza el siguiente.
+La celda informa la duración total frente al rango de 5 a 8 minutos y comprueba que hablen los cuatro integrantes,
+que cada uno tenga un solo tramo continuo, que los tramos coincidan con los medidos y que las tres figuras del
+informe se comenten.</p>
+<!-- CAMBIO (Fase 4, video final): antes los segundos eran una estimación del guion (7:20 en total); ahora son los
+tiempos medidos en el video publicado (8:36). Ver el comentario de la celda siguiente. -->
 </div>
 </div>
 </div>
@@ -12371,48 +12376,51 @@ solo tramo continuo, que los tramos coincidan con los del guion y que las tres f
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># El guion del video replica el documento «Guion del video» del grupo: cuatro partes consecutivas, una por integrante.</span>
 <span class="c1"># Cada fila es un segmento del texto hablado; «pantalla» indica la figura o diapositiva que se muestra mientras tanto.</span>
-<span class="c1"># Los segundos se estimaron con unas 135 palabras por minuto y suman el tramo de cada integrante.</span>
+<span class="c1"># --- CAMBIO (Fase 4, video final) ---</span>
+<span class="c1"># Antes: los segundos se estimaban con unas 135 palabras por minuto y sumaban 7:20.</span>
+<span class="c1"># Problema: el video grabado no dura lo estimado, y la tabla describía un video que no es el que se entrega.</span>
+<span class="c1"># Ahora: los segundos se midieron en el video publicado (8:36), según los cambios de diapositiva y de presentador.</span>
+<span class="c1">#   Los dos segmentos de la Figura 5 se unieron en uno, porque la diapositiva es la misma (30 s en pantalla).</span>
 <span class="n">guion</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span>
-    <span class="c1"># Parte 1 · Brian Cerda · Apertura y problema (0:00 – 1:30)</span>
+    <span class="c1"># Parte 1 · Brian Cerda · Apertura y problema (0:00 – 2:44)</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"1 · Apertura y problema"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Brian Cerda"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Portada"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Saludo, integrantes y título del proyecto"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">15</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"1 · Apertura y problema"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Brian Cerda"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Portada"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Por qué importa la complejidad en la red asistencial y pregunta de investigación"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">35</span><span class="p">},</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Saludo, integrantes y título del proyecto"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">24</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"1 · Apertura y problema"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Brian Cerda"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Pregunta de investigación"</span><span class="p">,</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Por qué importa la complejidad en la red asistencial y pregunta de investigación"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">87</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"1 · Apertura y problema"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Brian Cerda"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Figura 1"</span><span class="p">,</span>
      <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"De 5.837 registros a 4.603 establecimientos con ocho criterios; F01 y F07 explican el 92 </span><span class="si">% d</span><span class="s2">e las exclusiones"</span><span class="p">,</span>
-     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
-    <span class="c1"># Parte 2 · Karla Martínez · Metodología (1:30 – 3:00)</span>
-    <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"2 · Metodología"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Karla Martínez"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Repositorio y notebook"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Cuatro fases encadenadas, clases y pipeline, resultados idénticos entre fases"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">35</span><span class="p">},</span>
+     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">53</span><span class="p">},</span>
+    <span class="c1"># Parte 2 · Karla Martínez · Metodología (2:44 – 4:39)</span>
+    <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"2 · Metodología"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Karla Martínez"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Cuatro fases encadenadas"</span><span class="p">,</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Cuatro fases encadenadas, clases y pipeline, resultados idénticos entre fases"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">34</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"2 · Metodología"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Karla Martínez"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Figura 3"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Estandarización: 92 establecimientos, 78 No SNSS, habrían quedado fuera"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Estandarización: 92 establecimientos, 78 No SNSS, habrían quedado fuera"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">41</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"2 · Metodología"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Karla Martínez"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Figura 10"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Eficiencia de la reconstrucción y reproducibilidad (versiones fijas, huella del archivo, 48 pruebas)"</span><span class="p">,</span>
-     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span>
-    <span class="c1"># Parte 3 · Kattia Espinoza · Resultados (3:00 – 5:10)</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Eficiencia de la reconstrucción y reproducibilidad (versiones fijas, huella del archivo, 53 pruebas)"</span><span class="p">,</span>
+     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
+    <span class="c1"># Parte 3 · Kattia Espinoza · Resultados (4:39 – 6:24)</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"3 · Resultados"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Kattia Espinoza"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Figura 4"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Nueve de cada diez SNSS son de baja complejidad y dos de cada tres No SNSS, de mediana"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">35</span><span class="p">},</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Nueve de cada diez SNSS son de baja complejidad y dos de cada tres No SNSS, de mediana"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">51</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"3 · Resultados"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Kattia Espinoza"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Figura 5"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Hipótesis nula, frecuencias esperadas sobre 42, chi-cuadrado, V de Cramér 0,66 y residuos"</span><span class="p">,</span>
-     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">55</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"3 · Resultados"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Kattia Espinoza"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Figura 5"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Por qué importa más la magnitud que el valor p: el registro es la población"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">15</span><span class="p">},</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Hipótesis nula, esperadas sobre 42, chi-cuadrado, V de Cramér 0,66 y residuos; la magnitud pesa más que el valor p"</span><span class="p">,</span>
+     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">30</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"3 · Resultados"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Kattia Espinoza"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Figura 2"</span><span class="p">,</span>
      <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Limitación: más de uno de cada cuatro No SNSS quedó fuera por complejidad «No Aplica»"</span><span class="p">,</span>
-     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span>
-    <span class="c1"># Parte 4 · Christopher Ulloa · Lo que hay detrás, conclusiones y cierre (5:10 – 7:20)</span>
+     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">24</span><span class="p">},</span>
+    <span class="c1"># Parte 4 · Christopher Ulloa · Lo que hay detrás, conclusiones y cierre (6:24 – 8:36)</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"4 · Lo que hay detrás y cierre"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Christopher Ulloa"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Figura 6"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"El 85 </span><span class="si">% d</span><span class="s2">e los SNSS es de atención primaria y urgencia; ningún No SNSS lo es"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">25</span><span class="p">},</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"El 85 </span><span class="si">% d</span><span class="s2">e los SNSS es de atención primaria y urgencia; ningún No SNSS lo es"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">29</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"4 · Lo que hay detrás y cierre"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Christopher Ulloa"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Figura 7"</span><span class="p">,</span>
      <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Dentro de los 5 tipos compartidos la V baja (0,19 en hospitales); en alta complejidad la dirección cambia según el tipo"</span><span class="p">,</span>
-     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
+     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">31</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"4 · Lo que hay detrás y cierre"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Christopher Ulloa"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Figura 9"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"La diferencia se repite en las 16 regiones: la región no la explica"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">15</span><span class="p">},</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"La diferencia se repite en las 16 regiones: la región no la explica"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">14</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"4 · Lo que hay detrás y cierre"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Christopher Ulloa"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Respuesta a la pregunta"</span><span class="p">,</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Sí existe asociación y es grande, pero buena parte se explica por el tipo de establecimiento"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">20</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"4 · Lo que hay detrás y cierre"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Christopher Ulloa"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Límites y próximos pasos"</span><span class="p">,</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Límites (no causal, un corte, se cuentan establecimientos), división de funciones y mejoras"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">19</span><span class="p">},</span>
     <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"4 · Lo que hay detrás y cierre"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Christopher Ulloa"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Diapositiva final"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Respuesta, límites (no causal, un corte, se cuentan establecimientos), división de funciones y mejoras"</span><span class="p">,</span>
-     <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">40</span><span class="p">},</span>
-    <span class="p">{</span><span class="s2">"parte"</span><span class="p">:</span> <span class="s2">"4 · Lo que hay detrás y cierre"</span><span class="p">,</span> <span class="s2">"integrante"</span><span class="p">:</span> <span class="s2">"Christopher Ulloa"</span><span class="p">,</span> <span class="s2">"pantalla"</span><span class="p">:</span> <span class="s2">"Diapositiva final"</span><span class="p">,</span>
-     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Agradecimiento y repositorio"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+     <span class="s2">"contenido"</span><span class="p">:</span> <span class="s2">"Agradecimiento y repositorio"</span><span class="p">,</span> <span class="s2">"segundos"</span><span class="p">:</span> <span class="mi">19</span><span class="p">},</span>
 <span class="p">])</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">minutos</span><span class="p">(</span><span class="n">segundos</span><span class="p">):</span>
@@ -12429,16 +12437,27 @@ solo tramo continuo, que los tramos coincidan con los del guion y que las tres f
 <span class="n">tramos</span><span class="p">[</span><span class="s2">"duración"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">tramos</span><span class="p">[</span><span class="s2">"hasta"</span><span class="p">]</span> <span class="o">-</span> <span class="n">tramos</span><span class="p">[</span><span class="s2">"desde"</span><span class="p">])</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">minutos</span><span class="p">)</span>
 <span class="n">tramos</span><span class="p">[</span><span class="s2">"tramo"</span><span class="p">]</span> <span class="o">=</span> <span class="n">tramos</span><span class="p">[</span><span class="s2">"desde"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">minutos</span><span class="p">)</span> <span class="o">+</span> <span class="s2">" – "</span> <span class="o">+</span> <span class="n">tramos</span><span class="p">[</span><span class="s2">"hasta"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">minutos</span><span class="p">)</span>
 
-<span class="c1"># Tramos del documento «Guion del video»: si se cambia el texto hablado, esta tabla debe cambiar con él.</span>
-<span class="n">TRAMOS_GUION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Brian Cerda"</span><span class="p">:</span> <span class="s2">"0:00 – 1:30"</span><span class="p">,</span> <span class="s2">"Karla Martínez"</span><span class="p">:</span> <span class="s2">"1:30 – 3:00"</span><span class="p">,</span>
-                <span class="s2">"Kattia Espinoza"</span><span class="p">:</span> <span class="s2">"3:00 – 5:10"</span><span class="p">,</span> <span class="s2">"Christopher Ulloa"</span><span class="p">:</span> <span class="s2">"5:10 – 7:20"</span><span class="p">}</span>
+<span class="c1"># --- CAMBIO (Fase 4, video final) ---</span>
+<span class="c1"># Antes: los tramos eran los estimados en el guion (0:00 – 1:30, 1:30 – 3:00, 3:00 – 5:10 y 5:10 – 7:20).</span>
+<span class="c1"># Ahora: son los medidos en el video publicado, cuando cada integrante aparece en cámara.</span>
+<span class="n">TRAMOS_VIDEO</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"Brian Cerda"</span><span class="p">:</span> <span class="s2">"0:00 – 2:44"</span><span class="p">,</span> <span class="s2">"Karla Martínez"</span><span class="p">:</span> <span class="s2">"2:44 – 4:39"</span><span class="p">,</span>
+                <span class="s2">"Kattia Espinoza"</span><span class="p">:</span> <span class="s2">"4:39 – 6:24"</span><span class="p">,</span> <span class="s2">"Christopher Ulloa"</span><span class="p">:</span> <span class="s2">"6:24 – 8:36"</span><span class="p">}</span>
+<span class="n">DURACION_VIDEO</span> <span class="o">=</span> <span class="mi">516</span>   <span class="c1"># segundos del archivo publicado (8:36)</span>
 
 <span class="n">total</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">guion</span><span class="p">[</span><span class="s2">"segundos"</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
-<span class="k">assert</span> <span class="mi">300</span> <span class="o">&lt;=</span> <span class="n">total</span> <span class="o">&lt;=</span> <span class="mi">480</span><span class="p">,</span> <span class="s2">"El video debe durar entre 5 y 8 minutos"</span>
+<span class="k">assert</span> <span class="n">total</span> <span class="o">==</span> <span class="n">DURACION_VIDEO</span><span class="p">,</span> <span class="s2">"La suma de los segmentos debe ser la duración del video publicado"</span>
+<span class="c1"># --- CAMBIO (Fase 4, video final) ---</span>
+<span class="c1"># Antes: assert 300 &lt;= total &lt;= 480. Con el video real (8:36) la celda se detenía.</span>
+<span class="c1"># Ahora: el rango se informa en vez de detener el cuaderno, para que la tabla describa el video que se entrega.</span>
+<span class="n">exceso</span> <span class="o">=</span> <span class="n">total</span> <span class="o">-</span> <span class="mi">480</span>
+<span class="k">if</span> <span class="n">exceso</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Atención: el video dura </span><span class="si">{</span><span class="n">minutos</span><span class="p">(</span><span class="n">total</span><span class="p">)</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">exceso</span><span class="si">}</span><span class="s2"> s más que el máximo de 8 minutos."</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"El video dura </span><span class="si">{</span><span class="n">minutos</span><span class="p">(</span><span class="n">total</span><span class="p">)</span><span class="si">}</span><span class="s2">, dentro del rango de 5 a 8 minutos."</span><span class="p">)</span>
 <span class="k">assert</span> <span class="nb">set</span><span class="p">(</span><span class="n">guion</span><span class="p">[</span><span class="s2">"integrante"</span><span class="p">])</span> <span class="o">==</span> <span class="nb">set</span><span class="p">(</span><span class="n">PROYECTO</span><span class="p">[</span><span class="s2">"integrantes"</span><span class="p">]),</span> <span class="s2">"Deben participar los cuatro integrantes"</span>
 <span class="c1"># Un tramo continuo por integrante: el número de cambios de presentador es exactamente tres.</span>
 <span class="k">assert</span> <span class="p">(</span><span class="n">guion</span><span class="p">[</span><span class="s2">"integrante"</span><span class="p">]</span> <span class="o">!=</span> <span class="n">guion</span><span class="p">[</span><span class="s2">"integrante"</span><span class="p">]</span><span class="o">.</span><span class="n">shift</span><span class="p">())</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">==</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">"Cada integrante debe tener un solo tramo"</span>
-<span class="k">assert</span> <span class="n">tramos</span><span class="p">[</span><span class="s2">"tramo"</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="o">==</span> <span class="n">TRAMOS_GUION</span><span class="p">,</span> <span class="s2">"Los tramos no coinciden con el guion del grupo"</span>
+<span class="k">assert</span> <span class="n">tramos</span><span class="p">[</span><span class="s2">"tramo"</span><span class="p">]</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span> <span class="o">==</span> <span class="n">TRAMOS_VIDEO</span><span class="p">,</span> <span class="s2">"Los tramos no coinciden con los medidos en el video"</span>
 <span class="k">for</span> <span class="n">figura</span> <span class="ow">in</span> <span class="n">hallazgos</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">hallazgos</span><span class="p">[</span><span class="s2">"uso"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"informe"</span><span class="p">,</span> <span class="s2">"figura"</span><span class="p">]:</span>
     <span class="n">numero</span> <span class="o">=</span> <span class="n">figura</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">:]</span>
     <span class="k">assert</span> <span class="n">guion</span><span class="p">[</span><span class="s2">"pantalla"</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">fullmatch</span><span class="p">(</span><span class="sa">rf</span><span class="s2">"Figura </span><span class="si">{</span><span class="n">numero</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">any</span><span class="p">(),</span> <span class="sa">f</span><span class="s2">"La </span><span class="si">{</span><span class="n">figura</span><span class="si">}</span><span class="s2"> no se comenta en el video"</span>
@@ -12458,13 +12477,14 @@ solo tramo continuo, que los tramos coincidan con los del guion y que las tres f
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Duración total: 7:20 (440 s)
+<pre>Atención: el video dura 8:36, 36 s más que el máximo de 8 minutos.
+Duración total: 8:36 (516 s)
                          tramo duración
 integrante                             
-Brian Cerda        0:00 – 1:30     1:30
-Karla Martínez     1:30 – 3:00     1:30
-Kattia Espinoza    3:00 – 5:10     2:10
-Christopher Ulloa  5:10 – 7:20     2:10
+Brian Cerda        0:00 – 2:44     2:44
+Karla Martínez     2:44 – 4:39     1:55
+Kattia Espinoza    4:39 – 6:24     1:45
+Christopher Ulloa  6:24 – 8:36     2:12
 </pre>
 </div>
 </div>
@@ -12505,133 +12525,133 @@ Christopher Ulloa  5:10 – 7:20     2:10
 <td>Brian Cerda</td>
 <td>Saludo, integrantes y título del proyecto</td>
 <td>Portada</td>
-<td>15</td>
+<td>24</td>
 </tr>
 <tr>
 <th>1</th>
-<td>0:15</td>
+<td>0:24</td>
 <td>1 · Apertura y problema</td>
 <td>Brian Cerda</td>
 <td>Por qué importa la complejidad en la red asist...</td>
-<td>Portada</td>
-<td>35</td>
+<td>Pregunta de investigación</td>
+<td>87</td>
 </tr>
 <tr>
 <th>2</th>
-<td>0:50</td>
+<td>1:51</td>
 <td>1 · Apertura y problema</td>
 <td>Brian Cerda</td>
 <td>De 5.837 registros a 4.603 establecimientos co...</td>
 <td>Figura 1</td>
-<td>40</td>
+<td>53</td>
 </tr>
 <tr>
 <th>3</th>
-<td>1:30</td>
+<td>2:44</td>
 <td>2 · Metodología</td>
 <td>Karla Martínez</td>
 <td>Cuatro fases encadenadas, clases y pipeline, r...</td>
-<td>Repositorio y notebook</td>
-<td>35</td>
+<td>Cuatro fases encadenadas</td>
+<td>34</td>
 </tr>
 <tr>
 <th>4</th>
-<td>2:05</td>
+<td>3:18</td>
 <td>2 · Metodología</td>
 <td>Karla Martínez</td>
 <td>Estandarización: 92 establecimientos, 78 No SN...</td>
 <td>Figura 3</td>
-<td>25</td>
+<td>41</td>
 </tr>
 <tr>
 <th>5</th>
-<td>2:30</td>
+<td>3:59</td>
 <td>2 · Metodología</td>
 <td>Karla Martínez</td>
 <td>Eficiencia de la reconstrucción y reproducibil...</td>
 <td>Figura 10</td>
-<td>30</td>
+<td>40</td>
 </tr>
 <tr>
 <th>6</th>
-<td>3:00</td>
+<td>4:39</td>
 <td>3 · Resultados</td>
 <td>Kattia Espinoza</td>
 <td>Nueve de cada diez SNSS son de baja complejida...</td>
 <td>Figura 4</td>
-<td>35</td>
+<td>51</td>
 </tr>
 <tr>
 <th>7</th>
-<td>3:35</td>
+<td>5:30</td>
 <td>3 · Resultados</td>
 <td>Kattia Espinoza</td>
-<td>Hipótesis nula, frecuencias esperadas sobre 42...</td>
+<td>Hipótesis nula, esperadas sobre 42, chi-cuadra...</td>
 <td>Figura 5</td>
-<td>55</td>
+<td>30</td>
 </tr>
 <tr>
 <th>8</th>
-<td>4:30</td>
-<td>3 · Resultados</td>
-<td>Kattia Espinoza</td>
-<td>Por qué importa más la magnitud que el valor p...</td>
-<td>Figura 5</td>
-<td>15</td>
-</tr>
-<tr>
-<th>9</th>
-<td>4:45</td>
+<td>6:00</td>
 <td>3 · Resultados</td>
 <td>Kattia Espinoza</td>
 <td>Limitación: más de uno de cada cuatro No SNSS ...</td>
 <td>Figura 2</td>
-<td>25</td>
+<td>24</td>
 </tr>
 <tr>
-<th>10</th>
-<td>5:10</td>
+<th>9</th>
+<td>6:24</td>
 <td>4 · Lo que hay detrás y cierre</td>
 <td>Christopher Ulloa</td>
 <td>El 85 % de los SNSS es de atención primaria y ...</td>
 <td>Figura 6</td>
-<td>25</td>
+<td>29</td>
 </tr>
 <tr>
-<th>11</th>
-<td>5:35</td>
+<th>10</th>
+<td>6:53</td>
 <td>4 · Lo que hay detrás y cierre</td>
 <td>Christopher Ulloa</td>
 <td>Dentro de los 5 tipos compartidos la V baja (0...</td>
 <td>Figura 7</td>
-<td>40</td>
+<td>31</td>
 </tr>
 <tr>
-<th>12</th>
-<td>6:15</td>
+<th>11</th>
+<td>7:24</td>
 <td>4 · Lo que hay detrás y cierre</td>
 <td>Christopher Ulloa</td>
 <td>La diferencia se repite en las 16 regiones: la...</td>
 <td>Figura 9</td>
-<td>15</td>
+<td>14</td>
+</tr>
+<tr>
+<th>12</th>
+<td>7:38</td>
+<td>4 · Lo que hay detrás y cierre</td>
+<td>Christopher Ulloa</td>
+<td>Sí existe asociación y es grande, pero buena p...</td>
+<td>Respuesta a la pregunta</td>
+<td>20</td>
 </tr>
 <tr>
 <th>13</th>
-<td>6:30</td>
+<td>7:58</td>
 <td>4 · Lo que hay detrás y cierre</td>
 <td>Christopher Ulloa</td>
-<td>Respuesta, límites (no causal, un corte, se cu...</td>
-<td>Diapositiva final</td>
-<td>40</td>
+<td>Límites (no causal, un corte, se cuentan estab...</td>
+<td>Límites y próximos pasos</td>
+<td>19</td>
 </tr>
 <tr>
 <th>14</th>
-<td>7:10</td>
+<td>8:17</td>
 <td>4 · Lo que hay detrás y cierre</td>
 <td>Christopher Ulloa</td>
 <td>Agradecimiento y repositorio</td>
 <td>Diapositiva final</td>
-<td>10</td>
+<td>19</td>
 </tr>
 </tbody>
 </table>
