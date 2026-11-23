@@ -353,7 +353,7 @@ La fase F4 no cambia los datos: lee las salidas de F3, construye una copia legib
 | Variables de confusión | La asociación se repite dentro de los 5 tipos de establecimiento que tienen SNSS y No SNSS a la vez (562 establecimientos) y se clasifica si se mantiene, se reduce o desaparece; la agrupación de los 28 tipos en cuatro (`AGRUPACION_TIPOS`) describe la composición de cada grupo. También se repite dentro de cada una de las 16 regiones, con gráfico de caja y dispersión |
 | Eficiencia | Tres implementaciones de la reconstrucción de categorías comparadas con `timeit` y `tracemalloc` en tres tamaños; el módulo usa la más rápida |
 | Validación | 14 controles de casos normales, límite y excepciones, y 53 pruebas automatizadas |
-| Relato y video | Relato en tres actos y guion del video por integrante, con su duración comprobada (entre 5 y 8 minutos) |
+| Relato y video | Relato en tres actos y guion del video por integrante, con los tiempos medidos en el video final (8:36) |
 
 Principales resultados (`docs/hallazgos_f4.csv`):
 

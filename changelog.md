@@ -28,6 +28,8 @@ Cada entrada indica la fecha, la descripción del cambio, los commits que lo con
 | 22-11 | Comparación dentro de los 5 tipos compartidos (562 establecimientos) y nueva Figura 7 | `a1c3ff0`, `8b37937`, `b9bbafc` (#34) | Retroalimentación S1 y S2: controlar el tipo de establecimiento |
 | 22-11 | README con las correcciones de la Fase 4 | `e0e4c56` (#35) | Coherencia entre repositorio e informe |
 | 22-11 | `changelog.md` y archivo de identidades | `c91cf11` (#36) | Retroalimentación S2: trazabilidad de mejoras e identidades unificadas |
-| 22-11 | `mailmap.txt` renombrado a `.mailmap` | este commit | Git solo lee el archivo de identidades con ese nombre exacto |
+| 22-11 | `mailmap.txt` renombrado a `.mailmap` | `1ccb170` (#37) | Git solo lee el archivo de identidades con ese nombre exacto |
+| 22-11 | Elimina `mailmap.txt`, duplicado de `.mailmap` | `c7dcd14` (#38) | El archivo quedó copiado en vez de renombrado |
+| 23-11 | Guion del video en F4 con los tiempos medidos en el video final (8:36) | este commit | La tabla describía una duración estimada (7:20) y no el video que se entrega |
 
 S1 y S2: retroalimentación de las Sumativas 1 y 2.
